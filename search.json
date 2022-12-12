@@ -1,5 +1,89 @@
 [
   {
+    "objectID": "presentation/Istio.html#identity-and-certificate-management",
+    "href": "presentation/Istio.html#identity-and-certificate-management",
+    "title": "What does service mesh have to do with security",
+    "section": "Identity And Certificate Management",
+    "text": "Identity And Certificate Management\n\nIdentity Provisioning Workflow | 500"
+  },
+  {
+    "objectID": "presentation/Istio.html#authentication-architecture",
+    "href": "presentation/Istio.html#authentication-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Authentication Architecture",
+    "text": "Authentication Architecture\n\nPolicy|800"
+  },
+  {
+    "objectID": "presentation/Istio.html#peerauthentication",
+    "href": "presentation/Istio.html#peerauthentication",
+    "title": "What does service mesh have to do with security",
+    "section": "PeerAuthentication",
+    "text": "PeerAuthentication\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  mtls:\n    mode: PERMISSIVE\n\n---\n\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  selector:\n    matchLabels:\n      app: finance\n  mtls:\n    mode: STRICT"
+  },
+  {
+    "objectID": "presentation/Istio.html#authorization-architecture",
+    "href": "presentation/Istio.html#authorization-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Authorization Architecture",
+    "text": "Authorization Architecture\n\nPolicy"
+  },
+  {
+    "objectID": "presentation/Istio.html#authorizationpolicy",
+    "href": "presentation/Istio.html#authorizationpolicy",
+    "title": "What does service mesh have to do with security",
+    "section": "AuthorizationPolicy",
+    "text": "AuthorizationPolicy\napiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n name: httpbin\n namespace: foo\nspec:\n action: ALLOW\n rules:\n - from:\n   - source:\n       principals: [\"cluster.local/ns/default/sa/sleep\"]\n   - source:\n       namespaces: [\"test\"]\n   to:\n   - operation:\n       methods: [\"GET\"]\n       paths: [\"/info*\"]\n   - operation:\n       methods: [\"POST\"]\n       paths: [\"/data\"]\n   when:\n   - key: request.auth.claims[iss]\n     values: [\"https://accounts.google.com\"]"
+  },
+  {
+    "objectID": "presentation/Istio.html#controle-de-rotas-via-virtualservice",
+    "href": "presentation/Istio.html#controle-de-rotas-via-virtualservice",
+    "title": "What does service mesh have to do with security",
+    "section": "Controle de rotas via VirtualService",
+    "text": "Controle de rotas via VirtualService\nRotas Publicas e Rotas Privadas\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: reviews-route\nspec:\n  hosts:\n  - reviews.prod.svc.cluster.local\n  http:\n  - name: \"reviews-v2-routes\"\n    match:\n    - uri:\n        prefix: \"/wpcatalog\"\n    - uri:\n        prefix: \"/consumercatalog\"\n    rewrite:\n      uri: \"/newcatalog\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v2\n  - name: \"reviews-v1-route\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v1"
+  },
+  {
+    "objectID": "presentation/Istio.html#spifee",
+    "href": "presentation/Istio.html#spifee",
+    "title": "What does service mesh have to do with security",
+    "section": "SPIFEE",
+    "text": "SPIFEE\n[[Pasted image 20220701122718.png|200]] A universal identity control plane for distributed systems\nSPIFFE, the Secure Production Identity Framework For Everyone, provides a secure identity, in the form of a specially crafted X.509 certificate, to every workload in a modern production environment. SPIFFE removes the need for application-level authentication and complex network-level ACL configuration."
+  },
+  {
+    "objectID": "presentation/Istio.html#what-is-spire",
+    "href": "presentation/Istio.html#what-is-spire",
+    "title": "What does service mesh have to do with security",
+    "section": "What is SPIRE?",
+    "text": "What is SPIRE?\nSPIRE, the SPIFFE Runtime Environment, is an extensible system that implements the principles embodied in the SPIFFE standards. SPIRE manages platform and workload attestation, provides an API for controlling attestation policies, and coordinates certificate issuance and rotation."
+  },
+  {
+    "objectID": "presentation/Istio.html#mtls",
+    "href": "presentation/Istio.html#mtls",
+    "title": "What does service mesh have to do with security",
+    "section": "MTLS",
+    "text": "MTLS\n[[Pasted image 20220701121014.jpg | 300]]"
+  },
+  {
+    "objectID": "presentation/Istio.html#envoy-com-curiefense",
+    "href": "presentation/Istio.html#envoy-com-curiefense",
+    "title": "What does service mesh have to do with security",
+    "section": "Envoy com curiefense",
+    "text": "Envoy com curiefense\nCuriefense is the open source cloud native application security platform that protects all forms of web traffic, services, and APIs. It includes bot management, WAF, application-layer DDoS protection, session profiling, advanced rate limiting, and much more.\n[[Pasted image 20220919161921.png | 500]]"
+  },
+  {
+    "objectID": "presentation/Istio.html#references",
+    "href": "presentation/Istio.html#references",
+    "title": "What does service mesh have to do with security",
+    "section": "References",
+    "text": "References\n\nhttps://istio.io/latest/docs/concepts/security"
+  },
+  {
+    "objectID": "presentation/Istio.html#the-end-is-near",
+    "href": "presentation/Istio.html#the-end-is-near",
+    "title": "What does service mesh have to do with security",
+    "section": "The end is near",
+    "text": "The end is near"
+  },
+  {
     "objectID": "presentation/Prometheus.html#data-model",
     "href": "presentation/Prometheus.html#data-model",
     "title": "A breaf introduction to Prometheus",
