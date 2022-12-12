@@ -148,6 +148,12 @@ Install binaries from github:
 
 ---
 
+### Building for containers
+
+Depending on the container you must compile with different libs, like alpine that only suports musl. In that case you must compile the golang binary inside the container for better compatibility.
+
+---
+
 ### Comments
 
 ```go
