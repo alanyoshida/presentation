@@ -6,7 +6,28 @@ format: revealjs
 
 # A breaf introduction to Golang
 
-----
+---
+
+It was developed in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson at Google but launched in 2009 as an open-source programming language.
+
+---
+
+### Why Golang
+
+Concurrency is very hard in C, golang was born the help in this sense.
+
+---
+
+### Main characteristics
+
+- Compiled
+- Garbage Collection
+- Static type checking
+- Syntax similar to C
+- Built-in concurrency primitives (goroutines, channels)
+- Emphasis on greater simplicity and safety
+
+---
 
 ### Installing Go
 
@@ -100,6 +121,30 @@ require (
 	github.com/spf13/cobra v1.1.1
 )
 ```
+
+---
+
+### Golang Commands
+
+Build the project to a binary:
+
+`go build .`
+
+Run without generating a binary:
+
+`go run main.go`
+
+---
+
+### Golang Commands
+
+Execute tests:
+
+`go test`
+
+Install binaries from github:
+
+`go install github.com/norwoodj/helm-docs/cmd/helm-docs@latest`
 
 ---
 
@@ -475,6 +520,16 @@ $ go test
 PASS
 ok      gotest  0.001s
 ```
+
+---
+
+### Test Coverage
+
+Generate golang test coverage html using the following commands:
+
+`go test -coverprofile=coverage.out ./...`
+
+`go tool cover -func=coverage.out`
 
 ---
 
