@@ -1,3 +1,9 @@
+---
+title: "A breaf introduction to Prometheus"
+author: "Alan Yoshida"
+format: revealjs
+---
+
 # Prometheus
 
 ![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg)
@@ -26,7 +32,7 @@ api_http_requests_total{method="POST", handler="/messages"}
 
 ## Types of metrics
 
-#### Counter 
+#### Counter
  A _counter_ is a cumulative metric that represents a single [monotonically increasing counter](https://en.wikipedia.org/wiki/Monotonic_function) whose value can only increase or be reset to zero on restart.
 
 #### Gauge
