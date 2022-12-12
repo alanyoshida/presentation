@@ -4,9 +4,7 @@ author: "Alan Yoshida"
 format: revealjs
 ---
 
-# Prometheus
-
-![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg)
+![Prometheus](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg)
 
 Prometheus Query Language (PromQL)
 
