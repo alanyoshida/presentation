@@ -4,14 +4,14 @@
     "href": "slides/Prometheus.html#data-model",
     "title": "A breaf introduction to Prometheus",
     "section": "Data model",
-    "text": "Data model\nFormat:\n<metric name>{<label name>=<label value>, ...}\neg:\napi_http_requests_total{method=\"POST\", handler=\"/messages\"}"
+    "text": "Data model\nFormat:\n&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}\neg:\napi_http_requests_total{method=\"POST\", handler=\"/messages\"}"
   },
   {
     "objectID": "slides/Prometheus.html#types-of-metrics",
     "href": "slides/Prometheus.html#types-of-metrics",
     "title": "A breaf introduction to Prometheus",
     "section": "Types of metrics",
-    "text": "Types of metrics\nCounter\nA counter is a cumulative metric that represents a single monotonically increasing counter whose value can only increase or be reset to zero on restart.\nGauge\nA gauge is a metric that represents a single numerical value that can arbitrarily go up and down."
+    "text": "Types of metrics\nCounter, Gauge, Histogram, Summary"
   },
   {
     "objectID": "slides/Prometheus.html#expression-language-data-types",
@@ -39,6 +39,6 @@
     "href": "slides/Prometheus.html#example",
     "title": "A breaf introduction to Prometheus",
     "section": "Example",
-    "text": "Example\nKube-state-metrics https://github.com/kubernetes/kube-state-metrics"
+    "text": "Example\nKube-state-metrics\nhttps://github.com/kubernetes/kube-state-metrics"
   }
 ]

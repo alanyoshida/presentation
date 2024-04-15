@@ -1,1 +1,1 @@
-Sitemap: https://github.com/alanyoshida/presentation/sitemap.xml
+Sitemap: https://alanyoshida.github.io/presentation/sitemap.xml
