@@ -3,29 +3,31 @@ title: "A breaf introduction to golang"
 author: "Alan Yoshida"
 format:
   revealjs:
+    transition: slide
+    background-transition: fade
     logo: "golang/gopher.svg"
     footer: "golang is awesome"
     theme: [league, custom.scss]
 ---
 
-::: {.center}
-### History
+
+## History {.center}
 It was developed in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson at Google but launched in 2009 as an open-source programming language.
 
 ![](golang/gopher.svg){fig-align="center" height=200}
-:::
+
 
 ---
 
-::: {.center}
-### Why Golang
+
+## Why Golang {.center}
 
 Concurrency is very hard in C, golang was born the help in this sense.
-:::
+
 
 ---
 
-### Main characteristics
+## Main characteristics {.center}
 
 - Compiled
 - Garbage Collection
@@ -36,7 +38,7 @@ Concurrency is very hard in C, golang was born the help in this sense.
 
 ---
 
-### Installing Go
+## Installing Go {.center}
 
 ```bash
 // Download tar.gz
@@ -54,7 +56,7 @@ go version
 
 ---
 
-### Creating a new project
+## Creating a new project {.center}
 
 ```bash
 go mod init golang
@@ -62,7 +64,7 @@ go mod init golang
 
 ---
 
-### Packages
+## Packages {.center}
 
 Programs start running in package main
 ```go
@@ -75,7 +77,7 @@ func main(){
 
 ---
 
-### Import
+## Import {.center}
 Import other modules
 ```go
 // one by one
@@ -92,7 +94,7 @@ import (
 
 ---
 
-### Multiple files in same package
+## Multiple files in same package {.center}
 
 :::: {.columns }
 
@@ -118,7 +120,7 @@ func main(){
 ::::
 ---
 
-### Dependencies
+## Dependencies {.center}
 
 You can set your dependencies in go.mod file
 
@@ -138,7 +140,7 @@ require (
 
 ---
 
-### Golang Commands
+## Golang Commands {.center}
 
 Build the project to a binary:
 
@@ -150,7 +152,7 @@ Run without generating a binary:
 
 ---
 
-### Golang Commands
+## Golang Commands {.center}
 
 Execute tests:
 
@@ -162,13 +164,13 @@ Install binaries from github:
 
 ---
 
-### Building for containers
+## Building for containers {.center}
 
 Depending on the container you must compile with different libs, like alpine that only suports musl. In that case you must compile the golang binary inside the container for better compatibility.
 
 ---
 
-### Comments
+## Comments {.center}
 
 ```go
 // This is a commment
@@ -177,7 +179,7 @@ Depending on the container you must compile with different libs, like alpine tha
 
 ---
 
-### Constants
+## Constants {.center}
 
 ```go
 const value int32
@@ -186,7 +188,7 @@ const world = "World"
 
 ---
 
-### Variables
+## Variables {.center}
 
 ```go
 var x interface{}  // x is nil and has static type interface{}
@@ -197,7 +199,7 @@ x = v              // x has value (*T)(nil) and dynamic type *T
 
 ---
 
-### Types
+## Types {.center}
 :::: { .columns }
 
 ::: {.column width="50%"}
@@ -240,7 +242,7 @@ rune        // alias for int32
 
 ---
 
-### Type Inference
+## Type Inference {.center}
 ```go
 i := 42           // int
 f := 3.142        // float64
@@ -249,7 +251,7 @@ g := 0.867 + 0.5i // complex128
 
 ---
 
-### Strings
+## Strings {.center}
 A _string type_ represents the set of string values. A string value is a (possibly empty) sequence of bytes. The number of bytes is called the length of the string and is never negative. Strings are immutable: once created, it is impossible to change the contents of a string. The predeclared string type is `string`; it is a [defined type](https://go.dev/ref/spec#Type_definitions).
 
 ```go
@@ -262,7 +264,7 @@ another_name := "Sagan"
 
 ---
 
-### Array
+## Array {.center}
 An array is a numbered sequence of elements of a single type, called the element type. The number of elements is called the length of the array and is never negative.
 ```go
 var integer_array [10]int
@@ -271,7 +273,7 @@ var byte_array [32]byte
 
 ---
 
-### Slice
+## Slice {.center}
 A slice is a descriptor for a contiguous segment of an _underlying array_ and provides access to a numbered sequence of elements from that array. A slice type denotes the set of all slices of arrays of its element type. The number of elements is called the length of the slice and is never negative. The value of an uninitialized slice is `nil`.
 
 ```go
@@ -283,7 +285,7 @@ slice = make([]int, 50, 100)
 
 ---
 
-### Struct
+## Struct {.center}
 A struct is a sequence of named elements, called fields, each of which has a name and a type.
 ```go
 // An empty struct.
@@ -301,7 +303,7 @@ struct {
 
 ---
 
-### Pointer
+## Pointer {.center}
 A pointer type denotes the set of all pointers to [variables](https://go.dev/ref/spec#Variables) of a given type, called the _base type_ of the pointer. The value of an uninitialized pointer is `nil`.
 ```go
 var pointer *[4]int
@@ -309,7 +311,7 @@ var pointer *[4]int
 
 ---
 
-### Function
+## Function {.center}
 A function type denotes the set of all functions with the same parameter and result types. The value of an uninitialized variable of function type is `nil`.
 ```go
 func()
@@ -325,12 +327,12 @@ Golang can return multiple values
 
 ---
 
-### Interface
+## Interface {.center}
 An interface type defines a _type set_. A variable of interface type can store a value of any type that is in the type set of the interface. Such a type is said to [implement the interface](https://go.dev/ref/spec#Implementing_an_interface). The value of an uninitialized variable of interface type is `nil`.
 
 ---
 
-
+## File interface
 ```go
 // A simple File interface.
 type FileManager interface {
@@ -347,7 +349,7 @@ func (p MyFile) Close() error
 
 ---
 
-### Interface Example
+## Interface Example {.center}
 ```go
 package main
 import "fmt"
@@ -371,7 +373,7 @@ func main() {
 
 ---
 
-### Map
+## Map {.center}
 A map is an unordered group of elements of one type, called the element type, indexed by a set of unique _keys_ of another type, called the key type. The value of an uninitialized map is `nil`.
 
 ```go
@@ -387,7 +389,7 @@ make(map[string]int, 100)
 
 ---
 
-### For
+## For {.center}
 ```go
 for i := 0; i < 10; i++ {
 	sum += i
@@ -416,7 +418,7 @@ for _, value := range pow {
 
 ---
 
-### IF
+## IF {.center}
 
 ```go
 func sqrt(x float64) string {
@@ -444,7 +446,7 @@ func pow(x, n, lim float64) float64 {
 
 ---
 
-### Switch Case
+## Switch Case {.center}
 
 ```go
 func main() {
@@ -464,7 +466,7 @@ func main() {
 
 ---
 
-### Defer
+## Defer {.center}
 
 ```go
 func main() {
@@ -475,8 +477,19 @@ func main() {
 
 ---
 
-### Pointers
+## Pointers {.center}
+:::: {.columns}
 
+::: {.column width="50%" style="font-size: .8em"}
+Go has pointers. A pointer holds the memory address of a value.
+
+- The `&` operator generates a pointer to its operand.
+- The `*` operator denotes the pointer's underlying value.
+
+This is known as "dereferencing" or "indirecting".
+
+:::
+::: {.column width="50%"}
 ```go
 i, j := 42, 2701
 
@@ -489,10 +502,12 @@ p = &j         // point to j
 *p = *p / 37   // divide j through the pointer
 fmt.Println(j) // see the new value of j
 ```
+:::
+::::
 
 ---
 
-### Pointers and Methods
+## Pointers and Methods {.center}
 
 ```go
 package main
@@ -522,7 +537,7 @@ func main() {
 
 ---
 
-### Go tests
+## Go tests {.center}
 
 main.go
 ```go
@@ -537,6 +552,8 @@ func main() {
 ```
 
 ---
+
+## Go tests {.center}
 
 main_test.go
 ```go
@@ -554,6 +571,7 @@ func TestHello(t *testing.T) {
 
 ---
 
+## Go tests {.center}
 then execute:
 ```bash
 $ go test
@@ -563,7 +581,7 @@ ok      gotest  0.001s
 
 ---
 
-### Test Coverage
+## Test Coverage {.center}
 
 Generate golang test coverage html using the following commands:
 
