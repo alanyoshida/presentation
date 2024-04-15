@@ -1,20 +1,27 @@
 ---
 title: "A breaf introduction to golang"
 author: "Alan Yoshida"
-format: revealjs
+format:
+  revealjs:
+    logo: "golang/gopher.svg"
+    footer: "golang is awesome"
+    theme: [league, custom.scss]
 ---
 
-# A breaf introduction to Golang
-
----
-
+::: {.center}
+### History
 It was developed in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson at Google but launched in 2009 as an open-source programming language.
 
+![](golang/gopher.svg){fig-align="center" height=200}
+:::
+
 ---
 
+::: {.center}
 ### Why Golang
 
 Concurrency is very hard in C, golang was born the help in this sense.
+:::
 
 ---
 
@@ -56,6 +63,7 @@ go mod init golang
 ---
 
 ### Packages
+
 Programs start running in package main
 ```go
 package main
@@ -85,6 +93,10 @@ import (
 ---
 
 ### Multiple files in same package
+
+:::: {.columns }
+
+::: {.column width="50%"}
 ```go
 //file hello.go
 package main
@@ -93,7 +105,8 @@ func HelloWorld(){
 	fmt.Println("Hello World")
 }
 ```
-
+:::
+::: {.column width="50%"}
 ```go
 //file main.go
 package main
@@ -101,7 +114,8 @@ func main(){
 	newpack.HelloWorld()
 }
 ```
-
+:::
+::::
 ---
 
 ### Dependencies
@@ -184,9 +198,10 @@ x = v              // x has value (*T)(nil) and dynamic type *T
 ---
 
 ### Types
+:::: { .columns }
 
+::: {.column width="50%"}
 ```go
-
 // Boolean
 var boolean bool
 boolean = true
@@ -196,25 +211,32 @@ another_bool := false
 var another_one bool = true
 
 // Numeric
-uint8       // the set of all unsigned  8-bit integers (0 to 255)
-uint16      // the set of all unsigned 16-bit integers (0 to 65535)
-uint32      // the set of all unsigned 32-bit integers (0 to 4294967295)
-uint64      // the set of all unsigned 64-bit integers (0 to 18446744073709551615)
+uint8  // unsigned  8-bit integers (0 to 255)
+uint16 // unsigned 16-bit integers (0 to 65535)
+uint32 // unsigned 32-bit integers (0 to 4294967295)
+uint64 // unsigned 64-bit integers (0 to 18446744073709551615)
+```
+:::
 
-int8        // the set of all signed  8-bit integers (-128 to 127)
-int16       // the set of all signed 16-bit integers (-32768 to 32767)
-int32       // the set of all signed 32-bit integers (-2147483648 to 2147483647)
-int64       // the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807)
+::: {.column width="50%"}
+```go
+// Numeric
+int8        // signed  8-bit integers (-128 to 127)
+int16       // signed 16-bit integers (-32768 to 32767)
+int32       // signed 32-bit integers (-2147483648 to 2147483647)
+int64       // signed 64-bit integers (-9223372036854775808 to 9223372036854775807)
 
-float32     // the set of all IEEE-754 32-bit floating-point numbers
-float64     // the set of all IEEE-754 64-bit floating-point numbers
+float32     // IEEE-754 32-bit floating-point numbers
+float64     // IEEE-754 64-bit floating-point numbers
 
-complex64   // the set of all complex numbers with float32 real and imaginary parts
-complex128  // the set of all complex numbers with float64 real and imaginary parts
+complex64   // complex numbers with float32 real and imaginary parts
+complex128  // complex numbers with float64 real and imaginary parts
 
 byte        // alias for uint8
 rune        // alias for int32
 ```
+:::
+::::
 
 ---
 
@@ -299,11 +321,15 @@ func(a, b int, z float64, opt ...interface{}) (success bool)
 func(int, int, float64) (float64, *[]int)
 func(n int) func(p *T)
 ```
+Golang can return multiple values
 
 ---
 
 ### Interface
 An interface type defines a _type set_. A variable of interface type can store a value of any type that is in the type set of the interface. Such a type is said to [implement the interface](https://go.dev/ref/spec#Implementing_an_interface). The value of an uninitialized variable of interface type is `nil`.
+
+---
+
 
 ```go
 // A simple File interface.
@@ -391,6 +417,7 @@ for _, value := range pow {
 ---
 
 ### IF
+
 ```go
 func sqrt(x float64) string {
 	if x < 0 {
@@ -418,6 +445,7 @@ func pow(x, n, lim float64) float64 {
 ---
 
 ### Switch Case
+
 ```go
 func main() {
 	fmt.Print("Go runs on ")
@@ -437,6 +465,7 @@ func main() {
 ---
 
 ### Defer
+
 ```go
 func main() {
 	defer fmt.Println("world")
@@ -447,6 +476,7 @@ func main() {
 ---
 
 ### Pointers
+
 ```go
 i, j := 42, 2701
 
@@ -463,6 +493,7 @@ fmt.Println(j) // see the new value of j
 ---
 
 ### Pointers and Methods
+
 ```go
 package main
 import "fmt"
@@ -520,6 +551,9 @@ func TestHello(t *testing.T) {
 	}
 }
 ```
+
+---
+
 then execute:
 ```bash
 $ go test
@@ -537,9 +571,7 @@ Generate golang test coverage html using the following commands:
 
 `go tool cover -func=coverage.out`
 
----
-
-# That's it folks
+# That's all folks
 
 Go see the [A tour of Go](https://go.dev/tour/list)
 
