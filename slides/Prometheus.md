@@ -6,19 +6,14 @@ format:
         theme: [default, custom.scss]
 ---
 
-# Prometheus
-
 <!-- ![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg) -->
 ![](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg){width=400}
 
-Prometheus Query Language (PromQL)
-
----
 
 # Prometheus has a time series database
+Prometheus Query Language (PromQL)
 
----
-
+::: {.center}
 ## Data model
 
 Format:
@@ -30,10 +25,9 @@ eg:
 ```
 api_http_requests_total{method="POST", handler="/messages"}
 ```
+:::
 
----
-
-## Types of metrics
+# Types of metrics
 
 Counter, Gauge, Histogram, Summary
 
@@ -98,9 +92,7 @@ Similar to a histogram, a summary samples observations (usually things like requ
 -   `w` - weeks - assuming a week has always 7d
 -   `y` - years - assuming a year has always 365d
 
----
-
-## Label and Range Filter
+# Label and Range Filter
 
 ---
 
@@ -119,7 +111,7 @@ The following binary arithmetic operators exist in Prometheus:
 
 ---
 
-### Comparison binary operators
+## Comparison binary operators
 
 The following binary comparison operators exist in Prometheus:
 
@@ -132,9 +124,8 @@ The following binary comparison operators exist in Prometheus:
 | >= | greater-or-equal |
 | <= | less-or-equal |
 
----
-
-### Logical/set binary operators
+::: {.center}
+## Logical/set binary operators
 These logical/set binary operators are only defined between instant vectors:
 
 | logical | descriptions |
@@ -142,16 +133,16 @@ These logical/set binary operators are only defined between instant vectors:
 | and | (intersection) |
 | or | (union) |
 | unless | (complement) |
+:::
 
----
-
-### Aggregation operators
+::: {.center}
+## Aggregation operators
 
 Prometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:
+:::
 
----
-
-### Aggregation operators
+::: {.center}
+## Aggregation operators
 
 | Operator | Description |
 | - | - |
@@ -161,8 +152,10 @@ Prometheus supports the following built-in aggregation operators that can be use
 | avg | calculate the average over dimensions |
 | group | all values in the resulting vector are 1 |
 | stddev | calculate population standard deviation over dimensions |
+:::
 
----
+::: {.center}
+## Aggregation operators
 
 | Operator | Description |
 | - | - |
@@ -172,6 +165,7 @@ Prometheus supports the following built-in aggregation operators that can be use
 | bottomk | smallest k elements by sample value |
 | topk | largest k elements by sample value |
 | quantile | calculate φ-quantile | 0 ≤ φ ≤ 1 | over dimensions |
+:::
 
 ---
 
