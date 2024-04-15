@@ -7,13 +7,6 @@
     "text": "Data model\nFormat:\n&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}\neg:\napi_http_requests_total{method=\"POST\", handler=\"/messages\"}"
   },
   {
-    "objectID": "slides/Prometheus.html#types-of-metrics",
-    "href": "slides/Prometheus.html#types-of-metrics",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Types of metrics",
-    "text": "Types of metrics\nCounter, Gauge, Histogram, Summary"
-  },
-  {
     "objectID": "slides/Prometheus.html#expression-language-data-types",
     "href": "slides/Prometheus.html#expression-language-data-types",
     "title": "A breaf introduction to Prometheus",
@@ -21,18 +14,46 @@
     "text": "Expression language data types\n\n\n\n\n\n\n\nVar type\nDescription\n\n\n\n\nString\na simple string value; currently unused\n\n\nScalar\na simple numeric floating point value\n\n\nRange vector\na set of time series containing a range of data points over time for each time series\n\n\nInstant Vector\na set of time series containing a single sample for each time series, all sharing the same timestamp"
   },
   {
-    "objectID": "slides/Prometheus.html#label-and-range-filter",
-    "href": "slides/Prometheus.html#label-and-range-filter",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Label and Range Filter",
-    "text": "Label and Range Filter"
-  },
-  {
     "objectID": "slides/Prometheus.html#the-operators",
     "href": "slides/Prometheus.html#the-operators",
     "title": "A breaf introduction to Prometheus",
     "section": "The Operators",
     "text": "The Operators\nThe following binary arithmetic operators exist in Prometheus:\n\n\n\nOperator\nDescription\n\n\n\n\n+ \naddition\n\n\n- \nsubtraction\n\n\n* \nmultiplication\n\n\n/ \ndivision\n\n\n% \nmodulo\n\n\n^ \npower/exponentiation"
+  },
+  {
+    "objectID": "slides/Prometheus.html#comparison-binary-operators",
+    "href": "slides/Prometheus.html#comparison-binary-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Comparison binary operators",
+    "text": "Comparison binary operators\nThe following binary comparison operators exist in Prometheus:\n\n\n\nComparison\nDescription\n\n\n\n\n==\n equal\n\n\n!=\n not-equal\n\n\n&gt;\n greater-than\n\n\n&lt;\n less-than\n\n\n&gt;=\n greater-or-equal\n\n\n&lt;= \nless-or-equal"
+  },
+  {
+    "objectID": "slides/Prometheus.html#logicalset-binary-operators",
+    "href": "slides/Prometheus.html#logicalset-binary-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Logical/set binary operators",
+    "text": "Logical/set binary operators\nThese logical/set binary operators are only defined between instant vectors:\n\n\n\nlogical\ndescriptions\n\n\n\n\nand\n(intersection)\n\n\nor\n(union)\n\n\nunless\n(complement)"
+  },
+  {
+    "objectID": "slides/Prometheus.html#aggregation-operators",
+    "href": "slides/Prometheus.html#aggregation-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Aggregation operators",
+    "text": "Aggregation operators\nPrometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:"
+  },
+  {
+    "objectID": "slides/Prometheus.html#aggregation-operators-1",
+    "href": "slides/Prometheus.html#aggregation-operators-1",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Aggregation operators",
+    "text": "Aggregation operators\n\n\n\nOperator\nDescription\n\n\n\n\nsum\ncalculate sum over dimensions\n\n\nmin\nselect minimum over dimensions\n\n\nmax\nselect maximum over dimensions\n\n\navg\ncalculate the average over dimensions\n\n\ngroup\nall values in the resulting vector are 1\n\n\nstddev\ncalculate population standard deviation over dimensions"
+  },
+  {
+    "objectID": "slides/Prometheus.html#aggregation-operators-2",
+    "href": "slides/Prometheus.html#aggregation-operators-2",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Aggregation operators",
+    "text": "Aggregation operators\n\n\n\nOperator\nDescription\n\n\n\n\nstdvar\ncalculate population standard variance over dimensions\n\n\ncount\ncount number of elements in the vector\n\n\ncount_values\ncount number of elements with the same value\n\n\nbottomk\nsmallest k elements by sample value\n\n\ntopk\nlargest k elements by sample value\n\n\nquantile\ncalculate φ-quantile"
   },
   {
     "objectID": "slides/Prometheus.html#example",

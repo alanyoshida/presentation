@@ -337,30 +337,26 @@ Alan Yoshida
 </div>
 
 </section>
-<section>
-<section id="prometheus" class="title-slide slide level1 center">
-<h1>Prometheus</h1>
-<!-- ![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg) -->
-
-<img data-src="https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg" width="400" class="r-stretch"><p>Prometheus Query Language (PromQL)</p>
-</section>
 <section class="slide level2">
 
-</section></section>
+<!-- ![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg) -->
+
+<img data-src="https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg" width="400" class="r-stretch"></section>
 <section>
 <section id="prometheus-has-a-time-series-database" class="title-slide slide level1 center">
 <h1>Prometheus has a time series database</h1>
-
+<p>Prometheus Query Language (PromQL)</p>
 </section>
-<section id="data-model" class="slide level2">
+<section id="data-model" class="slide level2 center">
 <h2>Data model</h2>
 <p>Format:</p>
 <pre><code>&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}</code></pre>
 <p>eg:</p>
 <pre><code>api_http_requests_total{method="POST", handler="/messages"}</code></pre>
-</section>
-<section id="types-of-metrics" class="slide level2">
-<h2>Types of metrics</h2>
+</section></section>
+<section>
+<section id="types-of-metrics" class="title-slide slide level1 center">
+<h1>Types of metrics</h1>
 <p>Counter, Gauge, Histogram, Summary</p>
 </section>
 <section class="slide level2">
@@ -442,9 +438,11 @@ Alan Yoshida
 <li><code>w</code>&nbsp;- weeks - assuming a week has always 7d</li>
 <li><code>y</code>&nbsp;- years - assuming a year has always 365d</li>
 </ul>
-</section>
-<section id="label-and-range-filter" class="slide level2">
-<h2>Label and Range Filter</h2>
+</section></section>
+<section>
+<section id="label-and-range-filter" class="title-slide slide level1 center">
+<h1>Label and Range Filter</h1>
+
 </section>
 <section id="the-operators" class="slide level2">
 <h2>The Operators</h2>
@@ -484,9 +482,8 @@ Alan Yoshida
 </tbody>
 </table>
 </section>
-<section class="slide level2">
-
-<h3 id="comparison-binary-operators">Comparison binary operators</h3>
+<section id="comparison-binary-operators" class="slide level2">
+<h2>Comparison binary operators</h2>
 <p>The following binary comparison operators exist in Prometheus:</p>
 <table>
 <thead>
@@ -523,9 +520,8 @@ Alan Yoshida
 </tbody>
 </table>
 </section>
-<section class="slide level2">
-
-<h3 id="logicalset-binary-operators">Logical/set binary operators</h3>
+<section id="logicalset-binary-operators" class="slide level2 center">
+<h2>Logical/set binary operators</h2>
 <p>These logical/set binary operators are only defined between instant vectors:</p>
 <table>
 <thead>
@@ -550,14 +546,12 @@ Alan Yoshida
 </tbody>
 </table>
 </section>
-<section class="slide level2">
-
-<h3 id="aggregation-operators">Aggregation operators</h3>
+<section id="aggregation-operators" class="slide level2 center">
+<h2>Aggregation operators</h2>
 <p>Prometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:</p>
 </section>
-<section class="slide level2">
-
-<h3 id="aggregation-operators-1">Aggregation operators</h3>
+<section id="aggregation-operators-1" class="slide level2 center">
+<h2>Aggregation operators</h2>
 <table>
 <thead>
 <tr class="header">
@@ -593,8 +587,8 @@ Alan Yoshida
 </tbody>
 </table>
 </section>
-<section class="slide level2">
-
+<section id="aggregation-operators-2" class="slide level2 center">
+<h2>Aggregation operators</h2>
 <table>
 <thead>
 <tr class="header">
