@@ -7,7 +7,7 @@ format:
     background-transition: fade
     logo: "golang/gopher.svg"
     footer: "golang is awesome"
-    theme: [league, custom.scss]
+    theme: [dark, custom.scss]
 ---
 
 
