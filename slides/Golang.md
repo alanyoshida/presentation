@@ -12,7 +12,7 @@ format:
 
 
 ## History {.center}
-It was developed in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson at Google but launched in 2009 as an open-source programming language.
+It was developed in 2007 by Robert Griesemer, Rob Pike and Ken Thompson at Google but launched in 2009 as an open-source programming language.
 
 ![](golang/gopher.svg){fig-align="center" height=200}
 
@@ -42,12 +42,13 @@ Concurrency is very hard in C, golang was born the help in this sense.
 
 ```bash
 // Download tar.gz
-wget https://go.dev/dl/go1.19.3.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
 
 // extract
-tar -C /usr/local -xzf go1.19.3.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz
 
 // Export binaries path
+// Add to .profile, .bashrc or .zshrc or config.fish
 export PATH=$PATH:/usr/local/go/bin
 
 // Check installation
@@ -56,10 +57,35 @@ go version
 
 ---
 
+## GOPATH {.center}
+
+Go development using dependencies beyond the standard library is done using Go modules.
+
+When using Go modules, the `GOPATH` variable (which defaults to `$HOME/go` on Unix and `%USERPROFILE%\go` on Windows) is used for the following purposes:
+
+---
+
+## GOBIN {.center}
+
+- The `go install` command installs binaries to `$GOBIN`, which defaults to `$GOPATH/bin`.
+- The `go get` command caches downloaded modules in `$GOMODCACHE`, which defaults to `$GOPATH/pkg/mod`.
+- The `go get` command caches downloaded checksum database state in `$GOPATH/pkg/sumdb`.
+
+
+---
+
+## Go Modules {.center}
+
+A module is a collection of Go packages stored in a file tree with a `go.mod` file at its root.
+
+The `go.mod` file defines the module’s module path, which is also the import path used for the root directory of the project, and its dependency requirements, which are the other modules needed for a successful build. Each dependency requirement is written as a module path and a specific semantic version.
+
+---
+
 ## Creating a new project {.center}
 
 ```bash
-go mod init golang
+go mod init example.com/hello
 ```
 
 ---
@@ -71,7 +97,7 @@ Programs start running in package main
 package main
 import "fmt"
 func main(){
-	fmt.Println("Hello World")
+  fmt.Println("Hello World")
 }
 ```
 
@@ -86,8 +112,8 @@ import "math"
 
 // All at once
 import (
-	"fmt"
-	"math"
+  "fmt"
+  "math"
 )
 
 ```
@@ -104,7 +130,7 @@ import (
 package main
 import "fmt"
 func HelloWorld(){
-	fmt.Println("Hello World")
+  fmt.Println("Hello World")
 }
 ```
 :::
@@ -113,11 +139,40 @@ func HelloWorld(){
 //file main.go
 package main
 func main(){
-	newpack.HelloWorld()
+  newpack.HelloWorld()
 }
 ```
 :::
 ::::
+
+---
+
+## Multiple packages
+
+cmd/main.go
+```go
+package main
+import (
+  mypackages "example.com/m/pkgs/myPackages"
+)
+func main() {
+  mypackages.PublicInPackages()
+}
+```
+
+pkgs/myPackages/functions.go
+```go
+package mypackages
+import "fmt"
+func PublicInPackages() {
+  fmt.Println("In Public Function")
+  privateInPackages()
+}
+func privateInPackages() {
+  fmt.Println("In private function")
+}
+```
+
 ---
 
 ## Dependencies {.center}
@@ -131,10 +186,10 @@ module github.com/alanyoshida/meuprojeto
 go 1.18
 
 require (
-	github.com/go-delve/delve v1.5.0
-	github.com/gofiber/fiber v1.14.6
-	github.com/sirupsen/logrus v1.7.0
-	github.com/spf13/cobra v1.1.1
+  github.com/go-delve/delve v1.5.0
+  github.com/gofiber/fiber v1.14.6
+  github.com/sirupsen/logrus v1.7.0
+  github.com/spf13/cobra v1.1.1
 )
 ```
 
@@ -150,13 +205,9 @@ Run without generating a binary:
 
 `go run main.go`
 
----
-
-## Golang Commands {.center}
-
 Execute tests:
 
-`go test`
+`go test` or `go test ./...`
 
 Install binaries from github:
 
@@ -204,10 +255,10 @@ x = v              // x has value (*T)(nil) and dynamic type *T
 
 ```go
 // Boolean
-var boolean bool
-boolean = true
-another_bool := false
-var another_one bool = true
+var boolean bool // Declaration only
+boolean = true // Attribution only
+another_bool := false // Declare and attribute infering type
+var another_one bool = true // Declare type and Atribution
 
 complex64   // complex numbers with float32 real and imaginary parts
 complex128  // complex numbers with float64 real and imaginary parts
@@ -224,7 +275,6 @@ rune        // alias for int32
 `unsigned` is only for positive numbers
 
 ```go
-
 // Numeric
 uint8  // unsigned  8-bit integers (0 to 255)
 uint16 // unsigned 16-bit integers (0 to 65535)
@@ -246,9 +296,23 @@ float64     // IEEE-754 64-bit floating-point numbers
 Using `:=` the type is inferred automatically
 
 ```go
-i := 42           // int
-f := 3.142        // float64
-g := 0.867 + 0.5i // complex128
+package main
+import (
+    "fmt"
+    "os"
+)
+func main() {
+    i := 42               // int
+    f := 3.142            // float64
+    g := 0.867 + 0.5i     // complex128
+    another_bool := false // boolean
+    number := returnInt() // number is int
+    fmt.Fprintf(os.Stdout, "number: %T\n", number)
+    // out: number: int
+}
+func returnInt() int {
+    return 3
+}
 ```
 
 ---
@@ -264,6 +328,7 @@ Strings are immutable: once created, it is impossible to change the contents of 
 var name string
 name = "Alan"
 
+// Infering type automatically
 another_name := "Sagan"
 ```
 
@@ -274,18 +339,39 @@ An array is a numbered sequence of elements of a single type, called the element
 ```go
 var integer_array [10]int
 var byte_array [32]byte
+
+var intArr1 [3]int32 // Declaring array of size 3
+intArr1[1] = 123 // Set value at index
+fmt.Println(intArr[0]) // Accessing array at index
+
+var intArr2 [3]int32 = [3]int32{1,2,3} // Declare an set values
+
+intArr2 := [3]int32{1,2,3} // Infering type and set value
+
+intArr := [...]int32{1,2,3} // Infering size with ...
+
 ```
 
 ---
 
 ## Slice {.center}
-A slice is a descriptor for a contiguous segment of an _underlying array_ and provides access to a numbered sequence of elements from that array. A slice type denotes the set of all slices of arrays of its element type. The number of elements is called the length of the slice and is never negative. The value of an uninitialized slice is `nil`.
+A slice is a descriptor for a contiguous segment of an _underlying array_ and provides access to a numbered sequence of elements from that array.
+
+A slice type denotes the set of all slices of arrays of its element type.
+
+The value of an uninitialized slice is `nil`.
 
 ```go
 // Declaring
-var slice []int
-// initializing slice
-slice = make([]int, 50, 100)
+var slice []int = make([]int, 50, 100)
+
+var intSlice []int32 = []int32{4, 5, 6}
+intSlice = append(intSlice, 7)
+
+intSlice2 := []int32{8, 9, 10}
+intSlice = append(intSlice, intSlice2...) // Spread operator ...
+fmt.Println(intSlice)
+
 ```
 
 ---
@@ -298,20 +384,12 @@ struct {}
 
 // A struct with 6 fields.
 struct {
-	x, y int
-	u float32
-	_ float32  // padding
-	A *[]int
-	F func()
+  x, y int
+  u float32
+  _ float32  // padding
+  A *[]int
+  F func()
 }
-```
-
----
-
-## Pointer {.center}
-A pointer type denotes the set of all pointers to [variables](https://go.dev/ref/spec#Variables) of a given type, called the _base type_ of the pointer. The value of an uninitialized pointer is `nil`.
-```go
-var pointer *[4]int
 ```
 
 ---
@@ -332,18 +410,54 @@ Golang can return multiple values
 
 ---
 
+## Ignore returned value {.center}
+"`_`" ignores the returned value
+```go
+func main() {
+  returnedInt, _ := multipleReturns()
+  fmt.Printf("Returned %d", returnedInt)
+}
+func multipleReturns() (int, string) {
+  return 3, "My String"
+}
+```
+
+---
+
+## Error Handling {.center}
+This is a common pattern of error handling in golang
+```go
+func main() {
+  result, err := withError(200)
+  if err != nil {
+    fmt.Fprintf(os.Stderr, "%v\n", err.Error())
+    os.Exit(1)
+  }
+  fmt.Fprintf(os.Stdout, "%v", result)
+}
+
+func withError(age int) (string, error) {
+  if age > 150 {
+    return "", errors.New("Error: Could not live that long")
+  }
+  return fmt.Sprintf("Your age is %d", age), nil
+}
+```
+
+---
+
 ## Interface {.center}
 An interface type defines a _type set_. A variable of interface type can store a value of any type that is in the type set of the interface. Such a type is said to [implement the interface](https://go.dev/ref/spec#Implementing_an_interface). The value of an uninitialized variable of interface type is `nil`.
 
 ---
 
-## File interface
+## File interface {.center}
 ```go
 // A simple File interface.
 type FileManager interface {
-	Read([]byte) (int, error)
-	Write([]byte) (int, error)
-	Close() error
+  Read([]byte) (int, error)
+  Write([]byte) (int, error)
+  Close() error
 }
 
 // Implement interface
@@ -360,19 +474,19 @@ package main
 import "fmt"
 
 type I interface {
-	M()
+  M()
 }
 type T struct {
-	S string
+  S string
 }
 // This method means type T implements the interface I,
 // but we don't need to explicitly declare that it does so.
 func (t T) M() {
-	fmt.Println(t.S)
+  fmt.Println(t.S)
 }
 func main() {
-	var i I = T{"hello"}
-	i.M()
+  var i I = T{"hello"}
+  i.M()
 }
 ```
 
@@ -397,16 +511,16 @@ make(map[string]int, 100)
 ## For {.center}
 ```go
 for i := 0; i < 10; i++ {
-	sum += i
+  sum += i
 }
 sum := 1
 for ; sum < 1000; {
-	sum += sum
+  sum += sum
 }
 // For is Go's "while"
 sum := 1
 for sum < 1000 {
-	sum += sum
+  sum += sum
 }
 // Forever For
 for {
@@ -414,10 +528,10 @@ for {
 // range
 var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
 for i, v := range pow {
-	fmt.Printf("2**%d = %d\n", i, v)
+  fmt.Printf("2**%d = %d\n", i, v)
 }
 for _, value := range pow {
-	fmt.Printf("%d\n", value)
+  fmt.Printf("%d\n", value)
 }
 ```
 
@@ -427,25 +541,25 @@ for _, value := range pow {
 
 ```go
 func sqrt(x float64) string {
-	if x < 0 {
-		return sqrt(-x) + "i"
-	}
-	return fmt.Sprint(math.Sqrt(x))
+  if x < 0 {
+    return sqrt(-x) + "i"
+  }
+  return fmt.Sprint(math.Sqrt(x))
 }
 func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
-		return v
-	}
-	return lim
+  if v := math.Pow(x, n); v < lim {
+    return v
+  }
+  return lim
 }
 func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
-		return v
-	} else {
-		fmt.Printf("%g >= %g\n", v, lim)
-	}
-	// can't use v here, though
-	return lim
+  if v := math.Pow(x, n); v < lim {
+    return v
+  } else {
+    fmt.Printf("%g >= %g\n", v, lim)
+  }
+  // can't use v here, though
+  return lim
 }
 ```
 
@@ -455,17 +569,17 @@ func pow(x, n, lim float64) float64 {
 
 ```go
 func main() {
-	fmt.Print("Go runs on ")
-	switch os := runtime.GOOS; os {
-	case "darwin":
-		fmt.Println("OS X.")
-	case "linux":
-		fmt.Println("Linux.")
-	default:
-		// freebsd, openbsd,
-		// plan9, windows...
-		fmt.Printf("%s.\n", os)
-	}
+  fmt.Print("Go runs on ")
+  switch os := runtime.GOOS; os {
+  case "darwin":
+    fmt.Println("OS X.")
+  case "linux":
+    fmt.Println("Linux.")
+  default:
+    // freebsd, openbsd,
+    // plan9, windows...
+    fmt.Printf("%s.\n", os)
+  }
 }
 ```
 
@@ -473,23 +587,33 @@ func main() {
 
 ## Defer {.center}
 
+A defer statement defers the execution of a function until the surrounding function returns.
+
 ```go
 func main() {
-	defer fmt.Println("world")
-	fmt.Println("hello")
+  defer fmt.Println("world")
+  fmt.Println("hello")
 }
 ```
 
 ---
 
-## Pointers {.center}
+## Declaring Pointers {.center}
+A pointer type denotes the set of all pointers to [variables](https://go.dev/ref/spec#Variables) of a given type, called the _base type_ of the pointer. The value of an uninitialized pointer is `nil`.
+```go
+var pointer *[4]int
+```
+
+---
+
+## Using Pointers {.center}
 :::: {.columns}
 
 ::: {.column width="50%" style="font-size: .8em"}
-Go has pointers. A pointer holds the memory address of a value.
+A pointer holds the memory address of a value.
 
-- The `&` operator generates a pointer to its operand.
-- The `*` operator denotes the pointer's underlying value.
+- The `&` get the memory address.
+- The `*` get the value stored in a memory address.
 
 This is known as "dereferencing" or "indirecting".
 
@@ -519,24 +643,24 @@ package main
 import "fmt"
 
 type Vertex struct {
-	X, Y float64
+  X, Y float64
 }
 func (v *Vertex) Scale(f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
+  v.X = v.X * f
+  v.Y = v.Y * f
 }
 func ScaleFunc(v *Vertex, f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
+  v.X = v.X * f
+  v.Y = v.Y * f
 }
 func main() {
-	v := Vertex{3, 4}
-	v.Scale(2)
-	ScaleFunc(&v, 10)
-	p := &Vertex{4, 3}
-	p.Scale(3)
-	ScaleFunc(p, 8)
-	fmt.Println(v, p)
+  v := Vertex{3, 4}
+  v.Scale(2)
+  ScaleFunc(&v, 10)
+  p := &Vertex{4, 3}
+  p.Scale(3)
+  ScaleFunc(p, 8)
+  fmt.Println(v, p)
 }
 ```
 
@@ -549,10 +673,10 @@ main.go
 package main
 import "fmt"
 func Hello() string {
-	return "Hello, world"
+  return "Hello, world"
 }
 func main() {
-	fmt.Println(Hello())
+  fmt.Println(Hello())
 }
 ```
 
@@ -565,12 +689,12 @@ main_test.go
 package main
 import "testing"
 func TestHello(t *testing.T) {
-	got := Hello()
-	want := "Hello, world"
+  got := Hello()
+  want := "Hello, world"
 
-	if got != want {
-		t.Errorf("got %q want %q", got, want)
-	}
+  if got != want {
+    t.Errorf("got %q want %q", got, want)
+  }
 }
 ```
 
@@ -590,11 +714,25 @@ ok      gotest  0.001s
 
 Generate golang test coverage html using the following commands:
 
-`go test -coverprofile=coverage.out ./...`
+```bash
+# Generate coverage file
+$ go test -coverprofile=coverage.out ./...
+ok      example.com/m/slides    0.001s  coverage: 50.0% of statements
 
-`go tool cover -func=coverage.out`
+# Show coverage in command line
+$ go tool cover -func=coverage.out
+example.com/m/slides/main.go:5: Hello           100.0%
+example.com/m/slides/main.go:8: main            0.0%
+total:                          (statements)    50.0%
+
+# Show coverage in HTML
+$ go tool cover -html=coverage.out
+```
 
 # That's all folks
 
-Go see the [A tour of Go](https://go.dev/tour/list)
+Go see:
 
+- [A tour of Go](https://go.dev/tour/list)
+- [Learn go with tests](https://quii.gitbook.io/learn-go-with-tests)
+- [Go by Example](https://gobyexample.com/)
