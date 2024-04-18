@@ -61,5 +61,306 @@
     "title": "A breaf introduction to Prometheus",
     "section": "Example",
     "text": "Example\nKube-state-metrics\nhttps://github.com/kubernetes/kube-state-metrics"
+  },
+  {
+    "objectID": "slides/Golang.html#history",
+    "href": "slides/Golang.html#history",
+    "title": "A breaf introduction to golang",
+    "section": "History",
+    "text": "History\nIt was developed in 2007 by Robert Griesemer, Rob Pike and Ken Thompson at Google but launched in 2009 as an open-source programming language."
+  },
+  {
+    "objectID": "slides/Golang.html#why-golang",
+    "href": "slides/Golang.html#why-golang",
+    "title": "A breaf introduction to golang",
+    "section": "Why Golang",
+    "text": "Why Golang\nConcurrency is very hard in C, golang was born the help in this sense."
+  },
+  {
+    "objectID": "slides/Golang.html#main-characteristics",
+    "href": "slides/Golang.html#main-characteristics",
+    "title": "A breaf introduction to golang",
+    "section": "Main characteristics",
+    "text": "Main characteristics\n\nCompiled\nGarbage Collection\nStatic type checking\nSyntax similar to C\nBuilt-in concurrency primitives (goroutines, channels)\nEmphasis on greater simplicity and safety"
+  },
+  {
+    "objectID": "slides/Golang.html#installing-go",
+    "href": "slides/Golang.html#installing-go",
+    "title": "A breaf introduction to golang",
+    "section": "Installing Go",
+    "text": "Installing Go\n// Download tar.gz\nwget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz\n\n// extract\ntar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz\n\n// Export binaries path\n// Add to .profile, .bashrc or .zshrc or config.fish\nexport PATH=$PATH:/usr/local/go/bin\n\n// Check installation\ngo version"
+  },
+  {
+    "objectID": "slides/Golang.html#gopath",
+    "href": "slides/Golang.html#gopath",
+    "title": "A breaf introduction to golang",
+    "section": "GOPATH",
+    "text": "GOPATH\nGo development using dependencies beyond the standard library is done using Go modules.\nWhen using Go modules, the GOPATH variable (which defaults to $HOME/go on Unix and %USERPROFILE%\\go on Windows) is used for the following purposes:"
+  },
+  {
+    "objectID": "slides/Golang.html#gobin",
+    "href": "slides/Golang.html#gobin",
+    "title": "A breaf introduction to golang",
+    "section": "GOBIN",
+    "text": "GOBIN\n\nThe go install command installs binaries to $GOBIN, which defaults to $GOPATH/bin.\nThe go get command caches downloaded modules in $GOMODCACHE, which defaults to $GOPATH/pkg/mod.\nThe go get command caches downloaded checksum database state in $GOPATH/pkg/sumdb."
+  },
+  {
+    "objectID": "slides/Golang.html#go-modules",
+    "href": "slides/Golang.html#go-modules",
+    "title": "A breaf introduction to golang",
+    "section": "Go Modules",
+    "text": "Go Modules\nA module is a collection of Go packages stored in a file tree with a go.mod file at its root.\nThe go.mod file defines the module’s module path, which is also the import path used for the root directory of the project, and its dependency requirements, which are the other modules needed for a successful build. Each dependency requirement is written as a module path and a specific semantic version."
+  },
+  {
+    "objectID": "slides/Golang.html#creating-a-new-project",
+    "href": "slides/Golang.html#creating-a-new-project",
+    "title": "A breaf introduction to golang",
+    "section": "Creating a new project",
+    "text": "Creating a new project\ngo mod init example.com/hello"
+  },
+  {
+    "objectID": "slides/Golang.html#packages",
+    "href": "slides/Golang.html#packages",
+    "title": "A breaf introduction to golang",
+    "section": "Packages",
+    "text": "Packages\nPrograms start running in package main\npackage main\nimport \"fmt\"\nfunc main(){\n  fmt.Println(\"Hello World\")\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#import",
+    "href": "slides/Golang.html#import",
+    "title": "A breaf introduction to golang",
+    "section": "Import",
+    "text": "Import\nImport other modules\n// one by one\nimport \"fmt\"\nimport \"math\"\n\n// All at once\nimport (\n  \"fmt\"\n  \"math\"\n)"
+  },
+  {
+    "objectID": "slides/Golang.html#multiple-files-in-same-package",
+    "href": "slides/Golang.html#multiple-files-in-same-package",
+    "title": "A breaf introduction to golang",
+    "section": "Multiple files in same package",
+    "text": "Multiple files in same package\n\n\n//file hello.go\npackage main\nimport \"fmt\"\nfunc HelloWorld(){\n  fmt.Println(\"Hello World\")\n}\n\n//file main.go\npackage main\nfunc main(){\n  newpack.HelloWorld()\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#multiple-packages",
+    "href": "slides/Golang.html#multiple-packages",
+    "title": "A breaf introduction to golang",
+    "section": "Multiple packages",
+    "text": "Multiple packages\ncmd/main.go\npackage main\nimport (\n  mypackages \"example.com/m/pkgs/myPackages\"\n)\nfunc main() {\n  mypackages.PublicInPackages()\n}\npkgs/myPackages/functions.go\npackage mypackages\nimport \"fmt\"\nfunc PublicInPackages() {\n  fmt.Println(\"In Public Function\")\n  privateInPackages()\n}\nfunc privateInPackages() {\n  fmt.Println(\"In private function\")\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#dependencies",
+    "href": "slides/Golang.html#dependencies",
+    "title": "A breaf introduction to golang",
+    "section": "Dependencies",
+    "text": "Dependencies\nYou can set your dependencies in go.mod file\ngo.mod\nmodule github.com/alanyoshida/meuprojeto\n\ngo 1.18\n\nrequire (\n  github.com/go-delve/delve v1.5.0\n  github.com/gofiber/fiber v1.14.6\n  github.com/sirupsen/logrus v1.7.0\n  github.com/spf13/cobra v1.1.1\n)"
+  },
+  {
+    "objectID": "slides/Golang.html#golang-commands",
+    "href": "slides/Golang.html#golang-commands",
+    "title": "A breaf introduction to golang",
+    "section": "Golang Commands",
+    "text": "Golang Commands\nBuild the project to a binary:\ngo build .\nRun without generating a binary:\ngo run main.go\nExecute tests:\ngo test or go test ./...\nInstall binaries from github:\ngo install github.com/norwoodj/helm-docs/cmd/helm-docs@latest"
+  },
+  {
+    "objectID": "slides/Golang.html#building-for-containers",
+    "href": "slides/Golang.html#building-for-containers",
+    "title": "A breaf introduction to golang",
+    "section": "Building for containers",
+    "text": "Building for containers\nDepending on the container you must compile with different libs, like alpine that only suports musl. In that case you must compile the golang binary inside the container for better compatibility."
+  },
+  {
+    "objectID": "slides/Golang.html#comments",
+    "href": "slides/Golang.html#comments",
+    "title": "A breaf introduction to golang",
+    "section": "Comments",
+    "text": "Comments\n// This is a commment\n/* This is a comment */"
+  },
+  {
+    "objectID": "slides/Golang.html#constants",
+    "href": "slides/Golang.html#constants",
+    "title": "A breaf introduction to golang",
+    "section": "Constants",
+    "text": "Constants\nconst value int32\nconst world = \"World\""
+  },
+  {
+    "objectID": "slides/Golang.html#variables",
+    "href": "slides/Golang.html#variables",
+    "title": "A breaf introduction to golang",
+    "section": "Variables",
+    "text": "Variables\nvar x interface{}  // x is nil and has static type interface{}\nvar v *T           // v has value nil, static type *T\nx = 42             // x has value 42 and dynamic type int\nx = v              // x has value (*T)(nil) and dynamic type *T"
+  },
+  {
+    "objectID": "slides/Golang.html#types",
+    "href": "slides/Golang.html#types",
+    "title": "A breaf introduction to golang",
+    "section": "Types",
+    "text": "Types\n// Boolean\nvar boolean bool // Declaration only\nboolean = true // Attribution only\nanother_bool := false // Declare and attribute infering type\nvar another_one bool = true // Declare type and Atribution\n\ncomplex64   // complex numbers with float32 real and imaginary parts\ncomplex128  // complex numbers with float64 real and imaginary parts\n\nbyte        // alias for uint8\nrune        // alias for int32"
+  },
+  {
+    "objectID": "slides/Golang.html#types-1",
+    "href": "slides/Golang.html#types-1",
+    "title": "A breaf introduction to golang",
+    "section": "Types",
+    "text": "Types\nunsigned is only for positive numbers\n// Numeric\nuint8  // unsigned  8-bit integers (0 to 255)\nuint16 // unsigned 16-bit integers (0 to 65535)\nuint32 // unsigned 32-bit integers (0 to 4294967295)\nuint64 // unsigned 64-bit integers (0 to 18446744073709551615)\nint8   // signed  8-bit integers (-128 to 127)\nint16  // signed 16-bit integers (-32768 to 32767)\nint32  // signed 32-bit integers (-2147483648 to 2147483647)\nint64  // signed 64-bit integers (-9223372036854775808 to 9223372036854775807)\n\nfloat32     // IEEE-754 32-bit floating-point numbers\nfloat64     // IEEE-754 64-bit floating-point numbers"
+  },
+  {
+    "objectID": "slides/Golang.html#type-inference",
+    "href": "slides/Golang.html#type-inference",
+    "title": "A breaf introduction to golang",
+    "section": "Type Inference",
+    "text": "Type Inference\nUsing := the type is inferred automatically\npackage main\nimport (\n    \"fmt\"\n    \"os\"\n)\nfunc main() {\n    i := 42               // int\n    f := 3.142            // float64\n    g := 0.867 + 0.5i     // complex128\n    another_bool := false // boolean\n    number := returnInt() // number is int\n    fmt.Fprintf(os.Stdout, \"number: %T\\n\", number)\n    // out: number: int\n}\nfunc returnInt() int {\n    return 3\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#strings",
+    "href": "slides/Golang.html#strings",
+    "title": "A breaf introduction to golang",
+    "section": "Strings",
+    "text": "Strings\nA string type represents the set of string values. A string value is a (possibly empty) sequence of bytes. The number of bytes is called the length of the string and is never negative. Strings are immutable: once created, it is impossible to change the contents of a string. The predeclared string type is string; it is a defined type.\n// STRINGS\nvar name string\nname = \"Alan\"\n\n// Infering type automatically\nanother_name := \"Sagan\""
+  },
+  {
+    "objectID": "slides/Golang.html#array",
+    "href": "slides/Golang.html#array",
+    "title": "A breaf introduction to golang",
+    "section": "Array",
+    "text": "Array\nAn array is a numbered sequence of elements of a single type, called the element type. The number of elements is called the length of the array and is never negative.\nvar integer_array [10]int\nvar byte_array [32]byte\n\nvar intArr1 [3]int32 // Declaring array of size 3\nintArr1[1] = 123 // Set value at index\nfmt.Println(intArr[0]) // Accessing array at index\n\nvar intArr2 [3]int32 = [3]int32{1,2,3} // Declare an set values\n\nintArr2 := [3]int32{1,2,3} // Infering type and set value\n\nintArr := [...]int32{1,2,3} // Infering size with ..."
+  },
+  {
+    "objectID": "slides/Golang.html#slice",
+    "href": "slides/Golang.html#slice",
+    "title": "A breaf introduction to golang",
+    "section": "Slice",
+    "text": "Slice\nA slice is a descriptor for a contiguous segment of an underlying array and provides access to a numbered sequence of elements from that array.\nA slice type denotes the set of all slices of arrays of its element type.\nThe value of an uninitialized slice is nil.\n// Declaring\nvar slice []int = make([]int, 50, 100)\n\nvar intSlice []int32 = []int32{4, 5, 6}\nintSlice = append(intSlice, 7)\n\nintSlice2 := []int32{8, 9, 10}\nintSlice = append(intSlice, intSlice2...) // Spread operator ...\nfmt.Println(intSlice)"
+  },
+  {
+    "objectID": "slides/Golang.html#struct",
+    "href": "slides/Golang.html#struct",
+    "title": "A breaf introduction to golang",
+    "section": "Struct",
+    "text": "Struct\nA struct is a sequence of named elements, called fields, each of which has a name and a type.\n// An empty struct.\nstruct {}\n\n// A struct with 6 fields.\nstruct {\n  x, y int\n  u float32\n  _ float32  // padding\n  A *[]int\n  F func()\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#function",
+    "href": "slides/Golang.html#function",
+    "title": "A breaf introduction to golang",
+    "section": "Function",
+    "text": "Function\nA function type denotes the set of all functions with the same parameter and result types. The value of an uninitialized variable of function type is nil.\nfunc()\nfunc(x int) int\nfunc(a, _ int, z float32) bool\nfunc(a, b int, z float32) (bool)\nfunc(prefix string, values ...int)\nfunc(a, b int, z float64, opt ...interface{}) (success bool)\nfunc(int, int, float64) (float64, *[]int)\nfunc(n int) func(p *T)\nGolang can return multiple values"
+  },
+  {
+    "objectID": "slides/Golang.html#ignore-returned-value",
+    "href": "slides/Golang.html#ignore-returned-value",
+    "title": "A breaf introduction to golang",
+    "section": "Ignore returned value",
+    "text": "Ignore returned value\n“_” ignores the returned value\nfunc main() {\n  returnedInt, _ := multipleReturns()\n  fmt.Printf(\"Returned %d\", returnedInt)\n}\nfunc multipleReturns() (int, string) {\n  return 3, \"My String\"\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#error-handling",
+    "href": "slides/Golang.html#error-handling",
+    "title": "A breaf introduction to golang",
+    "section": "Error Handling",
+    "text": "Error Handling\nThis is a common pattern of error handling in golang\nfunc main() {\n  result, err := withError(200)\n  if err != nil {\n    fmt.Fprintf(os.Stderr, \"%v\\n\", err.Error())\n    os.Exit(1)\n  }\n  fmt.Fprintf(os.Stdout, \"%v\", result)\n}\n\nfunc withError(age int) (string, error) {\n  if age &gt; 150 {\n    return \"\", errors.New(\"Error: Could not live that long\")\n  }\n  return fmt.Sprintf(\"Your age is %d\", age), nil\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#interface",
+    "href": "slides/Golang.html#interface",
+    "title": "A breaf introduction to golang",
+    "section": "Interface",
+    "text": "Interface\nAn interface type defines a type set. A variable of interface type can store a value of any type that is in the type set of the interface. Such a type is said to implement the interface. The value of an uninitialized variable of interface type is nil."
+  },
+  {
+    "objectID": "slides/Golang.html#file-interface",
+    "href": "slides/Golang.html#file-interface",
+    "title": "A breaf introduction to golang",
+    "section": "File interface",
+    "text": "File interface\n// A simple File interface.\ntype FileManager interface {\n  Read([]byte) (int, error)\n  Write([]byte) (int, error)\n  Close() error\n}\n\n// Implement interface\nfunc (p MyFile) Read(p []byte) (n int, err error)\nfunc (p MyFile) Write(p []byte) (n int, err error)\nfunc (p MyFile) Close() error"
+  },
+  {
+    "objectID": "slides/Golang.html#interface-example",
+    "href": "slides/Golang.html#interface-example",
+    "title": "A breaf introduction to golang",
+    "section": "Interface Example",
+    "text": "Interface Example\npackage main\nimport \"fmt\"\n\ntype I interface {\n  M()\n}\ntype T struct {\n  S string\n}\n// This method means type T implements the interface I,\n// but we don't need to explicitly declare that it does so.\nfunc (t T) M() {\n  fmt.Println(t.S)\n}\nfunc main() {\n  var i I = T{\"hello\"}\n  i.M()\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#map",
+    "href": "slides/Golang.html#map",
+    "title": "A breaf introduction to golang",
+    "section": "Map",
+    "text": "Map\nA map is an unordered group of elements of one type, called the element type, indexed by a set of unique keys of another type, called the key type. The value of an uninitialized map is nil.\n// Declaring\nvar mymap1 map[string]int\nvar mymap2 map[*T]struct{ x, y float64 }\nvar mymap3 map[string]interface{}\n\n// Empty Map\nmake(map[string]int)\nmake(map[string]int, 100)"
+  },
+  {
+    "objectID": "slides/Golang.html#for",
+    "href": "slides/Golang.html#for",
+    "title": "A breaf introduction to golang",
+    "section": "For",
+    "text": "For\nfor i := 0; i &lt; 10; i++ {\n  sum += i\n}\nsum := 1\nfor ; sum &lt; 1000; {\n  sum += sum\n}\n// For is Go's \"while\"\nsum := 1\nfor sum &lt; 1000 {\n  sum += sum\n}\n// Forever For\nfor {\n}\n// range\nvar pow = []int{1, 2, 4, 8, 16, 32, 64, 128}\nfor i, v := range pow {\n  fmt.Printf(\"2**%d = %d\\n\", i, v)\n}\nfor _, value := range pow {\n  fmt.Printf(\"%d\\n\", value)\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#if",
+    "href": "slides/Golang.html#if",
+    "title": "A breaf introduction to golang",
+    "section": "IF",
+    "text": "IF\nfunc sqrt(x float64) string {\n  if x &lt; 0 {\n    return sqrt(-x) + \"i\"\n  }\n  return fmt.Sprint(math.Sqrt(x))\n}\nfunc pow(x, n, lim float64) float64 {\n  if v := math.Pow(x, n); v &lt; lim {\n    return v\n  }\n  return lim\n}\nfunc pow(x, n, lim float64) float64 {\n  if v := math.Pow(x, n); v &lt; lim {\n    return v\n  } else {\n    fmt.Printf(\"%g &gt;= %g\\n\", v, lim)\n  }\n  // can't use v here, though\n  return lim\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#switch-case",
+    "href": "slides/Golang.html#switch-case",
+    "title": "A breaf introduction to golang",
+    "section": "Switch Case",
+    "text": "Switch Case\nfunc main() {\n  fmt.Print(\"Go runs on \")\n  switch os := runtime.GOOS; os {\n  case \"darwin\":\n    fmt.Println(\"OS X.\")\n  case \"linux\":\n    fmt.Println(\"Linux.\")\n  default:\n    // freebsd, openbsd,\n    // plan9, windows...\n    fmt.Printf(\"%s.\\n\", os)\n  }\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#defer",
+    "href": "slides/Golang.html#defer",
+    "title": "A breaf introduction to golang",
+    "section": "Defer",
+    "text": "Defer\nA defer statement defers the execution of a function until the surrounding function returns.\nfunc main() {\n  defer fmt.Println(\"world\")\n  fmt.Println(\"hello\")\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#declaring-pointers",
+    "href": "slides/Golang.html#declaring-pointers",
+    "title": "A breaf introduction to golang",
+    "section": "Declaring Pointers",
+    "text": "Declaring Pointers\nA pointer type denotes the set of all pointers to variables of a given type, called the base type of the pointer. The value of an uninitialized pointer is nil.\nvar pointer *[4]int"
+  },
+  {
+    "objectID": "slides/Golang.html#using-pointers",
+    "href": "slides/Golang.html#using-pointers",
+    "title": "A breaf introduction to golang",
+    "section": "Using Pointers",
+    "text": "Using Pointers\n\n\nA pointer holds the memory address of a value.\n\nThe & get the memory address.\nThe * get the value stored in a memory address.\n\nThis is known as “dereferencing” or “indirecting”.\n\ni, j := 42, 2701\n\np := &i         // point to i\nfmt.Println(*p) // read i through the pointer\n*p = 21         // set i through the pointer\nfmt.Println(i)  // see the new value of i\n\np = &j         // point to j\n*p = *p / 37   // divide j through the pointer\nfmt.Println(j) // see the new value of j"
+  },
+  {
+    "objectID": "slides/Golang.html#pointers-and-methods",
+    "href": "slides/Golang.html#pointers-and-methods",
+    "title": "A breaf introduction to golang",
+    "section": "Pointers and Methods",
+    "text": "Pointers and Methods\npackage main\nimport \"fmt\"\n\ntype Vertex struct {\n  X, Y float64\n}\nfunc (v *Vertex) Scale(f float64) {\n  v.X = v.X * f\n  v.Y = v.Y * f\n}\nfunc ScaleFunc(v *Vertex, f float64) {\n  v.X = v.X * f\n  v.Y = v.Y * f\n}\nfunc main() {\n  v := Vertex{3, 4}\n  v.Scale(2)\n  ScaleFunc(&v, 10)\n  p := &Vertex{4, 3}\n  p.Scale(3)\n  ScaleFunc(p, 8)\n  fmt.Println(v, p)\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#go-tests",
+    "href": "slides/Golang.html#go-tests",
+    "title": "A breaf introduction to golang",
+    "section": "Go tests",
+    "text": "Go tests\nmain.go\npackage main\nimport \"fmt\"\nfunc Hello() string {\n  return \"Hello, world\"\n}\nfunc main() {\n  fmt.Println(Hello())\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#go-tests-1",
+    "href": "slides/Golang.html#go-tests-1",
+    "title": "A breaf introduction to golang",
+    "section": "Go tests",
+    "text": "Go tests\nmain_test.go\npackage main\nimport \"testing\"\nfunc TestHello(t *testing.T) {\n  got := Hello()\n  want := \"Hello, world\"\n\n  if got != want {\n    t.Errorf(\"got %q want %q\", got, want)\n  }\n}"
+  },
+  {
+    "objectID": "slides/Golang.html#go-tests-2",
+    "href": "slides/Golang.html#go-tests-2",
+    "title": "A breaf introduction to golang",
+    "section": "Go tests",
+    "text": "Go tests\nthen execute:\n$ go test\nPASS\nok      gotest  0.001s"
+  },
+  {
+    "objectID": "slides/Golang.html#test-coverage",
+    "href": "slides/Golang.html#test-coverage",
+    "title": "A breaf introduction to golang",
+    "section": "Test Coverage",
+    "text": "Test Coverage\nGenerate golang test coverage html using the following commands:\n# Generate coverage file\n$ go test -coverprofile=coverage.out ./...\nok      example.com/m/slides    0.001s  coverage: 50.0% of statements\n\n# Show coverage in command line\n$ go tool cover -func=coverage.out\nexample.com/m/slides/main.go:5: Hello           100.0%\nexample.com/m/slides/main.go:8: main            0.0%\ntotal:                          (statements)    50.0%\n\n# Show coverage in HTML\n$ go tool cover -html=coverage.out"
   }
 ]
