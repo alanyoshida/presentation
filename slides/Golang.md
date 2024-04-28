@@ -148,6 +148,8 @@ func main(){
 
 ## Multiple packages
 
+:::: {.columns }
+::: {.column width="50%"}
 cmd/main.go
 ```go
 package main
@@ -158,7 +160,8 @@ func main() {
   mypackages.PublicInPackages()
 }
 ```
-
+:::
+::: {.column width="50%"}
 pkgs/myPackages/functions.go
 ```go
 package mypackages
@@ -171,6 +174,8 @@ func privateInPackages() {
   fmt.Println("In private function")
 }
 ```
+:::
+::::
 
 ---
 
