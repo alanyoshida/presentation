@@ -362,5 +362,257 @@
     "title": "A breaf introduction to golang",
     "section": "Test Coverage",
     "text": "Test Coverage\nGenerate golang test coverage html using the following commands:\n# Generate coverage file\n$ go test -coverprofile=coverage.out ./...\nok      example.com/m/slides    0.001s  coverage: 50.0% of statements\n\n# Show coverage in command line\n$ go tool cover -func=coverage.out\nexample.com/m/slides/main.go:5: Hello           100.0%\nexample.com/m/slides/main.go:8: main            0.0%\ntotal:                          (statements)    50.0%\n\n# Show coverage in HTML\n$ go tool cover -html=coverage.out"
+  },
+  {
+    "objectID": "slides/Istio.html#the-problem",
+    "href": "slides/Istio.html#the-problem",
+    "title": "What does service mesh have to do with security",
+    "section": "The problem",
+    "text": "The problem\n\nKubernetes is not secure by default\nHow to manage certificates and identity ?\nHow to do the above without too much work in the developer side ?\nHow to limit lateral movement inside kubernetes ?"
+  },
+  {
+    "objectID": "slides/Istio.html#network-policy-to-manage-identity",
+    "href": "slides/Istio.html#network-policy-to-manage-identity",
+    "title": "What does service mesh have to do with security",
+    "section": "Network policy to manage identity ?",
+    "text": "Network policy to manage identity ?\n\nNot a real identity\nIn cloud native world, could have problems with dinamic ip association"
+  },
+  {
+    "objectID": "slides/Istio.html#introducing-the-sidecar-model",
+    "href": "slides/Istio.html#introducing-the-sidecar-model",
+    "title": "What does service mesh have to do with security",
+    "section": "Introducing the sidecar Model",
+    "text": "Introducing the sidecar Model"
+  },
+  {
+    "objectID": "slides/Istio.html#the-sidecar-model-has-yaml",
+    "href": "slides/Istio.html#the-sidecar-model-has-yaml",
+    "title": "What does service mesh have to do with security",
+    "section": "The sidecar Model has yaml",
+    "text": "The sidecar Model has yaml"
+  },
+  {
+    "objectID": "slides/Istio.html#sidecar-vs-ebpf",
+    "href": "slides/Istio.html#sidecar-vs-ebpf",
+    "title": "What does service mesh have to do with security",
+    "section": "Sidecar vs eBPF",
+    "text": "Sidecar vs eBPF"
+  },
+  {
+    "objectID": "slides/Istio.html#ebpf-architecture",
+    "href": "slides/Istio.html#ebpf-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "eBPF Architecture",
+    "text": "eBPF Architecture"
+  },
+  {
+    "objectID": "slides/Istio.html#cilium-ebpf-with-envoy",
+    "href": "slides/Istio.html#cilium-ebpf-with-envoy",
+    "title": "What does service mesh have to do with security",
+    "section": "Cilium eBPF with envoy ?",
+    "text": "Cilium eBPF with envoy ?"
+  },
+  {
+    "objectID": "slides/Istio.html#ebpf-hook-overview",
+    "href": "slides/Istio.html#ebpf-hook-overview",
+    "title": "What does service mesh have to do with security",
+    "section": "eBPF Hook Overview",
+    "text": "eBPF Hook Overview"
+  },
+  {
+    "objectID": "slides/Istio.html#security-with-ebpf",
+    "href": "slides/Istio.html#security-with-ebpf",
+    "title": "What does service mesh have to do with security",
+    "section": "Security with ebpf",
+    "text": "Security with ebpf"
+  },
+  {
+    "objectID": "slides/Istio.html#but-what-about-service-mesh",
+    "href": "slides/Istio.html#but-what-about-service-mesh",
+    "title": "What does service mesh have to do with security",
+    "section": "But what about Service Mesh ?",
+    "text": "But what about Service Mesh ?"
+  },
+  {
+    "objectID": "slides/Istio.html#traffic-management",
+    "href": "slides/Istio.html#traffic-management",
+    "title": "What does service mesh have to do with security",
+    "section": "Traffic Management",
+    "text": "Traffic Management\nThe network cost of sidecar proxies"
+  },
+  {
+    "objectID": "slides/Istio.html#without-sidecars",
+    "href": "slides/Istio.html#without-sidecars",
+    "title": "What does service mesh have to do with security",
+    "section": "Without sidecars",
+    "text": "Without sidecars\nRemoving sidecars from Service Mesh"
+  },
+  {
+    "objectID": "slides/Istio.html#evolution-not-exactly-yet",
+    "href": "slides/Istio.html#evolution-not-exactly-yet",
+    "title": "What does service mesh have to do with security",
+    "section": "Evolution ? Not exactly, yet",
+    "text": "Evolution ? Not exactly, yet\nCan We move Service Mesh to the Kernel ? Kinda off…"
+  },
+  {
+    "objectID": "slides/Istio.html#tradeoffs",
+    "href": "slides/Istio.html#tradeoffs",
+    "title": "What does service mesh have to do with security",
+    "section": "Tradeoffs",
+    "text": "Tradeoffs"
+  },
+  {
+    "objectID": "slides/Istio.html#security-overview",
+    "href": "slides/Istio.html#security-overview",
+    "title": "What does service mesh have to do with security",
+    "section": "Security Overview",
+    "text": "Security Overview"
+  },
+  {
+    "objectID": "slides/Istio.html#istio-security",
+    "href": "slides/Istio.html#istio-security",
+    "title": "What does service mesh have to do with security",
+    "section": "Istio Security",
+    "text": "Istio Security\nThe Istio security features provide strong identity, powerful policy, transparent TLS encryption, and authentication, authorization and audit (AAA) tools to protect your services and data."
+  },
+  {
+    "objectID": "slides/Istio.html#goals-of-istio-security",
+    "href": "slides/Istio.html#goals-of-istio-security",
+    "title": "What does service mesh have to do with security",
+    "section": "Goals of Istio security",
+    "text": "Goals of Istio security\n\nSecurity by default: no changes needed to application code and infrastructure\nDefense in depth: integrate with existing security systems to provide multiple layers of defense\nZero-trust network: build security solutions on distrusted networks"
+  },
+  {
+    "objectID": "slides/Istio.html#istio-architecture",
+    "href": "slides/Istio.html#istio-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Istio Architecture",
+    "text": "Istio Architecture"
+  },
+  {
+    "objectID": "slides/Istio.html#identity-and-certificate-management",
+    "href": "slides/Istio.html#identity-and-certificate-management",
+    "title": "What does service mesh have to do with security",
+    "section": "Identity And Certificate Management",
+    "text": "Identity And Certificate Management\n\nIdentity Provisioning Workflow"
+  },
+  {
+    "objectID": "slides/Istio.html#authentication-architecture",
+    "href": "slides/Istio.html#authentication-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Authentication Architecture",
+    "text": "Authentication Architecture\n\nPolicy"
+  },
+  {
+    "objectID": "slides/Istio.html#peerauthentication",
+    "href": "slides/Istio.html#peerauthentication",
+    "title": "What does service mesh have to do with security",
+    "section": "PeerAuthentication",
+    "text": "PeerAuthentication\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  mtls:\n    mode: PERMISSIVE\n\n---\n\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  selector:\n    matchLabels:\n      app: finance\n  mtls:\n    mode: STRICT"
+  },
+  {
+    "objectID": "slides/Istio.html#authorization-architecture",
+    "href": "slides/Istio.html#authorization-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Authorization Architecture",
+    "text": "Authorization Architecture\n\nPolicy"
+  },
+  {
+    "objectID": "slides/Istio.html#authorizationpolicy",
+    "href": "slides/Istio.html#authorizationpolicy",
+    "title": "What does service mesh have to do with security",
+    "section": "AuthorizationPolicy",
+    "text": "AuthorizationPolicy\napiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n name: httpbin\n namespace: foo\nspec:\n action: ALLOW\n rules:\n - from:\n   - source:\n       principals: [\"cluster.local/ns/default/sa/sleep\"]\n   - source:\n       namespaces: [\"test\"]\n   to:\n   - operation:\n       methods: [\"GET\"]\n       paths: [\"/info*\"]\n   - operation:\n       methods: [\"POST\"]\n       paths: [\"/data\"]\n   when:\n   - key: request.auth.claims[iss]\n     values: [\"https://accounts.google.com\"]"
+  },
+  {
+    "objectID": "slides/Istio.html#routes-with-virtualservice",
+    "href": "slides/Istio.html#routes-with-virtualservice",
+    "title": "What does service mesh have to do with security",
+    "section": "Routes with VirtualService",
+    "text": "Routes with VirtualService\nPublic routes & Private Routes\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: reviews-route\nspec:\n  hosts:\n  - reviews.prod.svc.cluster.local\n  http:\n  - name: \"reviews-v2-routes\"\n    match:\n    - uri:\n        prefix: \"/wpcatalog\"\n    - uri:\n        prefix: \"/consumercatalog\"\n    rewrite:\n      uri: \"/newcatalog\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v2\n  - name: \"reviews-v1-route\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v1"
+  },
+  {
+    "objectID": "slides/Istio.html#cors",
+    "href": "slides/Istio.html#cors",
+    "title": "What does service mesh have to do with security",
+    "section": "Cors",
+    "text": "Cors\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: ratings-route\nspec:\n  hosts:\n  - ratings.prod.svc.cluster.local\n  http:\n  - route:\n    - destination:\n        host: ratings.prod.svc.cluster.local\n        subset: v1\n    corsPolicy:\n      allowOrigins:\n      - exact: https://example.com\n      allowMethods:\n      - POST\n      - GET\n      allowCredentials: false\n      allowHeaders:\n      - X-Foo-Bar\n      maxAge: \"24h\""
+  },
+  {
+    "objectID": "slides/Istio.html#extending-functionality-with-wasm",
+    "href": "slides/Istio.html#extending-functionality-with-wasm",
+    "title": "What does service mesh have to do with security",
+    "section": "Extending functionality with WASM",
+    "text": "Extending functionality with WASM\nWasmPlugins provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters.\napiVersion: extensions.istio.io/v1alpha1\nkind: WasmPlugin\nmetadata:\n  name: openid-connect\n  namespace: istio-ingress\nspec:\n  selector:\n    matchLabels:\n      istio: ingressgateway\n  url: file:///opt/filters/openid.wasm\n  sha256: 1ef0c9a92b0420cf25f7fe5d481b231464bc88f486ca3b9c83ed5cc21d2f6210\n  phase: AUTHN\n  pluginConfig:\n    openid_server: authn\n    openid_realm: ingress"
+  },
+  {
+    "objectID": "slides/Istio.html#what-is-spire",
+    "href": "slides/Istio.html#what-is-spire",
+    "title": "What does service mesh have to do with security",
+    "section": "What is SPIRE?",
+    "text": "What is SPIRE?\nSPIRE, the SPIFFE Runtime Environment, is an extensible system that implements the principles embodied in the SPIFFE standards. SPIRE manages platform and workload attestation, provides an API for controlling attestation policies, and coordinates certificate issuance and rotation."
+  },
+  {
+    "objectID": "slides/Istio.html#all-powered-by-mtls",
+    "href": "slides/Istio.html#all-powered-by-mtls",
+    "title": "What does service mesh have to do with security",
+    "section": "All powered by MTLS",
+    "text": "All powered by MTLS"
+  },
+  {
+    "objectID": "slides/Istio.html#session-vs-network-based-authentication",
+    "href": "slides/Istio.html#session-vs-network-based-authentication",
+    "title": "What does service mesh have to do with security",
+    "section": "Session VS Network based authentication",
+    "text": "Session VS Network based authentication"
+  },
+  {
+    "objectID": "slides/Istio.html#with-sidecar-vs-sidecarless",
+    "href": "slides/Istio.html#with-sidecar-vs-sidecarless",
+    "title": "What does service mesh have to do with security",
+    "section": "With Sidecar VS Sidecarless",
+    "text": "With Sidecar VS Sidecarless"
+  },
+  {
+    "objectID": "slides/Istio.html#envoy-with-curiefense",
+    "href": "slides/Istio.html#envoy-with-curiefense",
+    "title": "What does service mesh have to do with security",
+    "section": "Envoy with curiefense",
+    "text": "Envoy with curiefense\nCuriefense is an API-first, DevOps oriented web-defense HTTP-Filter adapter for Envoy and NGINX. It provides multiple security technologies (WAF, application-layer DDoS protection, bot management, and more) along with real-time traffic monitoring and transparency."
+  },
+  {
+    "objectID": "slides/Istio.html#curiefense-architecture",
+    "href": "slides/Istio.html#curiefense-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Curiefense architecture",
+    "text": "Curiefense architecture"
+  },
+  {
+    "objectID": "slides/Istio.html#demo-time",
+    "href": "slides/Istio.html#demo-time",
+    "title": "What does service mesh have to do with security",
+    "section": "Demo Time",
+    "text": "Demo Time\n\nShow diagrams (next slide)\nShow code\nShow console commands\nShow kiali, grafana and jaeger\nShow istio documentation"
+  },
+  {
+    "objectID": "slides/Istio.html#kubernetes-part",
+    "href": "slides/Istio.html#kubernetes-part",
+    "title": "What does service mesh have to do with security",
+    "section": "Kubernetes Part",
+    "text": "Kubernetes Part"
+  },
+  {
+    "objectID": "slides/Istio.html#network-part",
+    "href": "slides/Istio.html#network-part",
+    "title": "What does service mesh have to do with security",
+    "section": "Network Part",
+    "text": "Network Part"
+  },
+  {
+    "objectID": "slides/Istio.html#references",
+    "href": "slides/Istio.html#references",
+    "title": "What does service mesh have to do with security",
+    "section": "References",
+    "text": "References\n\nhttps://istio.io/latest/docs/concepts/security"
   }
 ]
