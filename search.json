@@ -144,7 +144,7 @@
     "href": "slides/Golang.html#multiple-packages",
     "title": "A breaf introduction to golang",
     "section": "Multiple packages",
-    "text": "Multiple packages\ncmd/main.go\npackage main\nimport (\n  mypackages \"example.com/m/pkgs/myPackages\"\n)\nfunc main() {\n  mypackages.PublicInPackages()\n}\npkgs/myPackages/functions.go\npackage mypackages\nimport \"fmt\"\nfunc PublicInPackages() {\n  fmt.Println(\"In Public Function\")\n  privateInPackages()\n}\nfunc privateInPackages() {\n  fmt.Println(\"In private function\")\n}"
+    "text": "Multiple packages\n\n\ncmd/main.go\npackage main\nimport (\n  mypackages \"example.com/m/pkgs/myPackages\"\n)\nfunc main() {\n  mypackages.PublicInPackages()\n}\n\npkgs/myPackages/functions.go\npackage mypackages\nimport \"fmt\"\nfunc PublicInPackages() {\n  fmt.Println(\"In Public Function\")\n  privateInPackages()\n}\nfunc privateInPackages() {\n  fmt.Println(\"In private function\")\n}"
   },
   {
     "objectID": "slides/Golang.html#dependencies",

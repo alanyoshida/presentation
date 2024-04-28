@@ -506,6 +506,8 @@ Alan Yoshida
 </section>
 <section id="multiple-packages" class="slide level2">
 <h2>Multiple packages</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p>cmd/main.go</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb7-1"><a></a><span class="kw">package</span> main</span>
 <span id="cb7-2"><a></a><span class="kw">import</span> <span class="op">(</span></span>
@@ -514,6 +516,7 @@ Alan Yoshida
 <span id="cb7-5"><a></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb7-6"><a></a>  mypackages<span class="op">.</span>PublicInPackages<span class="op">()</span></span>
 <span id="cb7-7"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
 <p>pkgs/myPackages/functions.go</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb8-1"><a></a><span class="kw">package</span> mypackages</span>
 <span id="cb8-2"><a></a><span class="kw">import</span> <span class="st">"fmt"</span></span>
@@ -524,6 +527,8 @@ Alan Yoshida
 <span id="cb8-7"><a></a><span class="kw">func</span> privateInPackages<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb8-8"><a></a>  fmt<span class="op">.</span>Println<span class="op">(</span><span class="st">"In private function"</span><span class="op">)</span></span>
 <span id="cb8-9"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
 <section id="dependencies" class="slide level2 center">
 <h2>Dependencies</h2>
