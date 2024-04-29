@@ -907,54 +907,134 @@ Alan Yoshida
 <span id="cb32-22"><a></a>  fmt<span class="op">.</span>Println<span class="op">(</span>v<span class="op">,</span> p<span class="op">)</span></span>
 <span id="cb32-23"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="go-tests" class="slide level2 center">
-<h2>Go tests</h2>
+<section id="go-routines" class="slide level2 center">
+<h2>Go routines</h2>
+<p>A goroutine is a lightweight thread managed by the Go runtime.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb33-1"><a></a><span class="co">// Call a function f() in a thread</span></span>
+<span id="cb33-2"><a></a><span class="cf">go</span> f<span class="op">(</span>x<span class="op">,</span> y<span class="op">,</span> z<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The evaluation of f, x, y, and z happens in the current goroutine and the execution of f happens in the new goroutine.</p>
+</section>
+<section id="channels" class="slide level2 center">
+<h2>Channels</h2>
+<p>Channels are a typed conduit through which you can send and receive values with the channel operator, <code>&lt;-</code>.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb34-1"><a></a>ch <span class="op">&lt;-</span> v    <span class="co">// Send v to channel ch.</span></span>
+<span id="cb34-2"><a></a>v <span class="op">:=</span> <span class="op">&lt;-</span>ch  <span class="co">// Receive from ch, and</span></span>
+<span id="cb34-3"><a></a>           <span class="co">// assign value to v.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(The data flows in the direction of the arrow.)</p>
+<p>Like maps and slices, channels must be created before use:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb35-1"><a></a>ch <span class="op">:=</span> <span class="bu">make</span><span class="op">(</span><span class="kw">chan</span> <span class="dt">int</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By default, sends and receives block until the other side is ready. This allows goroutines to synchronize without explicit locks or condition variables.</p>
+</section>
+<section id="go-routine-example" class="slide level2 center">
+<h2>Go routine Example</h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb36-1"><a></a><span class="kw">func</span> sum<span class="op">(</span>s <span class="op">[]</span><span class="dt">int</span><span class="op">,</span> c <span class="kw">chan</span> <span class="dt">int</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-2"><a></a>    sum <span class="op">:=</span> <span class="dv">0</span></span>
+<span id="cb36-3"><a></a>    <span class="cf">for</span> _<span class="op">,</span> v <span class="op">:=</span> <span class="kw">range</span> s <span class="op">{</span></span>
+<span id="cb36-4"><a></a>        sum <span class="op">+=</span> v</span>
+<span id="cb36-5"><a></a>    <span class="op">}</span></span>
+<span id="cb36-6"><a></a>    c <span class="op">&lt;-</span> sum <span class="co">// send sum to c</span></span>
+<span id="cb36-7"><a></a><span class="op">}</span></span>
+<span id="cb36-8"><a></a></span>
+<span id="cb36-9"><a></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb36-10"><a></a>    s <span class="op">:=</span> <span class="op">[]</span><span class="dt">int</span><span class="op">{</span><span class="dv">7</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="op">-</span><span class="dv">9</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">0</span><span class="op">}</span></span>
+<span id="cb36-11"><a></a></span>
+<span id="cb36-12"><a></a>    c <span class="op">:=</span> <span class="bu">make</span><span class="op">(</span><span class="kw">chan</span> <span class="dt">int</span><span class="op">)</span></span>
+<span id="cb36-13"><a></a>    <span class="cf">go</span> sum<span class="op">(</span>s<span class="op">[:</span><span class="bu">len</span><span class="op">(</span>s<span class="op">)/</span><span class="dv">2</span><span class="op">],</span> c<span class="op">)</span></span>
+<span id="cb36-14"><a></a>    <span class="cf">go</span> sum<span class="op">(</span>s<span class="op">[</span><span class="bu">len</span><span class="op">(</span>s<span class="op">)/</span><span class="dv">2</span><span class="op">:],</span> c<span class="op">)</span></span>
+<span id="cb36-15"><a></a>    x<span class="op">,</span> y <span class="op">:=</span> <span class="op">&lt;-</span>c<span class="op">,</span> <span class="op">&lt;-</span>c <span class="co">// receive from c</span></span>
+<span id="cb36-16"><a></a></span>
+<span id="cb36-17"><a></a>    fmt<span class="op">.</span>Println<span class="op">(</span>x<span class="op">,</span> y<span class="op">,</span> x<span class="op">+</span>y<span class="op">)</span></span>
+<span id="cb36-18"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="buffered-channels" class="slide level2 center">
+<h2>Buffered Channels</h2>
+<p>Channels can be buffered.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb37-1"><a></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb37-2"><a></a>    ch <span class="op">:=</span> <span class="bu">make</span><span class="op">(</span><span class="kw">chan</span> <span class="dt">int</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb37-3"><a></a>    ch <span class="op">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb37-4"><a></a>    ch <span class="op">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb37-5"><a></a>    fmt<span class="op">.</span>Println<span class="op">(&lt;-</span>ch<span class="op">)</span></span>
+<span id="cb37-6"><a></a>    fmt<span class="op">.</span>Println<span class="op">(&lt;-</span>ch<span class="op">)</span></span>
+<span id="cb37-7"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="select" class="slide level2 center">
+<h2>Select</h2>
+<p>The select statement lets a goroutine wait on multiple communication operations.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb38-1"><a></a><span class="kw">func</span> main<span class="op">(){</span></span>
+<span id="cb38-2"><a></a>  d <span class="op">:=</span> <span class="bu">make</span><span class="op">(</span><span class="kw">chan</span> <span class="dt">int</span><span class="op">)</span></span>
+<span id="cb38-3"><a></a>  quit <span class="op">:=</span> <span class="bu">make</span><span class="op">(</span><span class="kw">chan</span> <span class="dt">bool</span><span class="op">)</span></span>
+<span id="cb38-4"><a></a>  <span class="cf">go</span> <span class="kw">func</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb38-5"><a></a>    time<span class="op">.</span>Sleep<span class="op">(</span><span class="dv">1</span> <span class="op">*</span> time<span class="op">.</span>Second<span class="op">)</span></span>
+<span id="cb38-6"><a></a>    d <span class="op">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-7"><a></a>  <span class="op">}()</span></span>
+<span id="cb38-8"><a></a>  <span class="cf">go</span> <span class="kw">func</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb38-9"><a></a>    time<span class="op">.</span>Sleep<span class="op">(</span><span class="dv">2</span> <span class="op">*</span> time<span class="op">.</span>Second<span class="op">)</span></span>
+<span id="cb38-10"><a></a>    d <span class="op">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb38-11"><a></a>  <span class="op">}()</span></span>
+<span id="cb38-12"><a></a>  <span class="cf">go</span> <span class="kw">func</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb38-13"><a></a>    time<span class="op">.</span>Sleep<span class="op">(</span><span class="dv">3</span> <span class="op">*</span> time<span class="op">.</span>Second<span class="op">)</span></span>
+<span id="cb38-14"><a></a>    quit <span class="op">&lt;-</span> <span class="ot">true</span></span>
+<span id="cb38-15"><a></a>  <span class="op">}()</span></span>
+<span id="cb38-16"><a></a></span>
+<span id="cb38-17"><a></a>  <span class="cf">for</span> <span class="op">{</span></span>
+<span id="cb38-18"><a></a>    <span class="cf">select</span> <span class="op">{</span></span>
+<span id="cb38-19"><a></a>    <span class="cf">case</span> msg <span class="op">:=</span> <span class="op">&lt;-</span>d<span class="op">:</span></span>
+<span id="cb38-20"><a></a>      fmt<span class="op">.</span>Println<span class="op">(</span>msg<span class="op">)</span></span>
+<span id="cb38-21"><a></a>    <span class="cf">case</span> <span class="op">&lt;-</span>quit<span class="op">:</span></span>
+<span id="cb38-22"><a></a>      fmt<span class="op">.</span>Println<span class="op">(</span><span class="st">"Quit"</span><span class="op">)</span></span>
+<span id="cb38-23"><a></a>      <span class="cf">return</span></span>
+<span id="cb38-24"><a></a>    <span class="op">}</span></span>
+<span id="cb38-25"><a></a>  <span class="op">}</span></span>
+<span id="cb38-26"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hello-world" class="slide level2 center">
+<h2>Hello world</h2>
 <p>main.go</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb33-1"><a></a><span class="kw">package</span> main</span>
-<span id="cb33-2"><a></a><span class="kw">import</span> <span class="st">"fmt"</span></span>
-<span id="cb33-3"><a></a><span class="kw">func</span> Hello<span class="op">()</span> <span class="dt">string</span> <span class="op">{</span></span>
-<span id="cb33-4"><a></a>  <span class="cf">return</span> <span class="st">"Hello, world"</span></span>
-<span id="cb33-5"><a></a><span class="op">}</span></span>
-<span id="cb33-6"><a></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb33-7"><a></a>  fmt<span class="op">.</span>Println<span class="op">(</span>Hello<span class="op">())</span></span>
-<span id="cb33-8"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb39-1"><a></a><span class="kw">package</span> main</span>
+<span id="cb39-2"><a></a><span class="kw">import</span> <span class="st">"fmt"</span></span>
+<span id="cb39-3"><a></a><span class="kw">func</span> Hello<span class="op">()</span> <span class="dt">string</span> <span class="op">{</span></span>
+<span id="cb39-4"><a></a>  <span class="cf">return</span> <span class="st">"Hello, world"</span></span>
+<span id="cb39-5"><a></a><span class="op">}</span></span>
+<span id="cb39-6"><a></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb39-7"><a></a>  fmt<span class="op">.</span>Println<span class="op">(</span>Hello<span class="op">())</span></span>
+<span id="cb39-8"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="go-tests-1" class="slide level2 center">
-<h2>Go tests</h2>
+<section id="test-hello-world" class="slide level2 center">
+<h2>Test Hello World</h2>
 <p>main_test.go</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb34-1"><a></a><span class="kw">package</span> main</span>
-<span id="cb34-2"><a></a><span class="kw">import</span> <span class="st">"testing"</span></span>
-<span id="cb34-3"><a></a><span class="kw">func</span> TestHello<span class="op">(</span>t <span class="op">*</span>testing<span class="op">.</span>T<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb34-4"><a></a>  got <span class="op">:=</span> Hello<span class="op">()</span></span>
-<span id="cb34-5"><a></a>  want <span class="op">:=</span> <span class="st">"Hello, world"</span></span>
-<span id="cb34-6"><a></a></span>
-<span id="cb34-7"><a></a>  <span class="cf">if</span> got <span class="op">!=</span> want <span class="op">{</span></span>
-<span id="cb34-8"><a></a>    t<span class="op">.</span>Errorf<span class="op">(</span><span class="st">"got %q want %q"</span><span class="op">,</span> got<span class="op">,</span> want<span class="op">)</span></span>
-<span id="cb34-9"><a></a>  <span class="op">}</span></span>
-<span id="cb34-10"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb40-1"><a></a><span class="kw">package</span> main</span>
+<span id="cb40-2"><a></a><span class="kw">import</span> <span class="st">"testing"</span></span>
+<span id="cb40-3"><a></a><span class="kw">func</span> TestHello<span class="op">(</span>t <span class="op">*</span>testing<span class="op">.</span>T<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb40-4"><a></a>  got <span class="op">:=</span> Hello<span class="op">()</span></span>
+<span id="cb40-5"><a></a>  want <span class="op">:=</span> <span class="st">"Hello, world"</span></span>
+<span id="cb40-6"><a></a></span>
+<span id="cb40-7"><a></a>  <span class="cf">if</span> got <span class="op">!=</span> want <span class="op">{</span></span>
+<span id="cb40-8"><a></a>    t<span class="op">.</span>Errorf<span class="op">(</span><span class="st">"got %q want %q"</span><span class="op">,</span> got<span class="op">,</span> want<span class="op">)</span></span>
+<span id="cb40-9"><a></a>  <span class="op">}</span></span>
+<span id="cb40-10"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="go-tests-2" class="slide level2 center">
-<h2>Go tests</h2>
+<section id="run-tests" class="slide level2 center">
+<h2>Run Tests</h2>
 <p>then execute:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a></a><span class="ex">$</span> go test</span>
-<span id="cb35-2"><a></a><span class="ex">PASS</span></span>
-<span id="cb35-3"><a></a><span class="ex">ok</span>      gotest  0.001s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a></a><span class="ex">$</span> go test <span class="at">-race</span></span>
+<span id="cb41-2"><a></a><span class="ex">PASS</span></span>
+<span id="cb41-3"><a></a><span class="ex">ok</span>      gotest  0.001s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="test-coverage" class="slide level2 center">
 <h2>Test Coverage</h2>
 <p>Generate golang test coverage html using the following commands:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a></a><span class="co"># Generate coverage file</span></span>
-<span id="cb36-2"><a></a><span class="ex">$</span> go test <span class="at">-coverprofile</span><span class="op">=</span>coverage.out ./...</span>
-<span id="cb36-3"><a></a><span class="ex">ok</span>      example.com/m/slides    0.001s  coverage: 50.0% of statements</span>
-<span id="cb36-4"><a></a></span>
-<span id="cb36-5"><a></a><span class="co"># Show coverage in command line</span></span>
-<span id="cb36-6"><a></a><span class="ex">$</span> go tool cover <span class="at">-func</span><span class="op">=</span>coverage.out</span>
-<span id="cb36-7"><a></a><span class="ex">example.com/m/slides/main.go:5:</span> Hello           100.0%</span>
-<span id="cb36-8"><a></a><span class="ex">example.com/m/slides/main.go:8:</span> main            0.0%</span>
-<span id="cb36-9"><a></a><span class="ex">total:</span>                          <span class="er">(</span><span class="ex">statements</span><span class="kw">)</span>    <span class="ex">50.0%</span></span>
-<span id="cb36-10"><a></a></span>
-<span id="cb36-11"><a></a><span class="co"># Show coverage in HTML</span></span>
-<span id="cb36-12"><a></a><span class="ex">$</span> go tool cover <span class="at">-html</span><span class="op">=</span>coverage.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a></a><span class="co"># Generate coverage file</span></span>
+<span id="cb42-2"><a></a><span class="ex">$</span> go test <span class="at">-race</span> <span class="at">-coverprofile</span><span class="op">=</span>coverage.out ./...</span>
+<span id="cb42-3"><a></a><span class="ex">ok</span>      example.com/m/slides    0.001s  coverage: 50.0% of statements</span>
+<span id="cb42-4"><a></a></span>
+<span id="cb42-5"><a></a><span class="co"># Show coverage in command line</span></span>
+<span id="cb42-6"><a></a><span class="ex">$</span> go tool cover <span class="at">-func</span><span class="op">=</span>coverage.out</span>
+<span id="cb42-7"><a></a><span class="ex">example.com/m/slides/main.go:5:</span> Hello           100.0%</span>
+<span id="cb42-8"><a></a><span class="ex">example.com/m/slides/main.go:8:</span> main            0.0%</span>
+<span id="cb42-9"><a></a><span class="ex">total:</span>                          <span class="er">(</span><span class="ex">statements</span><span class="kw">)</span>    <span class="ex">50.0%</span></span>
+<span id="cb42-10"><a></a></span>
+<span id="cb42-11"><a></a><span class="co"># Show coverage in HTML</span></span>
+<span id="cb42-12"><a></a><span class="ex">$</span> go tool cover <span class="at">-html</span><span class="op">=</span>coverage.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="thats-all-folks" class="title-slide slide level1 center">
 <h1>That’s all folks</h1>
