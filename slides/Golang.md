@@ -670,7 +670,114 @@ func main() {
 
 ---
 
-## Go tests {.center}
+## Go routines {.center}
+
+A goroutine is a lightweight thread managed by the Go runtime.
+
+```go
+// Call a function f() in a thread
+go f(x, y, z)
+```
+The evaluation of f, x, y, and z happens in the current goroutine and the execution of f happens in the new goroutine.
+
+
+---
+
+## Channels {.center}
+
+Channels are a typed conduit through which you can send and receive values with the channel operator, `<-`.
+
+```go
+ch <- v    // Send v to channel ch.
+v := <-ch  // Receive from ch, and
+           // assign value to v.
+```
+(The data flows in the direction of the arrow.)
+
+Like maps and slices, channels must be created before use:
+
+```go
+ch := make(chan int)
+```
+By default, sends and receives block until the other side is ready. This allows goroutines to synchronize without explicit locks or condition variables.
+
+---
+
+## Go routine Example {.center}
+
+```go
+func sum(s []int, c chan int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // send sum to c
+}
+
+func main() {
+	s := []int{7, 2, 8, -9, 4, 0}
+
+	c := make(chan int)
+	go sum(s[:len(s)/2], c)
+	go sum(s[len(s)/2:], c)
+	x, y := <-c, <-c // receive from c
+
+	fmt.Println(x, y, x+y)
+}
+```
+
+---
+
+## Buffered Channels {.center}
+
+Channels can be buffered.
+```go
+func main() {
+	ch := make(chan int, 2)
+	ch <- 1
+	ch <- 2
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+}
+```
+
+---
+
+## Select {.center}
+The select statement lets a goroutine wait on multiple communication operations.
+
+```go
+func main(){
+  d := make(chan int)
+  quit := make(chan bool)
+  go func() {
+    time.Sleep(1 * time.Second)
+    d <- 1
+  }()
+  go func() {
+    time.Sleep(2 * time.Second)
+    d <- 2
+  }()
+  go func() {
+    time.Sleep(3 * time.Second)
+    quit <- true
+  }()
+
+  for {
+    select {
+    case msg := <-d:
+      fmt.Println(msg)
+    case <-quit:
+      fmt.Println("Quit")
+      return
+    }
+  }
+}
+```
+
+---
+
+## Hello world {.center}
 
 main.go
 ```go
@@ -686,7 +793,7 @@ func main() {
 
 ---
 
-## Go tests {.center}
+## Test Hello World {.center}
 
 main_test.go
 ```go
@@ -704,10 +811,10 @@ func TestHello(t *testing.T) {
 
 ---
 
-## Go tests {.center}
+## Run Tests {.center}
 then execute:
 ```bash
-$ go test
+$ go test -race
 PASS
 ok      gotest  0.001s
 ```
@@ -720,7 +827,7 @@ Generate golang test coverage html using the following commands:
 
 ```bash
 # Generate coverage file
-$ go test -coverprofile=coverage.out ./...
+$ go test -race -coverprofile=coverage.out ./...
 ok      example.com/m/slides    0.001s  coverage: 50.0% of statements
 
 # Show coverage in command line
