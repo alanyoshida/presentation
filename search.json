@@ -63,6 +63,258 @@
     "text": "Example\nKube-state-metrics\nhttps://github.com/kubernetes/kube-state-metrics"
   },
   {
+    "objectID": "slides/Istio.html#the-problem",
+    "href": "slides/Istio.html#the-problem",
+    "title": "What does service mesh have to do with security",
+    "section": "The problem",
+    "text": "The problem\n\nKubernetes is not secure by default\nHow to manage certificates and identity ?\nHow to do the above without too much work in the developer side ?\nHow to limit lateral movement inside kubernetes ?"
+  },
+  {
+    "objectID": "slides/Istio.html#network-policy-to-manage-identity",
+    "href": "slides/Istio.html#network-policy-to-manage-identity",
+    "title": "What does service mesh have to do with security",
+    "section": "Network policy to manage identity ?",
+    "text": "Network policy to manage identity ?\n\nNot a real identity\nIn cloud native world, could have problems with dinamic ip association"
+  },
+  {
+    "objectID": "slides/Istio.html#introducing-the-sidecar-model",
+    "href": "slides/Istio.html#introducing-the-sidecar-model",
+    "title": "What does service mesh have to do with security",
+    "section": "Introducing the sidecar Model",
+    "text": "Introducing the sidecar Model"
+  },
+  {
+    "objectID": "slides/Istio.html#the-sidecar-model-has-yaml",
+    "href": "slides/Istio.html#the-sidecar-model-has-yaml",
+    "title": "What does service mesh have to do with security",
+    "section": "The sidecar Model has yaml",
+    "text": "The sidecar Model has yaml"
+  },
+  {
+    "objectID": "slides/Istio.html#sidecar-vs-ebpf",
+    "href": "slides/Istio.html#sidecar-vs-ebpf",
+    "title": "What does service mesh have to do with security",
+    "section": "Sidecar vs eBPF",
+    "text": "Sidecar vs eBPF"
+  },
+  {
+    "objectID": "slides/Istio.html#ebpf-architecture",
+    "href": "slides/Istio.html#ebpf-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "eBPF Architecture",
+    "text": "eBPF Architecture"
+  },
+  {
+    "objectID": "slides/Istio.html#cilium-ebpf-with-envoy",
+    "href": "slides/Istio.html#cilium-ebpf-with-envoy",
+    "title": "What does service mesh have to do with security",
+    "section": "Cilium eBPF with envoy ?",
+    "text": "Cilium eBPF with envoy ?"
+  },
+  {
+    "objectID": "slides/Istio.html#ebpf-hook-overview",
+    "href": "slides/Istio.html#ebpf-hook-overview",
+    "title": "What does service mesh have to do with security",
+    "section": "eBPF Hook Overview",
+    "text": "eBPF Hook Overview"
+  },
+  {
+    "objectID": "slides/Istio.html#security-with-ebpf",
+    "href": "slides/Istio.html#security-with-ebpf",
+    "title": "What does service mesh have to do with security",
+    "section": "Security with ebpf",
+    "text": "Security with ebpf"
+  },
+  {
+    "objectID": "slides/Istio.html#but-what-about-service-mesh",
+    "href": "slides/Istio.html#but-what-about-service-mesh",
+    "title": "What does service mesh have to do with security",
+    "section": "But what about Service Mesh ?",
+    "text": "But what about Service Mesh ?"
+  },
+  {
+    "objectID": "slides/Istio.html#traffic-management",
+    "href": "slides/Istio.html#traffic-management",
+    "title": "What does service mesh have to do with security",
+    "section": "Traffic Management",
+    "text": "Traffic Management\nThe network cost of sidecar proxies"
+  },
+  {
+    "objectID": "slides/Istio.html#without-sidecars",
+    "href": "slides/Istio.html#without-sidecars",
+    "title": "What does service mesh have to do with security",
+    "section": "Without sidecars",
+    "text": "Without sidecars\nRemoving sidecars from Service Mesh"
+  },
+  {
+    "objectID": "slides/Istio.html#evolution-not-exactly-yet",
+    "href": "slides/Istio.html#evolution-not-exactly-yet",
+    "title": "What does service mesh have to do with security",
+    "section": "Evolution ? Not exactly, yet",
+    "text": "Evolution ? Not exactly, yet\nCan We move Service Mesh to the Kernel ? Kinda off…"
+  },
+  {
+    "objectID": "slides/Istio.html#tradeoffs",
+    "href": "slides/Istio.html#tradeoffs",
+    "title": "What does service mesh have to do with security",
+    "section": "Tradeoffs",
+    "text": "Tradeoffs"
+  },
+  {
+    "objectID": "slides/Istio.html#security-overview",
+    "href": "slides/Istio.html#security-overview",
+    "title": "What does service mesh have to do with security",
+    "section": "Security Overview",
+    "text": "Security Overview"
+  },
+  {
+    "objectID": "slides/Istio.html#istio-security",
+    "href": "slides/Istio.html#istio-security",
+    "title": "What does service mesh have to do with security",
+    "section": "Istio Security",
+    "text": "Istio Security\nThe Istio security features provide strong identity, powerful policy, transparent TLS encryption, and authentication, authorization and audit (AAA) tools to protect your services and data."
+  },
+  {
+    "objectID": "slides/Istio.html#goals-of-istio-security",
+    "href": "slides/Istio.html#goals-of-istio-security",
+    "title": "What does service mesh have to do with security",
+    "section": "Goals of Istio security",
+    "text": "Goals of Istio security\n\nSecurity by default: no changes needed to application code and infrastructure\nDefense in depth: integrate with existing security systems to provide multiple layers of defense\nZero-trust network: build security solutions on distrusted networks"
+  },
+  {
+    "objectID": "slides/Istio.html#istio-architecture",
+    "href": "slides/Istio.html#istio-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Istio Architecture",
+    "text": "Istio Architecture"
+  },
+  {
+    "objectID": "slides/Istio.html#identity-and-certificate-management",
+    "href": "slides/Istio.html#identity-and-certificate-management",
+    "title": "What does service mesh have to do with security",
+    "section": "Identity And Certificate Management",
+    "text": "Identity And Certificate Management\n\nIdentity Provisioning Workflow"
+  },
+  {
+    "objectID": "slides/Istio.html#authentication-architecture",
+    "href": "slides/Istio.html#authentication-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Authentication Architecture",
+    "text": "Authentication Architecture\n\nPolicy"
+  },
+  {
+    "objectID": "slides/Istio.html#peerauthentication",
+    "href": "slides/Istio.html#peerauthentication",
+    "title": "What does service mesh have to do with security",
+    "section": "PeerAuthentication",
+    "text": "PeerAuthentication\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  mtls:\n    mode: PERMISSIVE\n\n---\n\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  selector:\n    matchLabels:\n      app: finance\n  mtls:\n    mode: STRICT"
+  },
+  {
+    "objectID": "slides/Istio.html#authorization-architecture",
+    "href": "slides/Istio.html#authorization-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Authorization Architecture",
+    "text": "Authorization Architecture\n\nPolicy"
+  },
+  {
+    "objectID": "slides/Istio.html#authorizationpolicy",
+    "href": "slides/Istio.html#authorizationpolicy",
+    "title": "What does service mesh have to do with security",
+    "section": "AuthorizationPolicy",
+    "text": "AuthorizationPolicy\napiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n name: httpbin\n namespace: foo\nspec:\n action: ALLOW\n rules:\n - from:\n   - source:\n       principals: [\"cluster.local/ns/default/sa/sleep\"]\n   - source:\n       namespaces: [\"test\"]\n   to:\n   - operation:\n       methods: [\"GET\"]\n       paths: [\"/info*\"]\n   - operation:\n       methods: [\"POST\"]\n       paths: [\"/data\"]\n   when:\n   - key: request.auth.claims[iss]\n     values: [\"https://accounts.google.com\"]"
+  },
+  {
+    "objectID": "slides/Istio.html#routes-with-virtualservice",
+    "href": "slides/Istio.html#routes-with-virtualservice",
+    "title": "What does service mesh have to do with security",
+    "section": "Routes with VirtualService",
+    "text": "Routes with VirtualService\nPublic routes & Private Routes\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: reviews-route\nspec:\n  hosts:\n  - reviews.prod.svc.cluster.local\n  http:\n  - name: \"reviews-v2-routes\"\n    match:\n    - uri:\n        prefix: \"/wpcatalog\"\n    - uri:\n        prefix: \"/consumercatalog\"\n    rewrite:\n      uri: \"/newcatalog\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v2\n  - name: \"reviews-v1-route\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v1"
+  },
+  {
+    "objectID": "slides/Istio.html#cors",
+    "href": "slides/Istio.html#cors",
+    "title": "What does service mesh have to do with security",
+    "section": "Cors",
+    "text": "Cors\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: ratings-route\nspec:\n  hosts:\n  - ratings.prod.svc.cluster.local\n  http:\n  - route:\n    - destination:\n        host: ratings.prod.svc.cluster.local\n        subset: v1\n    corsPolicy:\n      allowOrigins:\n      - exact: https://example.com\n      allowMethods:\n      - POST\n      - GET\n      allowCredentials: false\n      allowHeaders:\n      - X-Foo-Bar\n      maxAge: \"24h\""
+  },
+  {
+    "objectID": "slides/Istio.html#extending-functionality-with-wasm",
+    "href": "slides/Istio.html#extending-functionality-with-wasm",
+    "title": "What does service mesh have to do with security",
+    "section": "Extending functionality with WASM",
+    "text": "Extending functionality with WASM\nWasmPlugins provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters.\napiVersion: extensions.istio.io/v1alpha1\nkind: WasmPlugin\nmetadata:\n  name: openid-connect\n  namespace: istio-ingress\nspec:\n  selector:\n    matchLabels:\n      istio: ingressgateway\n  url: file:///opt/filters/openid.wasm\n  sha256: 1ef0c9a92b0420cf25f7fe5d481b231464bc88f486ca3b9c83ed5cc21d2f6210\n  phase: AUTHN\n  pluginConfig:\n    openid_server: authn\n    openid_realm: ingress"
+  },
+  {
+    "objectID": "slides/Istio.html#what-is-spire",
+    "href": "slides/Istio.html#what-is-spire",
+    "title": "What does service mesh have to do with security",
+    "section": "What is SPIRE?",
+    "text": "What is SPIRE?\nSPIRE, the SPIFFE Runtime Environment, is an extensible system that implements the principles embodied in the SPIFFE standards. SPIRE manages platform and workload attestation, provides an API for controlling attestation policies, and coordinates certificate issuance and rotation."
+  },
+  {
+    "objectID": "slides/Istio.html#all-powered-by-mtls",
+    "href": "slides/Istio.html#all-powered-by-mtls",
+    "title": "What does service mesh have to do with security",
+    "section": "All powered by MTLS",
+    "text": "All powered by MTLS"
+  },
+  {
+    "objectID": "slides/Istio.html#session-vs-network-based-authentication",
+    "href": "slides/Istio.html#session-vs-network-based-authentication",
+    "title": "What does service mesh have to do with security",
+    "section": "Session VS Network based authentication",
+    "text": "Session VS Network based authentication"
+  },
+  {
+    "objectID": "slides/Istio.html#with-sidecar-vs-sidecarless",
+    "href": "slides/Istio.html#with-sidecar-vs-sidecarless",
+    "title": "What does service mesh have to do with security",
+    "section": "With Sidecar VS Sidecarless",
+    "text": "With Sidecar VS Sidecarless"
+  },
+  {
+    "objectID": "slides/Istio.html#envoy-with-curiefense",
+    "href": "slides/Istio.html#envoy-with-curiefense",
+    "title": "What does service mesh have to do with security",
+    "section": "Envoy with curiefense",
+    "text": "Envoy with curiefense\nCuriefense is an API-first, DevOps oriented web-defense HTTP-Filter adapter for Envoy and NGINX. It provides multiple security technologies (WAF, application-layer DDoS protection, bot management, and more) along with real-time traffic monitoring and transparency."
+  },
+  {
+    "objectID": "slides/Istio.html#curiefense-architecture",
+    "href": "slides/Istio.html#curiefense-architecture",
+    "title": "What does service mesh have to do with security",
+    "section": "Curiefense architecture",
+    "text": "Curiefense architecture"
+  },
+  {
+    "objectID": "slides/Istio.html#demo-time",
+    "href": "slides/Istio.html#demo-time",
+    "title": "What does service mesh have to do with security",
+    "section": "Demo Time",
+    "text": "Demo Time\n\nShow diagrams (next slide)\nShow code\nShow console commands\nShow kiali, grafana and jaeger\nShow istio documentation"
+  },
+  {
+    "objectID": "slides/Istio.html#kubernetes-part",
+    "href": "slides/Istio.html#kubernetes-part",
+    "title": "What does service mesh have to do with security",
+    "section": "Kubernetes Part",
+    "text": "Kubernetes Part"
+  },
+  {
+    "objectID": "slides/Istio.html#network-part",
+    "href": "slides/Istio.html#network-part",
+    "title": "What does service mesh have to do with security",
+    "section": "Network Part",
+    "text": "Network Part"
+  },
+  {
+    "objectID": "slides/Istio.html#references",
+    "href": "slides/Istio.html#references",
+    "title": "What does service mesh have to do with security",
+    "section": "References",
+    "text": "References\n\nhttps://istio.io/latest/docs/concepts/security"
+  },
+  {
     "objectID": "slides/Golang.html#history",
     "href": "slides/Golang.html#history",
     "title": "A breaf introduction to golang",
@@ -399,255 +651,199 @@
     "text": "Test Coverage\nGenerate golang test coverage html using the following commands:\n# Generate coverage file\n$ go test -race -coverprofile=coverage.out ./...\nok      example.com/m/slides    0.001s  coverage: 50.0% of statements\n\n# Show coverage in command line\n$ go tool cover -func=coverage.out\nexample.com/m/slides/main.go:5: Hello           100.0%\nexample.com/m/slides/main.go:8: main            0.0%\ntotal:                          (statements)    50.0%\n\n# Show coverage in HTML\n$ go tool cover -html=coverage.out"
   },
   {
-    "objectID": "slides/Istio.html#the-problem",
-    "href": "slides/Istio.html#the-problem",
-    "title": "What does service mesh have to do with security",
-    "section": "The problem",
-    "text": "The problem\n\nKubernetes is not secure by default\nHow to manage certificates and identity ?\nHow to do the above without too much work in the developer side ?\nHow to limit lateral movement inside kubernetes ?"
+    "objectID": "slides/ContainerSecurityTetragon.html#containers-vs-vms",
+    "href": "slides/ContainerSecurityTetragon.html#containers-vs-vms",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Containers vs VMs",
+    "text": "Containers vs VMs"
   },
   {
-    "objectID": "slides/Istio.html#network-policy-to-manage-identity",
-    "href": "slides/Istio.html#network-policy-to-manage-identity",
-    "title": "What does service mesh have to do with security",
-    "section": "Network policy to manage identity ?",
-    "text": "Network policy to manage identity ?\n\nNot a real identity\nIn cloud native world, could have problems with dinamic ip association"
+    "objectID": "slides/ContainerSecurityTetragon.html#user-space-vs-kernel-space",
+    "href": "slides/ContainerSecurityTetragon.html#user-space-vs-kernel-space",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "User Space vs Kernel Space",
+    "text": "User Space vs Kernel Space"
   },
   {
-    "objectID": "slides/Istio.html#introducing-the-sidecar-model",
-    "href": "slides/Istio.html#introducing-the-sidecar-model",
-    "title": "What does service mesh have to do with security",
-    "section": "Introducing the sidecar Model",
-    "text": "Introducing the sidecar Model"
+    "objectID": "slides/ContainerSecurityTetragon.html#container-security",
+    "href": "slides/ContainerSecurityTetragon.html#container-security",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Container Security",
+    "text": "Container Security"
   },
   {
-    "objectID": "slides/Istio.html#the-sidecar-model-has-yaml",
-    "href": "slides/Istio.html#the-sidecar-model-has-yaml",
-    "title": "What does service mesh have to do with security",
-    "section": "The sidecar Model has yaml",
-    "text": "The sidecar Model has yaml"
+    "objectID": "slides/ContainerSecurityTetragon.html#ebpf",
+    "href": "slides/ContainerSecurityTetragon.html#ebpf",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "eBPF",
+    "text": "eBPF\n\n\neBPF is a technology that can run programs in a privileged context such as the operating system kernel. It is the successor to the Berkeley Packet Filter filtering mechanism in Linux and is also used in other parts of the Linux kernel as well"
   },
   {
-    "objectID": "slides/Istio.html#sidecar-vs-ebpf",
-    "href": "slides/Istio.html#sidecar-vs-ebpf",
-    "title": "What does service mesh have to do with security",
-    "section": "Sidecar vs eBPF",
-    "text": "Sidecar vs eBPF"
+    "objectID": "slides/ContainerSecurityTetragon.html#cilium",
+    "href": "slides/ContainerSecurityTetragon.html#cilium",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Cilium",
+    "text": "Cilium\n\n\nCilium is an open source, cloud native solution for providing, securing, and observing network connectivity between workloads, fueled by the revolutionary Kernel technology eBPF"
   },
   {
-    "objectID": "slides/Istio.html#ebpf-architecture",
-    "href": "slides/Istio.html#ebpf-architecture",
-    "title": "What does service mesh have to do with security",
-    "section": "eBPF Architecture",
-    "text": "eBPF Architecture"
+    "objectID": "slides/ContainerSecurityTetragon.html#tetragon",
+    "href": "slides/ContainerSecurityTetragon.html#tetragon",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tetragon",
+    "text": "Tetragon\n\n\nTetragon is a flexible Kubernetes-aware security observability and runtime enforcement tool that applies policy and filtering directly with eBPF, allowing for reduced observation overhead, tracking of any process, and real-time enforcement of policies."
   },
   {
-    "objectID": "slides/Istio.html#cilium-ebpf-with-envoy",
-    "href": "slides/Istio.html#cilium-ebpf-with-envoy",
-    "title": "What does service mesh have to do with security",
-    "section": "Cilium eBPF with envoy ?",
-    "text": "Cilium eBPF with envoy ?"
+    "objectID": "slides/ContainerSecurityTetragon.html#monitor-process-execution",
+    "href": "slides/ContainerSecurityTetragon.html#monitor-process-execution",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Monitor Process Execution",
+    "text": "Monitor Process Execution\nObserve the complete lifecycle of every process on your machine with Kubernetes context awareness"
   },
   {
-    "objectID": "slides/Istio.html#ebpf-hook-overview",
-    "href": "slides/Istio.html#ebpf-hook-overview",
-    "title": "What does service mesh have to do with security",
+    "objectID": "slides/ContainerSecurityTetragon.html#runtime-security-policies",
+    "href": "slides/ContainerSecurityTetragon.html#runtime-security-policies",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Runtime Security Policies",
+    "text": "Runtime Security Policies\nTranslate high level policies for file monitoring, network observability, container security, and more into low overhead eBPF programs"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#real-time-enforcement",
+    "href": "slides/ContainerSecurityTetragon.html#real-time-enforcement",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Real Time Enforcement",
+    "text": "Real Time Enforcement\nSynchronous monitoring, filtering, and enforcement completely in the kernel with eBPF"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#how-does-tetragon-work",
+    "href": "slides/ContainerSecurityTetragon.html#how-does-tetragon-work",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "How does Tetragon work",
+    "text": "How does Tetragon work"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#tetragon-detailed-architecture",
+    "href": "slides/ContainerSecurityTetragon.html#tetragon-detailed-architecture",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tetragon Detailed Architecture",
+    "text": "Tetragon Detailed Architecture"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#requirements",
+    "href": "slides/ContainerSecurityTetragon.html#requirements",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Requirements",
+    "text": "Requirements\nTetragon needs Linux kernel version 4.19 or greater.\nWe currently run tests on stable long-term support kernels 4.19, 5.4, 5.10, 5.15\nBPF evolves rapidly and we recommend you use the most recent stable kernel possible to get the most out of Tetragon’s features."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#linux-kernel-configuration-options-needed-to-run-tetragon",
+    "href": "slides/ContainerSecurityTetragon.html#linux-kernel-configuration-options-needed-to-run-tetragon",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Linux kernel configuration options needed to run Tetragon",
+    "text": "Linux kernel configuration options needed to run Tetragon\n# CORE BPF\nCONFIG_BPF\nCONFIG_BPF_JIT\nCONFIG_BPF_JIT_DEFAULT_ON\nCONFIG_BPF_EVENTS\nCONFIG_BPF_SYSCALL\nCONFIG_HAVE_BPF_JIT\nCONFIG_HAVE_EBPF_JIT\nCONFIG_FTRACE_SYSCALLS\n\n# BTF (BPF Type Format) is the metadata format which encodes the debug info related to BPF program/map.\nCONFIG_DEBUG_INFO_BTF\nCONFIG_DEBUG_INFO_BTF_MODULES\n\n# Enforcement\nCONFIG_BPF_KPROBE_OVERRIDE\n\n# CGROUP and Process tracking\nCONFIG_CGROUPS=y        Control Group support\nCONFIG_MEMCG=y          Memory Control group\nCONFIG_BLK_CGROUP=y     Generic block IO controller\nCONFIG_CGROUP_SCHED=y\nCONFIG_CGROUP_PIDS=y    Process Control group\nCONFIG_CGROUP_FREEZER=y Freeze and unfreeze tasks controller\nCONFIG_CPUSETS=y        Manage CPUSETs\nCONFIG_PROC_PID_CPUSET=y\nCONFIG_CGROUP_DEVICE=Y  Devices Control group\nCONFIG_CGROUP_CPUACCT=y CPU accouting controller\nCONFIG_CGROUP_PERF=y\nCONFIG_CGROUP_BPF=y     Attach eBPF programs to a cgroup\nCGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0\n  Reduces the latencies of dynamic cgroup modifications at the\n  cost of making hot path operations such as forks and exits\n  more expensive.\n  Platforms with frequent cgroup migrations could enable this\n  option as a potential alleviation for pod and containers\n  association issues."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#ebpf-hook-overview",
+    "href": "slides/ContainerSecurityTetragon.html#ebpf-hook-overview",
+    "title": "Container Runtime Security with Tetragon",
     "section": "eBPF Hook Overview",
     "text": "eBPF Hook Overview"
   },
   {
-    "objectID": "slides/Istio.html#security-with-ebpf",
-    "href": "slides/Istio.html#security-with-ebpf",
-    "title": "What does service mesh have to do with security",
-    "section": "Security with ebpf",
-    "text": "Security with ebpf"
+    "objectID": "slides/ContainerSecurityTetragon.html#ebpf-tracing-hooks",
+    "href": "slides/ContainerSecurityTetragon.html#ebpf-tracing-hooks",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "eBPF Tracing Hooks",
+    "text": "eBPF Tracing Hooks"
   },
   {
-    "objectID": "slides/Istio.html#but-what-about-service-mesh",
-    "href": "slides/Istio.html#but-what-about-service-mesh",
-    "title": "What does service mesh have to do with security",
-    "section": "But what about Service Mesh ?",
-    "text": "But what about Service Mesh ?"
+    "objectID": "slides/ContainerSecurityTetragon.html#events",
+    "href": "slides/ContainerSecurityTetragon.html#events",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Events",
+    "text": "Events\nTetragon’s events are exposed to the system through either the gRPC endpoint or JSON logs."
   },
   {
-    "objectID": "slides/Istio.html#traffic-management",
-    "href": "slides/Istio.html#traffic-management",
-    "title": "What does service mesh have to do with security",
-    "section": "Traffic Management",
-    "text": "Traffic Management\nThe network cost of sidecar proxies"
+    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy",
+    "href": "slides/ContainerSecurityTetragon.html#tracing-policy",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tracing Policy",
+    "text": "Tracing Policy\nTetragon’s TracingPolicy is a user-configurable Kubernetes custom resource (CR) that allows users to trace arbitrary events in the kernel and optionally define actions to take on a match.\nPolicies consist of a hook point (kprobes, tracepoints, and uprobes are supported), and selectors for in-kernel filtering and specifying actions."
   },
   {
-    "objectID": "slides/Istio.html#without-sidecars",
-    "href": "slides/Istio.html#without-sidecars",
-    "title": "What does service mesh have to do with security",
-    "section": "Without sidecars",
-    "text": "Without sidecars\nRemoving sidecars from Service Mesh"
+    "objectID": "slides/ContainerSecurityTetragon.html#hook-points",
+    "href": "slides/ContainerSecurityTetragon.html#hook-points",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Hook points",
+    "text": "Hook points\nTetragon can hook into the kernel using kprobes and tracepoints, as well as in user-space programs using uprobes.\nThese hook points include arguments and return values that can be specified using the args and returnArg fields."
   },
   {
-    "objectID": "slides/Istio.html#evolution-not-exactly-yet",
-    "href": "slides/Istio.html#evolution-not-exactly-yet",
-    "title": "What does service mesh have to do with security",
-    "section": "Evolution ? Not exactly, yet",
-    "text": "Evolution ? Not exactly, yet\nCan We move Service Mesh to the Kernel ? Kinda off…"
+    "objectID": "slides/ContainerSecurityTetragon.html#arguments",
+    "href": "slides/ContainerSecurityTetragon.html#arguments",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Arguments",
+    "text": "Arguments\nKprobes, uprobes and tracepoints all share a needed arguments fields called args. It is a list of arguments to include in the trace output. Tetragon’s BPF code requires information about the types of arguments to properly read, print and filter on its arguments. This information needs to be provided by the user under the args section."
   },
   {
-    "objectID": "slides/Istio.html#tradeoffs",
-    "href": "slides/Istio.html#tradeoffs",
-    "title": "What does service mesh have to do with security",
-    "section": "Tradeoffs",
-    "text": "Tradeoffs"
+    "objectID": "slides/ContainerSecurityTetragon.html#mapping-function-calls-in-arguments",
+    "href": "slides/ContainerSecurityTetragon.html#mapping-function-calls-in-arguments",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Mapping function calls in arguments",
+    "text": "Mapping function calls in arguments\nargs:\n- index: 0\n  type: \"int\"\n- index: 1\n  type: \"file\"\nTo properly read and hook onto the fd_install(unsigned int fd, struct file *file) function, the YAML snippet above tells the BPF code that the first argument is an int and the second argument is a file, which is the struct file of the kernel. In this way, the BPF code and its printer can properly collect and print the arguments."
   },
   {
-    "objectID": "slides/Istio.html#security-overview",
-    "href": "slides/Istio.html#security-overview",
-    "title": "What does service mesh have to do with security",
-    "section": "Security Overview",
-    "text": "Security Overview"
+    "objectID": "slides/ContainerSecurityTetragon.html#selectors",
+    "href": "slides/ContainerSecurityTetragon.html#selectors",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Selectors",
+    "text": "Selectors\nSelectors are a way to perform in-kernel BPF filtering on the events to export, or on the events on which to apply an action."
   },
   {
-    "objectID": "slides/Istio.html#istio-security",
-    "href": "slides/Istio.html#istio-security",
-    "title": "What does service mesh have to do with security",
-    "section": "Istio Security",
-    "text": "Istio Security\nThe Istio security features provide strong identity, powerful policy, transparent TLS encryption, and authentication, authorization and audit (AAA) tools to protect your services and data."
+    "objectID": "slides/ContainerSecurityTetragon.html#namespace-filtering",
+    "href": "slides/ContainerSecurityTetragon.html#namespace-filtering",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Namespace filtering",
+    "text": "Namespace filtering\nFor namespace filtering we use TracingPolicyNamespaced which has the same contents as a TracingPolicy, but it is defined in a specific namespace and it is only applied to pods of that namespace."
   },
   {
-    "objectID": "slides/Istio.html#goals-of-istio-security",
-    "href": "slides/Istio.html#goals-of-istio-security",
-    "title": "What does service mesh have to do with security",
-    "section": "Goals of Istio security",
-    "text": "Goals of Istio security\n\nSecurity by default: no changes needed to application code and infrastructure\nDefense in depth: integrate with existing security systems to provide multiple layers of defense\nZero-trust network: build security solutions on distrusted networks"
+    "objectID": "slides/ContainerSecurityTetragon.html#pod-label-filters",
+    "href": "slides/ContainerSecurityTetragon.html#pod-label-filters",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Pod label filters",
+    "text": "Pod label filters\nFor pod label filters, we use the PodSelector field of tracing policies to select the pods that the policy is applied to."
   },
   {
-    "objectID": "slides/Istio.html#istio-architecture",
-    "href": "slides/Istio.html#istio-architecture",
-    "title": "What does service mesh have to do with security",
-    "section": "Istio Architecture",
-    "text": "Istio Architecture"
+    "objectID": "slides/ContainerSecurityTetragon.html#container-field-filters",
+    "href": "slides/ContainerSecurityTetragon.html#container-field-filters",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Container field filters",
+    "text": "Container field filters\nFor container field filters, we use the containerSelector field of tracing policies to select the containers that the policy is applied to. At the moment, the only supported field is name."
   },
   {
-    "objectID": "slides/Istio.html#identity-and-certificate-management",
-    "href": "slides/Istio.html#identity-and-certificate-management",
-    "title": "What does service mesh have to do with security",
-    "section": "Identity And Certificate Management",
-    "text": "Identity And Certificate Management\n\nIdentity Provisioning Workflow"
+    "objectID": "slides/ContainerSecurityTetragon.html#enforcement",
+    "href": "slides/ContainerSecurityTetragon.html#enforcement",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Enforcement",
+    "text": "Enforcement\nTetragon allows enforcing events in the kernel inline with the operation itself."
   },
   {
-    "objectID": "slides/Istio.html#authentication-architecture",
-    "href": "slides/Istio.html#authentication-architecture",
-    "title": "What does service mesh have to do with security",
-    "section": "Authentication Architecture",
-    "text": "Authentication Architecture\n\nPolicy"
+    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy-binaries",
+    "href": "slides/ContainerSecurityTetragon.html#tracing-policy-binaries",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tracing Policy Binaries",
+    "text": "Tracing Policy Binaries\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicyNamespaced\nmetadata:\n  name: \"file-monitoring-filtered\"\nspec:\n  kprobes:\n  - call: \"security_file_permission\"\n    syscall: false\n    return: true\n    args:\n    - index: 0\n      type: \"file\" # (struct file *) used for getting the path\n    - index: 1\n      type: \"int\" # 0x04 is MAY_READ, 0x02 is MAY_WRITE\n    returnArg:\n      index: 0\n      type: \"int\"\n    returnArgAction: \"Post\"\n    selectors:\n    - matchBinaries:\n      - operator: \"In\"\n        values:\n        - \"/usr/bin/cat\"\n        - \"/usr/bin/tail\"\n        - \"/usr/bin/bash\"\n      matchActions:\n      - action: Sigkill"
   },
   {
-    "objectID": "slides/Istio.html#peerauthentication",
-    "href": "slides/Istio.html#peerauthentication",
-    "title": "What does service mesh have to do with security",
-    "section": "PeerAuthentication",
-    "text": "PeerAuthentication\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  mtls:\n    mode: PERMISSIVE\n\n---\n\napiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: foo\nspec:\n  selector:\n    matchLabels:\n      app: finance\n  mtls:\n    mode: STRICT"
+    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy-network",
+    "href": "slides/ContainerSecurityTetragon.html#tracing-policy-network",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tracing Policy Network",
+    "text": "Tracing Policy Network\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicy\nmetadata:\n  name: \"connect\"\nspec:\n  kprobes:\n  - call: \"tcp_connect\"\n    syscall: false\n    args:\n    - index: 0\n      type: \"sock\"\n    selectors:\n    - matchBinaries:\n      - operator: \"In\"\n        values:\n          - \"/usr/bin/curl\"\n          - \"/usr/bin/wget\"\n      matchActions:\n      - action: Sigkill"
   },
   {
-    "objectID": "slides/Istio.html#authorization-architecture",
-    "href": "slides/Istio.html#authorization-architecture",
-    "title": "What does service mesh have to do with security",
-    "section": "Authorization Architecture",
-    "text": "Authorization Architecture\n\nPolicy"
-  },
-  {
-    "objectID": "slides/Istio.html#authorizationpolicy",
-    "href": "slides/Istio.html#authorizationpolicy",
-    "title": "What does service mesh have to do with security",
-    "section": "AuthorizationPolicy",
-    "text": "AuthorizationPolicy\napiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n name: httpbin\n namespace: foo\nspec:\n action: ALLOW\n rules:\n - from:\n   - source:\n       principals: [\"cluster.local/ns/default/sa/sleep\"]\n   - source:\n       namespaces: [\"test\"]\n   to:\n   - operation:\n       methods: [\"GET\"]\n       paths: [\"/info*\"]\n   - operation:\n       methods: [\"POST\"]\n       paths: [\"/data\"]\n   when:\n   - key: request.auth.claims[iss]\n     values: [\"https://accounts.google.com\"]"
-  },
-  {
-    "objectID": "slides/Istio.html#routes-with-virtualservice",
-    "href": "slides/Istio.html#routes-with-virtualservice",
-    "title": "What does service mesh have to do with security",
-    "section": "Routes with VirtualService",
-    "text": "Routes with VirtualService\nPublic routes & Private Routes\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: reviews-route\nspec:\n  hosts:\n  - reviews.prod.svc.cluster.local\n  http:\n  - name: \"reviews-v2-routes\"\n    match:\n    - uri:\n        prefix: \"/wpcatalog\"\n    - uri:\n        prefix: \"/consumercatalog\"\n    rewrite:\n      uri: \"/newcatalog\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v2\n  - name: \"reviews-v1-route\"\n    route:\n    - destination:\n        host: reviews.prod.svc.cluster.local\n        subset: v1"
-  },
-  {
-    "objectID": "slides/Istio.html#cors",
-    "href": "slides/Istio.html#cors",
-    "title": "What does service mesh have to do with security",
-    "section": "Cors",
-    "text": "Cors\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: ratings-route\nspec:\n  hosts:\n  - ratings.prod.svc.cluster.local\n  http:\n  - route:\n    - destination:\n        host: ratings.prod.svc.cluster.local\n        subset: v1\n    corsPolicy:\n      allowOrigins:\n      - exact: https://example.com\n      allowMethods:\n      - POST\n      - GET\n      allowCredentials: false\n      allowHeaders:\n      - X-Foo-Bar\n      maxAge: \"24h\""
-  },
-  {
-    "objectID": "slides/Istio.html#extending-functionality-with-wasm",
-    "href": "slides/Istio.html#extending-functionality-with-wasm",
-    "title": "What does service mesh have to do with security",
-    "section": "Extending functionality with WASM",
-    "text": "Extending functionality with WASM\nWasmPlugins provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters.\napiVersion: extensions.istio.io/v1alpha1\nkind: WasmPlugin\nmetadata:\n  name: openid-connect\n  namespace: istio-ingress\nspec:\n  selector:\n    matchLabels:\n      istio: ingressgateway\n  url: file:///opt/filters/openid.wasm\n  sha256: 1ef0c9a92b0420cf25f7fe5d481b231464bc88f486ca3b9c83ed5cc21d2f6210\n  phase: AUTHN\n  pluginConfig:\n    openid_server: authn\n    openid_realm: ingress"
-  },
-  {
-    "objectID": "slides/Istio.html#what-is-spire",
-    "href": "slides/Istio.html#what-is-spire",
-    "title": "What does service mesh have to do with security",
-    "section": "What is SPIRE?",
-    "text": "What is SPIRE?\nSPIRE, the SPIFFE Runtime Environment, is an extensible system that implements the principles embodied in the SPIFFE standards. SPIRE manages platform and workload attestation, provides an API for controlling attestation policies, and coordinates certificate issuance and rotation."
-  },
-  {
-    "objectID": "slides/Istio.html#all-powered-by-mtls",
-    "href": "slides/Istio.html#all-powered-by-mtls",
-    "title": "What does service mesh have to do with security",
-    "section": "All powered by MTLS",
-    "text": "All powered by MTLS"
-  },
-  {
-    "objectID": "slides/Istio.html#session-vs-network-based-authentication",
-    "href": "slides/Istio.html#session-vs-network-based-authentication",
-    "title": "What does service mesh have to do with security",
-    "section": "Session VS Network based authentication",
-    "text": "Session VS Network based authentication"
-  },
-  {
-    "objectID": "slides/Istio.html#with-sidecar-vs-sidecarless",
-    "href": "slides/Istio.html#with-sidecar-vs-sidecarless",
-    "title": "What does service mesh have to do with security",
-    "section": "With Sidecar VS Sidecarless",
-    "text": "With Sidecar VS Sidecarless"
-  },
-  {
-    "objectID": "slides/Istio.html#envoy-with-curiefense",
-    "href": "slides/Istio.html#envoy-with-curiefense",
-    "title": "What does service mesh have to do with security",
-    "section": "Envoy with curiefense",
-    "text": "Envoy with curiefense\nCuriefense is an API-first, DevOps oriented web-defense HTTP-Filter adapter for Envoy and NGINX. It provides multiple security technologies (WAF, application-layer DDoS protection, bot management, and more) along with real-time traffic monitoring and transparency."
-  },
-  {
-    "objectID": "slides/Istio.html#curiefense-architecture",
-    "href": "slides/Istio.html#curiefense-architecture",
-    "title": "What does service mesh have to do with security",
-    "section": "Curiefense architecture",
-    "text": "Curiefense architecture"
-  },
-  {
-    "objectID": "slides/Istio.html#demo-time",
-    "href": "slides/Istio.html#demo-time",
-    "title": "What does service mesh have to do with security",
-    "section": "Demo Time",
-    "text": "Demo Time\n\nShow diagrams (next slide)\nShow code\nShow console commands\nShow kiali, grafana and jaeger\nShow istio documentation"
-  },
-  {
-    "objectID": "slides/Istio.html#kubernetes-part",
-    "href": "slides/Istio.html#kubernetes-part",
-    "title": "What does service mesh have to do with security",
-    "section": "Kubernetes Part",
-    "text": "Kubernetes Part"
-  },
-  {
-    "objectID": "slides/Istio.html#network-part",
-    "href": "slides/Istio.html#network-part",
-    "title": "What does service mesh have to do with security",
-    "section": "Network Part",
-    "text": "Network Part"
-  },
-  {
-    "objectID": "slides/Istio.html#references",
-    "href": "slides/Istio.html#references",
-    "title": "What does service mesh have to do with security",
-    "section": "References",
-    "text": "References\n\nhttps://istio.io/latest/docs/concepts/security"
+    "objectID": "slides/ContainerSecurityTetragon.html#demo-architecture",
+    "href": "slides/ContainerSecurityTetragon.html#demo-architecture",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Demo Architecture",
+    "text": "Demo Architecture"
   }
 ]

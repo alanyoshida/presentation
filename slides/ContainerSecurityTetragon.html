@@ -7,11 +7,11 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Alan Yoshida">
-  <title>A breaf introduction to Prometheus</title>
+  <title>Container Runtime Security with Tetragon</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -321,12 +386,12 @@
     }
   </style>
 </head>
-<body class="quarto-light">
+<body class="quarto-dark">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">A breaf introduction to Prometheus</h1>
+  <h1 class="title">Container Runtime Security with Tetragon</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -337,316 +402,270 @@ Alan Yoshida
 </div>
 
 </section>
-<section class="slide level2">
+<section id="containers-vs-vms" class="slide level2">
+<h2>Containers vs VMs</h2>
 
-<!-- ![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg) -->
+<img data-src="ContainerSecurityTetragon/image-3.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="user-space-vs-kernel-space" class="slide level2">
+<h2>User Space vs Kernel Space</h2>
 
-<img data-src="https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg" width="400" class="r-stretch"></section>
-<section>
-<section id="prometheus-has-a-time-series-database" class="title-slide slide level1 center">
-<h1>Prometheus has a time series database</h1>
-<p>Prometheus Query Language (PromQL)</p>
+<img data-src="ContainerSecurityTetragon/image-4.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="container-security" class="slide level2">
+<h2>Container Security</h2>
+
+<img data-src="ContainerSecurityTetragon/image-7.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="ebpf" class="slide level2 center">
+<h2>eBPF</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>eBPF is a technology that can run programs in a privileged context such as the operating system kernel. It is the successor to the Berkeley Packet Filter filtering mechanism in Linux and is also used in other parts of the Linux kernel as well</p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="ContainerSecurityTetragon/ebpf_sec.png"></p>
+</div>
+</div>
 </section>
-<section id="data-model" class="slide level2 center">
-<h2>Data model</h2>
-<p>Format:</p>
-<pre><code>&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}</code></pre>
-<p>eg:</p>
-<pre><code>api_http_requests_total{method="POST", handler="/messages"}</code></pre>
+<section id="cilium" class="slide level2 center">
+<h2>Cilium</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Cilium is an open source, cloud native solution for providing, securing, and observing network connectivity between workloads, fueled by the revolutionary Kernel technology eBPF</p>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="ContainerSecurityTetragon/ciliumio-icon.svg" class="quarto-figure quarto-figure-center" height="200"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tetragon" class="slide level2 center">
+<h2>Tetragon</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Tetragon is a flexible Kubernetes-aware security observability and runtime enforcement tool that applies policy and filtering directly with eBPF, allowing for reduced observation overhead, tracking of any process, and real-time enforcement of policies.</p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="ContainerSecurityTetragon/tetragon-shield.svg"></p>
+</div>
+</div>
+</section>
+<section id="monitor-process-execution" class="slide level2 center">
+<h2>Monitor Process Execution</h2>
+<p>Observe the complete lifecycle of every process on your machine with Kubernetes context awareness</p>
+</section>
+<section id="runtime-security-policies" class="slide level2 center">
+<h2>Runtime Security Policies</h2>
+<p>Translate high level policies for file monitoring, network observability, container security, and more into low overhead eBPF programs</p>
+</section>
+<section id="real-time-enforcement" class="slide level2 center">
+<h2>Real Time Enforcement</h2>
+<p>Synchronous monitoring, filtering, and enforcement completely in the kernel with eBPF</p>
+</section>
+<section id="how-does-tetragon-work" class="slide level2 center">
+<h2>How does Tetragon work</h2>
+
+<img data-src="ContainerSecurityTetragon/tetragon.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="tetragon-detailed-architecture" class="slide level2">
+<h2>Tetragon Detailed Architecture</h2>
+
+<img data-src="ContainerSecurityTetragon/image-6.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="requirements" class="slide level2 center">
+<h2>Requirements</h2>
+<p>Tetragon needs Linux kernel version 4.19 or greater.</p>
+<p>We currently run tests on stable long-term support kernels 4.19, 5.4, 5.10, 5.15</p>
+<p>BPF evolves rapidly and we recommend you use the most recent stable kernel possible to get the most out of Tetragon’s features.</p>
+</section>
+<section id="linux-kernel-configuration-options-needed-to-run-tetragon" class="slide level2 center">
+<h2>Linux kernel configuration options needed to run Tetragon</h2>
+<pre><code># CORE BPF
+CONFIG_BPF
+CONFIG_BPF_JIT
+CONFIG_BPF_JIT_DEFAULT_ON
+CONFIG_BPF_EVENTS
+CONFIG_BPF_SYSCALL
+CONFIG_HAVE_BPF_JIT
+CONFIG_HAVE_EBPF_JIT
+CONFIG_FTRACE_SYSCALLS
+
+# BTF (BPF Type Format) is the metadata format which encodes the debug info related to BPF program/map.
+CONFIG_DEBUG_INFO_BTF
+CONFIG_DEBUG_INFO_BTF_MODULES
+
+# Enforcement
+CONFIG_BPF_KPROBE_OVERRIDE
+
+# CGROUP and Process tracking
+CONFIG_CGROUPS=y        Control Group support
+CONFIG_MEMCG=y          Memory Control group
+CONFIG_BLK_CGROUP=y     Generic block IO controller
+CONFIG_CGROUP_SCHED=y
+CONFIG_CGROUP_PIDS=y    Process Control group
+CONFIG_CGROUP_FREEZER=y Freeze and unfreeze tasks controller
+CONFIG_CPUSETS=y        Manage CPUSETs
+CONFIG_PROC_PID_CPUSET=y
+CONFIG_CGROUP_DEVICE=Y  Devices Control group
+CONFIG_CGROUP_CPUACCT=y CPU accouting controller
+CONFIG_CGROUP_PERF=y
+CONFIG_CGROUP_BPF=y     Attach eBPF programs to a cgroup
+CGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0
+  Reduces the latencies of dynamic cgroup modifications at the
+  cost of making hot path operations such as forks and exits
+  more expensive.
+  Platforms with frequent cgroup migrations could enable this
+  option as a potential alleviation for pod and containers
+  association issues.</code></pre>
+</section>
+<section id="ebpf-hook-overview" class="slide level2">
+<h2>eBPF Hook Overview</h2>
+
+<img data-src="istio/image-8.png" class="r-stretch"></section>
+<section id="ebpf-tracing-hooks" class="slide level2">
+<h2>eBPF Tracing Hooks</h2>
+
+<img data-src="ContainerSecurityTetragon/image-1.png" class="r-stretch"></section>
+<section>
+<section id="tetragon-concepts" class="title-slide slide level1 center">
+<h1>Tetragon Concepts</h1>
+
+</section>
+<section id="events" class="slide level2 center">
+<h2>Events</h2>
+<p>Tetragon’s events are exposed to the system through either the gRPC endpoint or JSON logs.</p>
+</section>
+<section id="tracing-policy" class="slide level2 center">
+<h2>Tracing Policy</h2>
+<p>Tetragon’s TracingPolicy is a user-configurable Kubernetes custom resource (CR) that allows users to trace arbitrary events in the kernel and optionally define actions to take on a match.</p>
+<p>Policies consist of a hook point (kprobes, tracepoints, and uprobes are supported), and selectors for in-kernel filtering and specifying actions.</p>
+</section>
+<section id="hook-points" class="slide level2 center">
+<h2>Hook points</h2>
+<p>Tetragon can hook into the kernel using kprobes and tracepoints, as well as in user-space programs using uprobes.</p>
+<p>These hook points include arguments and return values that can be specified using the args and returnArg fields.</p>
+</section>
+<section id="arguments" class="slide level2 center">
+<h2>Arguments</h2>
+<p>Kprobes, uprobes and tracepoints all share a needed arguments fields called args. It is a list of arguments to include in the trace output. Tetragon’s BPF code requires information about the types of arguments to properly read, print and filter on its arguments. This information needs to be provided by the user under the args section.</p>
+</section>
+<section id="mapping-function-calls-in-arguments" class="slide level2">
+<h2>Mapping function calls in arguments</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a></a><span class="fu">args</span><span class="kw">:</span></span>
+<span id="cb2-2"><a></a><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
+<span id="cb2-3"><a></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"int"</span></span>
+<span id="cb2-4"><a></a><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb2-5"><a></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To properly read and hook onto the <code>fd_install(unsigned int fd, struct file *file)</code> function, the YAML snippet above tells the BPF code that the first argument is an int and the second argument is a file, which is the struct file of the kernel. In this way, the BPF code and its printer can properly collect and print the arguments.</p>
+</section>
+<section id="selectors" class="slide level2 center">
+<h2>Selectors</h2>
+<p>Selectors are a way to perform in-kernel BPF filtering on the events to export, or on the events on which to apply an action.</p>
+</section>
+<section id="namespace-filtering" class="slide level2 center">
+<h2>Namespace filtering</h2>
+<p>For namespace filtering we use TracingPolicyNamespaced which has the same contents as a TracingPolicy, but it is defined in a specific namespace and it is only applied to pods of that namespace.</p>
+</section>
+<section id="pod-label-filters" class="slide level2 center">
+<h2>Pod label filters</h2>
+<p>For pod label filters, we use the PodSelector field of tracing policies to select the pods that the policy is applied to.</p>
+</section>
+<section id="container-field-filters" class="slide level2 center">
+<h2>Container field filters</h2>
+<p>For container field filters, we use the containerSelector field of tracing policies to select the containers that the policy is applied to. At the moment, the only supported field is name.</p>
+</section>
+<section id="enforcement" class="slide level2 center">
+<h2>Enforcement</h2>
+<p>Tetragon allows enforcing events in the kernel inline with the operation itself.</p>
+</section>
+<section id="tracing-policy-binaries" class="slide level2 center">
+<h2>Tracing Policy Binaries</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> cilium.io/v1alpha1</span></span>
+<span id="cb3-2"><a></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> TracingPolicyNamespaced</span></span>
+<span id="cb3-3"><a></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb3-4"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"file-monitoring-filtered"</span></span>
+<span id="cb3-5"><a></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb3-6"><a></a><span class="at">  </span><span class="fu">kprobes</span><span class="kw">:</span></span>
+<span id="cb3-7"><a></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">call</span><span class="kw">:</span><span class="at"> </span><span class="st">"security_file_permission"</span></span>
+<span id="cb3-8"><a></a><span class="at">    </span><span class="fu">syscall</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb3-9"><a></a><span class="at">    </span><span class="fu">return</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-10"><a></a><span class="at">    </span><span class="fu">args</span><span class="kw">:</span></span>
+<span id="cb3-11"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
+<span id="cb3-12"><a></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"file"</span><span class="co"> # (struct file *) used for getting the path</span></span>
+<span id="cb3-13"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb3-14"><a></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"int"</span><span class="co"> # 0x04 is MAY_READ, 0x02 is MAY_WRITE</span></span>
+<span id="cb3-15"><a></a><span class="at">    </span><span class="fu">returnArg</span><span class="kw">:</span></span>
+<span id="cb3-16"><a></a><span class="at">      </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
+<span id="cb3-17"><a></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"int"</span></span>
+<span id="cb3-18"><a></a><span class="at">    </span><span class="fu">returnArgAction</span><span class="kw">:</span><span class="at"> </span><span class="st">"Post"</span></span>
+<span id="cb3-19"><a></a><span class="at">    </span><span class="fu">selectors</span><span class="kw">:</span></span>
+<span id="cb3-20"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">matchBinaries</span><span class="kw">:</span></span>
+<span id="cb3-21"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> </span><span class="st">"In"</span></span>
+<span id="cb3-22"><a></a><span class="at">        </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="cb3-23"><a></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"/usr/bin/cat"</span></span>
+<span id="cb3-24"><a></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"/usr/bin/tail"</span></span>
+<span id="cb3-25"><a></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"/usr/bin/bash"</span></span>
+<span id="cb3-26"><a></a><span class="at">      </span><span class="fu">matchActions</span><span class="kw">:</span></span>
+<span id="cb3-27"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">action</span><span class="kw">:</span><span class="at"> Sigkill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tracing-policy-network" class="slide level2 center">
+<h2>Tracing Policy Network</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> cilium.io/v1alpha1</span></span>
+<span id="cb4-2"><a></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> TracingPolicy</span></span>
+<span id="cb4-3"><a></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb4-4"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"connect"</span></span>
+<span id="cb4-5"><a></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb4-6"><a></a><span class="at">  </span><span class="fu">kprobes</span><span class="kw">:</span></span>
+<span id="cb4-7"><a></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">call</span><span class="kw">:</span><span class="at"> </span><span class="st">"tcp_connect"</span></span>
+<span id="cb4-8"><a></a><span class="at">    </span><span class="fu">syscall</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb4-9"><a></a><span class="at">    </span><span class="fu">args</span><span class="kw">:</span></span>
+<span id="cb4-10"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
+<span id="cb4-11"><a></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"sock"</span></span>
+<span id="cb4-12"><a></a><span class="at">    </span><span class="fu">selectors</span><span class="kw">:</span></span>
+<span id="cb4-13"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">matchBinaries</span><span class="kw">:</span></span>
+<span id="cb4-14"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> </span><span class="st">"In"</span></span>
+<span id="cb4-15"><a></a><span class="at">        </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="cb4-16"><a></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="st">"/usr/bin/curl"</span></span>
+<span id="cb4-17"><a></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="st">"/usr/bin/wget"</span></span>
+<span id="cb4-18"><a></a><span class="at">      </span><span class="fu">matchActions</span><span class="kw">:</span></span>
+<span id="cb4-19"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">action</span><span class="kw">:</span><span class="at"> Sigkill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
-<section id="types-of-metrics" class="title-slide slide level1 center">
-<h1>Types of metrics</h1>
-<p>Counter, Gauge, Histogram, Summary</p>
+<section id="demo-time" class="title-slide slide level1 center">
+<h1>Demo time</h1>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ol type="1">
+<li>Show Architecture (next slide)</li>
+<li>Show Apps</li>
+<li>Test Apps (curl)</li>
+<li>Show process execution (hubble/prometheus/grafana)</li>
+<li>Block process execution</li>
+</ol>
+</div><div class="column" style="width:40%;">
+<iframe src="https://giphy.com/embed/bEVKYB487Lqxy" width="480" height="264" style="" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+</div>
+</div>
 </section>
-<section class="slide level2">
+<section id="demo-architecture" class="slide level2">
+<h2>Demo Architecture</h2>
 
-<h4 id="counter">Counter</h4>
-<p>A&nbsp;<em>counter</em>&nbsp;is a cumulative metric that represents a single&nbsp;<a href="https://en.wikipedia.org/wiki/Monotonic_function">monotonically increasing counter</a>&nbsp;whose value can only increase or be reset to zero on restart.</p>
-<!-- ![[prometheus/Pasted image 20240410135549.png|500]] -->
-
-<img data-src="prometheus/Pasted image 20240410135549.png" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="gauge">Gauge</h4>
-<p>A gauge is a metric that represents a single numerical value that can arbitrarily go up and down.</p>
-<!-- ![[prometheus/Pasted image 20240410135616.png]] -->
-
-<img data-src="prometheus/Pasted image 20240410135616.png" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="histogram">Histogram</h4>
-<p>A&nbsp;<em>histogram</em>&nbsp;samples observations (usually things like request durations or response sizes) and counts them in configurable buckets. It also provides a sum of all observed values.</p>
-<!-- ![[prometheus/Pasted image 20240410140652.png|500]] -->
-
-<img data-src="prometheus/Pasted image 20240410140652.png" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="summary">Summary</h4>
-<p>Similar to a histogram, a summary samples observations (usually things like request durations and response sizes). While it also provides a total count of observations and a sum of all observed values, it calculates configurable quantiles over a sliding time window.</p>
-<!-- ![[prometheus/Pasted image 20240410140728.png|500]] -->
-
-<img data-src="prometheus/Pasted image 20240410140728.png" width="500" class="r-stretch"></section>
-<section id="expression-language-data-types" class="slide level2">
-<h2>Expression language data types</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Var type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>String</td>
-<td>a simple string value; currently unused</td>
-</tr>
-<tr class="even">
-<td>Scalar</td>
-<td>a simple numeric floating point value</td>
-</tr>
-<tr class="odd">
-<td>Range vector</td>
-<td>a set of time series containing a range of data points over time for each time series</td>
-</tr>
-<tr class="even">
-<td>Instant Vector</td>
-<td>a set of time series containing a single sample for each time series, all sharing the same timestamp</td>
-</tr>
-</tbody>
-</table>
+<img data-src="ContainerSecurityTetragon/image-5.png" class="quarto-figure quarto-figure-center r-stretch"></section></section>
+<section id="questions" class="title-slide slide level1 center">
+<h1>Questions ?</h1>
+<iframe src="https://giphy.com/embed/APqEbxBsVlkWSuFpth" width="432" height="480" style="display: block;margin: auto" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
 </section>
-<section class="slide level2">
 
-<h3 id="scalar-instance-vector-range-vector">Scalar &amp; Instance Vector &amp; Range Vector</h3>
-<!-- ![[prometheus/Instance&Range.jpg|500]] -->
-
-<img data-src="prometheus/Instance&amp;Range.jpg" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h3 id="range-vector-selectors">Range Vector Selectors</h3>
-<ul>
-<li><code>ms</code>&nbsp;- milliseconds</li>
-<li><code>s</code>&nbsp;- seconds</li>
-<li><code>m</code>&nbsp;- minutes</li>
-<li><code>h</code>&nbsp;- hours</li>
-<li><code>d</code>&nbsp;- days - assuming a day has always 24h</li>
-<li><code>w</code>&nbsp;- weeks - assuming a week has always 7d</li>
-<li><code>y</code>&nbsp;- years - assuming a year has always 365d</li>
-</ul>
-</section></section>
-<section>
-<section id="label-and-range-filter" class="title-slide slide level1 center">
-<h1>Label and Range Filter</h1>
-
-</section>
-<section id="the-operators" class="slide level2">
-<h2>The Operators</h2>
-<p>The following binary arithmetic operators exist in Prometheus:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>+&nbsp;</td>
-<td>addition</td>
-</tr>
-<tr class="even">
-<td>-&nbsp;</td>
-<td>subtraction</td>
-</tr>
-<tr class="odd">
-<td>*&nbsp;</td>
-<td>multiplication</td>
-</tr>
-<tr class="even">
-<td>/&nbsp;</td>
-<td>division</td>
-</tr>
-<tr class="odd">
-<td>%&nbsp;</td>
-<td>modulo</td>
-</tr>
-<tr class="even">
-<td>^&nbsp;</td>
-<td>power/exponentiation</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="comparison-binary-operators" class="slide level2">
-<h2>Comparison binary operators</h2>
-<p>The following binary comparison operators exist in Prometheus:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Comparison</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>==</td>
-<td>&nbsp;equal</td>
-</tr>
-<tr class="even">
-<td>!=</td>
-<td>&nbsp;not-equal</td>
-</tr>
-<tr class="odd">
-<td>&gt;</td>
-<td>&nbsp;greater-than</td>
-</tr>
-<tr class="even">
-<td>&lt;</td>
-<td>&nbsp;less-than</td>
-</tr>
-<tr class="odd">
-<td>&gt;=</td>
-<td>&nbsp;greater-or-equal</td>
-</tr>
-<tr class="even">
-<td>&lt;=&nbsp;</td>
-<td>less-or-equal</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="logicalset-binary-operators" class="slide level2 center">
-<h2>Logical/set binary operators</h2>
-<p>These logical/set binary operators are only defined between instant vectors:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>logical</th>
-<th>descriptions</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>and</td>
-<td>(intersection)</td>
-</tr>
-<tr class="even">
-<td>or</td>
-<td>(union)</td>
-</tr>
-<tr class="odd">
-<td>unless</td>
-<td>(complement)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="aggregation-operators" class="slide level2 center">
-<h2>Aggregation operators</h2>
-<p>Prometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:</p>
-</section>
-<section id="aggregation-operators-1" class="slide level2 center">
-<h2>Aggregation operators</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>sum</td>
-<td>calculate sum over dimensions</td>
-</tr>
-<tr class="even">
-<td>min</td>
-<td>select minimum over dimensions</td>
-</tr>
-<tr class="odd">
-<td>max</td>
-<td>select maximum over dimensions</td>
-</tr>
-<tr class="even">
-<td>avg</td>
-<td>calculate the average over dimensions</td>
-</tr>
-<tr class="odd">
-<td>group</td>
-<td>all values in the resulting vector are 1</td>
-</tr>
-<tr class="even">
-<td>stddev</td>
-<td>calculate population standard deviation over dimensions</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="aggregation-operators-2" class="slide level2 center">
-<h2>Aggregation operators</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>stdvar</td>
-<td>calculate population standard variance over dimensions</td>
-</tr>
-<tr class="even">
-<td>count</td>
-<td>count number of elements in the vector</td>
-</tr>
-<tr class="odd">
-<td>count_values</td>
-<td>count number of elements with the same value</td>
-</tr>
-<tr class="even">
-<td>bottomk</td>
-<td>smallest k elements by sample value</td>
-</tr>
-<tr class="odd">
-<td>topk</td>
-<td>largest k elements by sample value</td>
-</tr>
-<tr class="even">
-<td>quantile</td>
-<td>calculate φ-quantile</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section class="slide level2">
-
-<h3 id="scrape-interval">Scrape Interval</h3>
-<!-- ![[prometheus/Pasted image 20240410140827.png]] -->
-
-<img data-src="prometheus/Pasted image 20240410140827.png" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h3 id="delta">Delta</h3>
-<!-- ![[prometheus/Pasted image 20240410140919.png]] -->
-
-<img data-src="prometheus/Pasted image 20240410140919.png" width="500" class="r-stretch"></section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<p>Kube-state-metrics</p>
-<p>https://github.com/kubernetes/kube-state-metrics</p>
+<section id="thanks" class="title-slide slide level1 center">
+<h1>Thanks !</h1>
+<iframe src="https://giphy.com/embed/lD76yTC5zxZPG" width="600" height="441" style="display: block;margin: auto" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
 
 <div class="quarto-auto-generated-content">
+<p><img src="ContainerSecurityTetragon/ebpf_sec.png" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<p>eBPF is Awesome</p>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -803,14 +822,14 @@ Alan Yoshida
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'slide',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
+        backgroundTransition: 'fade',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,
