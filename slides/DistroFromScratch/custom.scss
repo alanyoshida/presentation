@@ -1,0 +1,49 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+table {
+    font-size: 0.8em;
+}
+.center-xy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+
+:root {
+  // Background color
+  --mermaid-node-bg-color: #222222;
+  // Arrow
+  --mermaid-edge-color: #1bc94c;
+  // Font Color
+  --mermaid-label-fg-color: #FFFFFF;
+  // Border
+  --mermaid-node-fg-color: #1bc927;
+  // Box background color
+  --mermaid-fg-color--lightest: #1a3b05;
+  // Box border
+  --mermaid-fg-color--lighter: #1bc927;
+}
+.mermaid-js{
+  font-weight: bold;
+  max-height: 500px !important;
+  max-width: none !important;
+}
+svg#mermaid-1, svg#mermaid-2 {
+  max-width: none !important;
+}
+// svg#mermaid-3{
+//   max-width: 1235px !important;
+// }
+svg .nodes div{
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+}
+.cluster-label {
+  text-align: center;
+}

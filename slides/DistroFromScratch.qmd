@@ -1,0 +1,174 @@
+---
+title: "Mini Distro From Scratch"
+author: "Alan Yoshida"
+format:
+  revealjs:
+    theme: [dark, DistroFromScratch/custom.scss]
+    transition: slide
+    background-transition: fade
+    logo: "DistroFromScratch/linux-icon.svg"
+    footer: "Linux is Awesome"
+    # mermaid:
+      # mermaid-format: png
+  # svg:
+    # fig-responsive: false
+    # theme: dark
+  # gfm:
+  #   mermaid-format: svg
+---
+
+# Linux Boot Process
+
+```{mermaid}
+flowchart LR
+    A(Power On) --> B(BIOS/UEFI)
+    B --> C(Detect Devices)
+    C --> D(Choose Boot device)
+    D --> E(Boot Loader)
+    E --> F(Kernel)
+    F --> G(Startup Scripts / Services)
+    G --> H(User)
+
+```
+
+
+## Kernel {.center}
+The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was originally written in 1991 by **Linus Torvalds** for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was written to be a free replacement for Unix.
+
+---
+
+## User space {.center}
+A modern computer operating system usually uses virtual memory to provide separate address spaces called user space and kernel space. Primarily, this separation serves to provide memory protection and hardware protection from malicious or errant software behaviour.
+
+## Kernel Space {.center}
+Kernel space is strictly reserved for running a privileged operating system kernel, kernel extensions, and most device drivers. In contrast, user space is the memory area where application software and some drivers execute, typically one address space per process.
+
+## User Space vs Kernel Space
+```{mermaid}
+flowchart TD
+  A --> K
+  subgraph U["User Space"]
+    direction LR
+    A(Process)
+  end
+  subgraph K[" Kernel Space"]
+    direction LR
+    R((System Calls))
+    R --> F(File System)
+    R --> IPC(Inter Process Communication)
+    R --> IO(IO & Device mgnt)
+  end
+
+```
+
+---
+
+## BusyBox {.center}
+BusyBox is a software suite that provides several Unix utilities in a single executable file. It runs in a variety of POSIX environments such as Linux, Android, and FreeBSD, although many of the tools it provides are designed to work with interfaces provided by the Linux kernel.
+
+---
+
+## Initramfs {.center}
+- The initial RAM disk is an initial/temporary root file system that is mounted prior to when the real root file system is available.
+- This initramfs image is embedded in the Kernel and contains minimal binary files, modules & programs required for mounting the real root filesystem.
+- It is bundled into a single cpio archive and compressed with one of several compression algorithms.
+
+---
+
+## Command "cpio" {.center}
+GNU cpio copies files into or out of a cpio or tar archive. The archive can be another file on the disk, a magnetic tape, or a pipe.
+
+---
+
+## Command "truncate" {.center}
+The “truncate” command extends or reduces the file size in Linux so that the user can delete or truncate the file's content without having to set permissions and ownership.
+
+---
+
+## Command "mkfs" {.center}
+mkfs is used to build a Linux file system on a device, usually a hard disk partition.
+
+---
+
+## Command "extlinux" {.center}
+EXTLINUX is a new syslinux derivative, which boots from a Linux ext2/ext3 filesystem. It works the same way as SYSLINUX, with a few slight modifications. It is intended to simplify first-time installation of Linux, and for creation of rescue and other special-purpose boot disks.
+
+---
+
+## Command "mount" {.center}
+The mount command allows users to mount, attach additional child file systems to a particular mount point on the currently accessible file system. The command passes the mount instructions to the kernel, which completes the operation.
+
+---
+
+## QEMU {.center}
+QEMU is a free and open-source emulator. It emulates a computer's processor through dynamic binary translation and provides a set of different hardware and device models for the machine, enabling it to run a variety of guest operating systems.
+
+# Steps {.center}
+
+- Run docker container
+- Download & Compile kernel
+- Download & Compile busybox
+- Create init cpio
+- Create boot image
+- Install Bootloader
+- Copy Kernel and busybox to image
+- Run with QEMU
+
+## Order {.center}
+```{mermaid}
+flowchart LR
+  A(Boot) --> B(Kernel)
+  B --> C(User Space)
+```
+
+## The Init System {.center}
+```{mermaid}
+flowchart LR
+  A(initramfs) --> B(init file)
+  B --> C(Start Shell)
+```
+
+# initramfs
+```{mermaid}
+flowchart LR
+  subgraph initramfs
+    direction LR
+    A("BusyBox") --> B("/\n/bin")
+    B --> C("init.cpio")
+    D("/init") --> C
+  end
+```
+
+# Virtual Disk
+
+- Create boot.img disk
+- Install Bootloader
+
+# Copy to disk
+
+```{mermaid}
+flowchart LR
+  subgraph initramfs
+    direction LR
+    A("init.cpio") --> B("boot.img")
+    C("bzImage") --> B
+  end
+```
+
+# Qemu
+
+```{mermaid}
+flowchart LR
+  subgraph initramfs
+    direction LR
+    A("Qemu") --> AB("boot.img")
+    AB --> B("bzImage (kernel)")
+    B --> C("/init.cpio")
+    C --> D("/init")
+    D --> E("/bin/sh")
+  end
+```
+
+# DEMO
+
+# Questions ?  {.center}
