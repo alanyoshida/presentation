@@ -7,11 +7,11 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.56">
 
   <meta name="author" content="Alan Yoshida">
-  <title>A breaf introduction to Prometheus</title>
+  <title>Mini Distro From Scratch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -320,13 +320,16 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
-<body class="quarto-light">
+<body class="quarto-dark">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">A breaf introduction to Prometheus</h1>
+  <h1 class="title">Mini Distro From Scratch</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -337,316 +340,244 @@ Alan Yoshida
 </div>
 
 </section>
-<section class="slide level2">
-
-<!-- ![Prometheus|400](https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg) -->
-
-<img data-src="https://www.vectorlogo.zone/logos/prometheusio/prometheusio-ar21.svg" width="400" class="r-stretch"></section>
 <section>
-<section id="prometheus-has-a-time-series-database" class="title-slide slide level1 center">
-<h1>Prometheus has a time series database</h1>
-<p>Prometheus Query Language (PromQL)</p>
+<section id="linux-boot-process" class="title-slide slide level1 center">
+<h1>Linux Boot Process</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A(Power On) --&gt; B(BIOS/UEFI)
+    B --&gt; C(Detect Devices)
+    C --&gt; D(Choose Boot device)
+    D --&gt; E(Boot Loader)
+    E --&gt; F(Kernel)
+    F --&gt; G(Startup Scripts / Services)
+    G --&gt; H(User)
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
-<section id="data-model" class="slide level2 center">
-<h2>Data model</h2>
-<p>Format:</p>
-<pre><code>&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}</code></pre>
-<p>eg:</p>
-<pre><code>api_http_requests_total{method="POST", handler="/messages"}</code></pre>
-</section></section>
-<section>
-<section id="types-of-metrics" class="title-slide slide level1 center">
-<h1>Types of metrics</h1>
-<p>Counter, Gauge, Histogram, Summary</p>
+<section id="kernel" class="slide level2 center">
+<h2>Kernel</h2>
+<p>The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was originally written in 1991 by <strong>Linus Torvalds</strong> for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was written to be a free replacement for Unix.</p>
 </section>
-<section class="slide level2">
-
-<h4 id="counter">Counter</h4>
-<p>A&nbsp;<em>counter</em>&nbsp;is a cumulative metric that represents a single&nbsp;<a href="https://en.wikipedia.org/wiki/Monotonic_function">monotonically increasing counter</a>&nbsp;whose value can only increase or be reset to zero on restart.</p>
-<!-- ![[prometheus/Pasted image 20240410135549.png|500]] -->
-
-<img data-src="prometheus/Pasted image 20240410135549.png" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="gauge">Gauge</h4>
-<p>A gauge is a metric that represents a single numerical value that can arbitrarily go up and down.</p>
-<!-- ![[prometheus/Pasted image 20240410135616.png]] -->
-
-<img data-src="prometheus/Pasted image 20240410135616.png" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="histogram">Histogram</h4>
-<p>A&nbsp;<em>histogram</em>&nbsp;samples observations (usually things like request durations or response sizes) and counts them in configurable buckets. It also provides a sum of all observed values.</p>
-<!-- ![[prometheus/Pasted image 20240410140652.png|500]] -->
-
-<img data-src="prometheus/Pasted image 20240410140652.png" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="summary">Summary</h4>
-<p>Similar to a histogram, a summary samples observations (usually things like request durations and response sizes). While it also provides a total count of observations and a sum of all observed values, it calculates configurable quantiles over a sliding time window.</p>
-<!-- ![[prometheus/Pasted image 20240410140728.png|500]] -->
-
-<img data-src="prometheus/Pasted image 20240410140728.png" width="500" class="r-stretch"></section>
-<section id="expression-language-data-types" class="slide level2">
-<h2>Expression language data types</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Var type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>String</td>
-<td>a simple string value; currently unused</td>
-</tr>
-<tr class="even">
-<td>Scalar</td>
-<td>a simple numeric floating point value</td>
-</tr>
-<tr class="odd">
-<td>Range vector</td>
-<td>a set of time series containing a range of data points over time for each time series</td>
-</tr>
-<tr class="even">
-<td>Instant Vector</td>
-<td>a set of time series containing a single sample for each time series, all sharing the same timestamp</td>
-</tr>
-</tbody>
-</table>
+<section id="user-space" class="slide level2 center">
+<h2>User space</h2>
+<p>A modern computer operating system usually uses virtual memory to provide separate address spaces called user space and kernel space. Primarily, this separation serves to provide memory protection and hardware protection from malicious or errant software behaviour.</p>
 </section>
-<section class="slide level2">
+<section id="kernel-space" class="slide level2 center">
+<h2>Kernel Space</h2>
+<p>Kernel space is strictly reserved for running a privileged operating system kernel, kernel extensions, and most device drivers. In contrast, user space is the memory area where application software and some drivers execute, typically one address space per process.</p>
+</section>
+<section id="user-space-vs-kernel-space" class="slide level2">
+<h2>User Space vs Kernel Space</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A --&gt; K
+  subgraph U["User Space"]
+    direction LR
+    A(Process)
+  end
+  subgraph K[" Kernel Space"]
+    direction LR
+    R((System Calls))
+    R --&gt; F(File System)
+    R --&gt; IPC(Inter Process Communication)
+    R --&gt; IO(IO &amp; Device mgnt)
+  end
 
-<h3 id="scalar-instance-vector-range-vector">Scalar &amp; Instance Vector &amp; Range Vector</h3>
-<!-- ![[prometheus/Instance&Range.jpg|500]] -->
-
-<img data-src="prometheus/Instance&amp;Range.jpg" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h3 id="range-vector-selectors">Range Vector Selectors</h3>
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="busybox" class="slide level2 center">
+<h2>BusyBox</h2>
+<p>BusyBox is a software suite that provides several Unix utilities in a single executable file. It runs in a variety of POSIX environments such as Linux, Android, and FreeBSD, although many of the tools it provides are designed to work with interfaces provided by the Linux kernel.</p>
+</section>
+<section id="initramfs" class="slide level2 center">
+<h2>Initramfs</h2>
 <ul>
-<li><code>ms</code>&nbsp;- milliseconds</li>
-<li><code>s</code>&nbsp;- seconds</li>
-<li><code>m</code>&nbsp;- minutes</li>
-<li><code>h</code>&nbsp;- hours</li>
-<li><code>d</code>&nbsp;- days - assuming a day has always 24h</li>
-<li><code>w</code>&nbsp;- weeks - assuming a week has always 7d</li>
-<li><code>y</code>&nbsp;- years - assuming a year has always 365d</li>
+<li>The initial RAM disk is an initial/temporary root file system that is mounted prior to when the real root file system is available.</li>
+<li>This initramfs image is embedded in the Kernel and contains minimal binary files, modules &amp; programs required for mounting the real root filesystem.</li>
+<li>It is bundled into a single cpio archive and compressed with one of several compression algorithms.</li>
 </ul>
+</section>
+<section id="command-cpio" class="slide level2 center">
+<h2>Command “cpio”</h2>
+<p>GNU cpio copies files into or out of a cpio or tar archive. The archive can be another file on the disk, a magnetic tape, or a pipe.</p>
+</section>
+<section id="command-truncate" class="slide level2 center">
+<h2>Command “truncate”</h2>
+<p>The “truncate” command extends or reduces the file size in Linux so that the user can delete or truncate the file’s content without having to set permissions and ownership.</p>
+</section>
+<section id="command-mkfs" class="slide level2 center">
+<h2>Command “mkfs”</h2>
+<p>mkfs is used to build a Linux file system on a device, usually a hard disk partition.</p>
+</section>
+<section id="command-extlinux" class="slide level2 center">
+<h2>Command “extlinux”</h2>
+<p>EXTLINUX is a new syslinux derivative, which boots from a Linux ext2/ext3 filesystem. It works the same way as SYSLINUX, with a few slight modifications. It is intended to simplify first-time installation of Linux, and for creation of rescue and other special-purpose boot disks.</p>
+</section>
+<section id="command-mount" class="slide level2 center">
+<h2>Command “mount”</h2>
+<p>The mount command allows users to mount, attach additional child file systems to a particular mount point on the currently accessible file system. The command passes the mount instructions to the kernel, which completes the operation.</p>
+</section>
+<section id="qemu" class="slide level2 center">
+<h2>QEMU</h2>
+<p>QEMU is a free and open-source emulator. It emulates a computer’s processor through dynamic binary translation and provides a set of different hardware and device models for the machine, enabling it to run a variety of guest operating systems.</p>
 </section></section>
 <section>
-<section id="label-and-range-filter" class="title-slide slide level1 center">
-<h1>Label and Range Filter</h1>
+<section id="steps" class="title-slide slide level1 center">
+<h1>Steps</h1>
+<ul>
+<li>Run docker container</li>
+<li>Download &amp; Compile kernel</li>
+<li>Download &amp; Compile busybox</li>
+<li>Create init cpio</li>
+<li>Create boot image</li>
+<li>Install Bootloader</li>
+<li>Copy Kernel and busybox to image</li>
+<li>Run with QEMU</li>
+</ul>
+</section>
+<section id="order" class="slide level2 center">
+<h2>Order</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(Boot) --&gt; B(Kernel)
+  B --&gt; C(User Space)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-init-system" class="slide level2 center">
+<h2>The Init System</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(initramfs) --&gt; B(init file)
+  B --&gt; C(Start Shell)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section></section>
+<section id="initramfs-1" class="title-slide slide level1 center">
+<h1>initramfs</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  subgraph initramfs
+    direction LR
+    A("BusyBox") --&gt; B("/\n/bin")
+    B --&gt; C("init.cpio")
+    D("/init") --&gt; C
+  end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="virtual-disk" class="title-slide slide level1 center">
+<h1>Virtual Disk</h1>
+<ul>
+<li>Create boot.img disk</li>
+<li>Install Bootloader</li>
+</ul>
+</section>
+
+<section id="copy-to-disk" class="title-slide slide level1 center">
+<h1>Copy to disk</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  subgraph initramfs
+    direction LR
+    A("init.cpio") --&gt; B("boot.img")
+    C("bzImage") --&gt; B
+  end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="qemu-1" class="title-slide slide level1 center">
+<h1>Qemu</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  subgraph initramfs
+    direction LR
+    A("Qemu") --&gt; AB("boot.img")
+    AB --&gt; B("bzImage (kernel)")
+    B --&gt; C("/init.cpio")
+    C --&gt; D("/init")
+    D --&gt; E("/bin/sh")
+  end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="demo" class="title-slide slide level1 center">
+<h1>DEMO</h1>
 
 </section>
-<section id="the-operators" class="slide level2">
-<h2>The Operators</h2>
-<p>The following binary arithmetic operators exist in Prometheus:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>+&nbsp;</td>
-<td>addition</td>
-</tr>
-<tr class="even">
-<td>-&nbsp;</td>
-<td>subtraction</td>
-</tr>
-<tr class="odd">
-<td>*&nbsp;</td>
-<td>multiplication</td>
-</tr>
-<tr class="even">
-<td>/&nbsp;</td>
-<td>division</td>
-</tr>
-<tr class="odd">
-<td>%&nbsp;</td>
-<td>modulo</td>
-</tr>
-<tr class="even">
-<td>^&nbsp;</td>
-<td>power/exponentiation</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="comparison-binary-operators" class="slide level2">
-<h2>Comparison binary operators</h2>
-<p>The following binary comparison operators exist in Prometheus:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Comparison</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>==</td>
-<td>&nbsp;equal</td>
-</tr>
-<tr class="even">
-<td>!=</td>
-<td>&nbsp;not-equal</td>
-</tr>
-<tr class="odd">
-<td>&gt;</td>
-<td>&nbsp;greater-than</td>
-</tr>
-<tr class="even">
-<td>&lt;</td>
-<td>&nbsp;less-than</td>
-</tr>
-<tr class="odd">
-<td>&gt;=</td>
-<td>&nbsp;greater-or-equal</td>
-</tr>
-<tr class="even">
-<td>&lt;=&nbsp;</td>
-<td>less-or-equal</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="logicalset-binary-operators" class="slide level2 center">
-<h2>Logical/set binary operators</h2>
-<p>These logical/set binary operators are only defined between instant vectors:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>logical</th>
-<th>descriptions</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>and</td>
-<td>(intersection)</td>
-</tr>
-<tr class="even">
-<td>or</td>
-<td>(union)</td>
-</tr>
-<tr class="odd">
-<td>unless</td>
-<td>(complement)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="aggregation-operators" class="slide level2 center">
-<h2>Aggregation operators</h2>
-<p>Prometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:</p>
-</section>
-<section id="aggregation-operators-1" class="slide level2 center">
-<h2>Aggregation operators</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>sum</td>
-<td>calculate sum over dimensions</td>
-</tr>
-<tr class="even">
-<td>min</td>
-<td>select minimum over dimensions</td>
-</tr>
-<tr class="odd">
-<td>max</td>
-<td>select maximum over dimensions</td>
-</tr>
-<tr class="even">
-<td>avg</td>
-<td>calculate the average over dimensions</td>
-</tr>
-<tr class="odd">
-<td>group</td>
-<td>all values in the resulting vector are 1</td>
-</tr>
-<tr class="even">
-<td>stddev</td>
-<td>calculate population standard deviation over dimensions</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="aggregation-operators-2" class="slide level2 center">
-<h2>Aggregation operators</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>stdvar</td>
-<td>calculate population standard variance over dimensions</td>
-</tr>
-<tr class="even">
-<td>count</td>
-<td>count number of elements in the vector</td>
-</tr>
-<tr class="odd">
-<td>count_values</td>
-<td>count number of elements with the same value</td>
-</tr>
-<tr class="even">
-<td>bottomk</td>
-<td>smallest k elements by sample value</td>
-</tr>
-<tr class="odd">
-<td>topk</td>
-<td>largest k elements by sample value</td>
-</tr>
-<tr class="even">
-<td>quantile</td>
-<td>calculate φ-quantile</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section class="slide level2">
 
-<h3 id="scrape-interval">Scrape Interval</h3>
-<!-- ![[prometheus/Pasted image 20240410140827.png]] -->
-
-<img data-src="prometheus/Pasted image 20240410140827.png" width="500" class="r-stretch"></section>
-<section class="slide level2">
-
-<h3 id="delta">Delta</h3>
-<!-- ![[prometheus/Pasted image 20240410140919.png]] -->
-
-<img data-src="prometheus/Pasted image 20240410140919.png" width="500" class="r-stretch"></section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<p>Kube-state-metrics</p>
-<p>https://github.com/kubernetes/kube-state-metrics</p>
+<section id="questions" class="title-slide slide level1 center">
+<h1>Questions ?</h1>
 
 <div class="quarto-auto-generated-content">
+<p><img src="DistroFromScratch/linux-icon.svg" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<p>Linux is Awesome</p>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -803,14 +734,14 @@ Alan Yoshida
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'slide',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
+        backgroundTransition: 'fade',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,

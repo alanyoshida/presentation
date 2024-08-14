@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://alanyoshida.github.io/presentation/slides/Prometheus.html</loc>
-    <lastmod>2024-06-03T18:29:52.572Z</lastmod>
-  </url>
-  <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/Istio.html</loc>
-    <lastmod>2024-06-03T18:29:52.572Z</lastmod>
-  </url>
-  <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/Golang.html</loc>
-    <lastmod>2024-06-03T18:29:52.572Z</lastmod>
+    <lastmod>2024-08-14T16:42:43.942Z</lastmod>
   </url>
   <url>
     <loc>https://alanyoshida.github.io/presentation/slides/ContainerSecurityTetragon.html</loc>
-    <lastmod>2024-06-03T18:29:52.552Z</lastmod>
+    <lastmod>2024-08-14T16:42:43.922Z</lastmod>
+  </url>
+  <url>
+    <loc>https://alanyoshida.github.io/presentation/slides/DistroFromScratch.html</loc>
+    <lastmod>2024-08-14T16:42:43.938Z</lastmod>
+  </url>
+  <url>
+    <loc>https://alanyoshida.github.io/presentation/slides/Golang.html</loc>
+    <lastmod>2024-08-14T16:42:43.942Z</lastmod>
+  </url>
+  <url>
+    <loc>https://alanyoshida.github.io/presentation/slides/Istio.html</loc>
+    <lastmod>2024-08-14T16:42:43.942Z</lastmod>
   </url>
 </urlset>
