@@ -405,22 +405,22 @@ Alan Yoshida
 <section id="containers-vs-vms" class="slide level2">
 <h2>Containers vs VMs</h2>
 
-<img data-src="ContainerSecurityTetragon/image-3.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="image-3.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="user-space-vs-kernel-space" class="slide level2">
 <h2>User Space vs Kernel Space</h2>
 
-<img data-src="ContainerSecurityTetragon/image-4.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="image-4.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="container-security" class="slide level2">
 <h2>Container Security</h2>
 
-<img data-src="ContainerSecurityTetragon/image-7.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="image-7.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="ebpf" class="slide level2 center">
 <h2>eBPF</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <p>eBPF is a technology that can run programs in a privileged context such as the operating system kernel. It is the successor to the Berkeley Packet Filter filtering mechanism in Linux and is also used in other parts of the Linux kernel as well</p>
 </div><div class="column" style="width:30%;">
-<p><img data-src="ContainerSecurityTetragon/ebpf_sec.png"></p>
+<p><img data-src="container_security_tetragon/ebpf_sec.png"></p>
 </div>
 </div>
 </section>
@@ -432,7 +432,7 @@ Alan Yoshida
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="ContainerSecurityTetragon/ciliumio-icon.svg" class="quarto-figure quarto-figure-center" height="200"></p>
+<p><img data-src="container_security_tetragon/ciliumio-icon.svg" class="quarto-figure quarto-figure-center" height="200"></p>
 </figure>
 </div>
 </div>
@@ -444,7 +444,7 @@ Alan Yoshida
 <div class="column" style="width:70%;">
 <p>Tetragon is a flexible Kubernetes-aware security observability and runtime enforcement tool that applies policy and filtering directly with eBPF, allowing for reduced observation overhead, tracking of any process, and real-time enforcement of policies.</p>
 </div><div class="column" style="width:30%;">
-<p><img data-src="ContainerSecurityTetragon/tetragon-shield.svg"></p>
+<p><img data-src="container_security_tetragon/tetragon-shield.svg"></p>
 </div>
 </div>
 </section>
@@ -463,11 +463,11 @@ Alan Yoshida
 <section id="how-does-tetragon-work" class="slide level2 center">
 <h2>How does Tetragon work</h2>
 
-<img data-src="ContainerSecurityTetragon/tetragon.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="container_security_tetragon/tetragon.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="tetragon-detailed-architecture" class="slide level2">
 <h2>Tetragon Detailed Architecture</h2>
 
-<img data-src="ContainerSecurityTetragon/image-6.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="image-6.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="requirements" class="slide level2 center">
 <h2>Requirements</h2>
 <p>Tetragon needs Linux kernel version 4.19 or greater.</p>
@@ -521,7 +521,7 @@ CGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0
 <section id="ebpf-tracing-hooks" class="slide level2">
 <h2>eBPF Tracing Hooks</h2>
 
-<img data-src="ContainerSecurityTetragon/image-1.png" class="r-stretch"></section>
+<img data-src="image-1.png" class="r-stretch"></section>
 <section>
 <section id="tetragon-concepts" class="title-slide slide level1 center">
 <h1>Tetragon Concepts</h1>
@@ -647,7 +647,7 @@ CGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0
 <section id="demo-architecture" class="slide level2">
 <h2>Demo Architecture</h2>
 
-<img data-src="ContainerSecurityTetragon/image-5.png" class="quarto-figure quarto-figure-center r-stretch"></section></section>
+<img data-src="image-5.png" class="quarto-figure quarto-figure-center r-stretch"></section></section>
 <section id="questions" class="title-slide slide level1 center">
 <h1>Questions ?</h1>
 <iframe src="https://giphy.com/embed/APqEbxBsVlkWSuFpth" width="432" height="480" style="display: block;margin: auto" frameborder="0" class="giphy-embed" allowfullscreen="">
@@ -660,7 +660,7 @@ CGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0
 </iframe>
 
 <div class="quarto-auto-generated-content">
-<p><img src="ContainerSecurityTetragon/ebpf_sec.png" class="slide-logo"></p>
+<p><img src="container_security_tetragon/ebpf_sec.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p>eBPF is Awesome</p>
 </div>
@@ -954,7 +954,7 @@ CGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0
       });
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/alanyoshida\.github\.io\/presentation\/");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

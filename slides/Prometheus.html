@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.56">
+  <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Alan Yoshida">
   <title>A breaf introduction to Prometheus</title>
@@ -389,7 +389,7 @@ Alan Yoshida
 <img data-src="prometheus/Pasted image 20240410140728.png" width="500" class="r-stretch"></section>
 <section id="expression-language-data-types" class="slide level2">
 <h2>Expression language data types</h2>
-<table class="caption-top">
+<table>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -447,7 +447,7 @@ Alan Yoshida
 <section id="the-operators" class="slide level2">
 <h2>The Operators</h2>
 <p>The following binary arithmetic operators exist in Prometheus:</p>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>Operator</th>
@@ -485,7 +485,7 @@ Alan Yoshida
 <section id="comparison-binary-operators" class="slide level2">
 <h2>Comparison binary operators</h2>
 <p>The following binary comparison operators exist in Prometheus:</p>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>Comparison</th>
@@ -523,7 +523,7 @@ Alan Yoshida
 <section id="logicalset-binary-operators" class="slide level2 center">
 <h2>Logical/set binary operators</h2>
 <p>These logical/set binary operators are only defined between instant vectors:</p>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>logical</th>
@@ -552,7 +552,7 @@ Alan Yoshida
 </section>
 <section id="aggregation-operators-1" class="slide level2 center">
 <h2>Aggregation operators</h2>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>Operator</th>
@@ -589,7 +589,7 @@ Alan Yoshida
 </section>
 <section id="aggregation-operators-2" class="slide level2 center">
 <h2>Aggregation operators</h2>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>Operator</th>
@@ -889,7 +889,18 @@ Alan Yoshida
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -921,29 +932,7 @@ Alan Yoshida
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp("https:\/\/alanyoshida\.github\.io\/presentation\/");
@@ -951,7 +940,7 @@ Alan Yoshida
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
