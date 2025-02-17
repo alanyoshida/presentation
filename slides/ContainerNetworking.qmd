@@ -3,7 +3,6 @@ title: "Container Networking"
 author: "Alan Yoshida"
 format:
   revealjs:
-    theme: DistroFromScratch.scss
     transition: slide
     background-transition: fade
     logo: "DistroFromScratch/linux-icon.svg"
