@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://alanyoshida.github.io/presentation/slides/Golang.html</loc>
+    <lastmod>2025-02-17T13:15:13.809Z</lastmod>
+  </url>
+  <url>
     <loc>https://alanyoshida.github.io/presentation/slides/Prometheus.html</loc>
-    <lastmod>2024-04-18T11:39:29.489Z</lastmod>
-  </url>
-  <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/BGPOnCilium.html</loc>
-    <lastmod>2024-04-18T17:30:37.505Z</lastmod>
-  </url>
-  <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/CNI.html</loc>
-    <lastmod>2022-12-01T17:14:52.000Z</lastmod>
+    <lastmod>2025-02-17T13:15:13.809Z</lastmod>
   </url>
   <url>
     <loc>https://alanyoshida.github.io/presentation/slides/DistroFromScratch.html</loc>
-    <lastmod>2024-08-14T16:41:16.476Z</lastmod>
-  </url>
-  <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/Golang.html</loc>
-    <lastmod>2024-05-15T19:25:40.058Z</lastmod>
+    <lastmod>2025-02-17T13:15:13.809Z</lastmod>
   </url>
   <url>
     <loc>https://alanyoshida.github.io/presentation/slides/ContainerNetworking.html</loc>
-    <lastmod>2024-04-15T21:17:19.289Z</lastmod>
-  </url>
-  <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/Istio.html</loc>
-    <lastmod>2024-04-28T16:28:43.455Z</lastmod>
+    <lastmod>2025-02-17T13:15:13.776Z</lastmod>
   </url>
   <url>
     <loc>https://alanyoshida.github.io/presentation/slides/ContainerSecurityTetragon.html</loc>
-    <lastmod>2024-06-03T18:20:13.100Z</lastmod>
+    <lastmod>2025-02-17T13:15:13.793Z</lastmod>
   </url>
   <url>
-    <loc>https://alanyoshida.github.io/presentation/slides/ContainerSecurity.html</loc>
-    <lastmod>2022-07-01T16:36:05.000Z</lastmod>
+    <loc>https://alanyoshida.github.io/presentation/slides/Istio.html</loc>
+    <lastmod>2025-02-17T13:15:13.809Z</lastmod>
   </url>
 </urlset>

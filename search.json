@@ -1,180 +1,5 @@
 [
   {
-    "objectID": "slides/Prometheus.html#data-model",
-    "href": "slides/Prometheus.html#data-model",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Data model",
-    "text": "Data model\nFormat:\n&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}\neg:\napi_http_requests_total{method=\"POST\", handler=\"/messages\"}"
-  },
-  {
-    "objectID": "slides/Prometheus.html#expression-language-data-types",
-    "href": "slides/Prometheus.html#expression-language-data-types",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Expression language data types",
-    "text": "Expression language data types\n\n\n\n\n\n\n\nVar type\nDescription\n\n\n\n\nString\na simple string value; currently unused\n\n\nScalar\na simple numeric floating point value\n\n\nRange vector\na set of time series containing a range of data points over time for each time series\n\n\nInstant Vector\na set of time series containing a single sample for each time series, all sharing the same timestamp"
-  },
-  {
-    "objectID": "slides/Prometheus.html#the-operators",
-    "href": "slides/Prometheus.html#the-operators",
-    "title": "A breaf introduction to Prometheus",
-    "section": "The Operators",
-    "text": "The Operators\nThe following binary arithmetic operators exist in Prometheus:\n\n\n\nOperator\nDescription\n\n\n\n\n+ \naddition\n\n\n- \nsubtraction\n\n\n* \nmultiplication\n\n\n/ \ndivision\n\n\n% \nmodulo\n\n\n^ \npower/exponentiation"
-  },
-  {
-    "objectID": "slides/Prometheus.html#comparison-binary-operators",
-    "href": "slides/Prometheus.html#comparison-binary-operators",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Comparison binary operators",
-    "text": "Comparison binary operators\nThe following binary comparison operators exist in Prometheus:\n\n\n\nComparison\nDescription\n\n\n\n\n==\n equal\n\n\n!=\n not-equal\n\n\n&gt;\n greater-than\n\n\n&lt;\n less-than\n\n\n&gt;=\n greater-or-equal\n\n\n&lt;= \nless-or-equal"
-  },
-  {
-    "objectID": "slides/Prometheus.html#logicalset-binary-operators",
-    "href": "slides/Prometheus.html#logicalset-binary-operators",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Logical/set binary operators",
-    "text": "Logical/set binary operators\nThese logical/set binary operators are only defined between instant vectors:\n\n\n\nlogical\ndescriptions\n\n\n\n\nand\n(intersection)\n\n\nor\n(union)\n\n\nunless\n(complement)"
-  },
-  {
-    "objectID": "slides/Prometheus.html#aggregation-operators",
-    "href": "slides/Prometheus.html#aggregation-operators",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Aggregation operators",
-    "text": "Aggregation operators\nPrometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:"
-  },
-  {
-    "objectID": "slides/Prometheus.html#aggregation-operators-1",
-    "href": "slides/Prometheus.html#aggregation-operators-1",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Aggregation operators",
-    "text": "Aggregation operators\n\n\n\nOperator\nDescription\n\n\n\n\nsum\ncalculate sum over dimensions\n\n\nmin\nselect minimum over dimensions\n\n\nmax\nselect maximum over dimensions\n\n\navg\ncalculate the average over dimensions\n\n\ngroup\nall values in the resulting vector are 1\n\n\nstddev\ncalculate population standard deviation over dimensions"
-  },
-  {
-    "objectID": "slides/Prometheus.html#aggregation-operators-2",
-    "href": "slides/Prometheus.html#aggregation-operators-2",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Aggregation operators",
-    "text": "Aggregation operators\n\n\n\nOperator\nDescription\n\n\n\n\nstdvar\ncalculate population standard variance over dimensions\n\n\ncount\ncount number of elements in the vector\n\n\ncount_values\ncount number of elements with the same value\n\n\nbottomk\nsmallest k elements by sample value\n\n\ntopk\nlargest k elements by sample value\n\n\nquantile\ncalculate φ-quantile"
-  },
-  {
-    "objectID": "slides/Prometheus.html#example",
-    "href": "slides/Prometheus.html#example",
-    "title": "A breaf introduction to Prometheus",
-    "section": "Example",
-    "text": "Example\nKube-state-metrics\nhttps://github.com/kubernetes/kube-state-metrics"
-  },
-  {
-    "objectID": "slides/BGPOnCilium.html",
-    "href": "slides/BGPOnCilium.html",
-    "title": "",
-    "section": "",
-    "text": "🥈 BGP on Cilium A Kubernetes and Cilium hands-on lab by Isovalent\n🌐 BGP is a Data Center Standard\nBGP is not just the foundational protocol behind the Internet; it is now the standard within data centers.\nModern data center network fabrics are typically based on a “leaf-and-spine” architecture where BGP is typically used to propagate endpoint reachability information.\nGiven that such endpoints can be Kubernetes Pods, it was natural that Cilium should introduce support for BGP.\nIn this lab, you will be deploying BGP with Cilium and peer with a virtual leaf/spine data center network. By the end of the lab, you will see how easy it is to connect your data center network with your Cilium-managed Kubernetes clusters!\n⬢ BGP Support in Cilium\nBGP support was initially introduced in Cilium 1.10 and subsequent improvements have been made since, such as the recent introduction of IPv6 support in Cilium 1.12.\nThe following video shows an introduction and a demo of the new BGP features in Cilium 1.12.\nGet a Badge! By completing this lab, you will be able to earn a badge.\nMake sure to finish the lab in order to get your badge!\nProgress Tracking Hello Alan and welcome to this Isovalent hands-on lab!\nWe know labs like this one can be long, and you’re a busy person, so you might not be able to finish it in one go.\nDon’t worry though! We’re tracking your progress through the lab, so if at any point you need to stop the lab and restart it later (or the session times out), you’ll have an option to restore your progress.\nEnjoy!\n🏛 The Kind Cluster\nWe are going to be using Kind to set up our Kubernetes cluster, and on top of that Cilium.\nLet’s have a look at its configuration:\nyq cluster.yaml\nroot@server:~# yq cluster.yaml\nkind: Cluster\nname: clab-bgp-cplane-demo\napiVersion: kind.x-k8s.io/v1alpha4\nnetworking:\n  disableDefaultCNI: true\n  podSubnet: \"10.1.0.0/16\"\nnodes:\n  - role: control-plane\n    kubeadmConfigPatches:\n      - |\n        kind: InitConfiguration\n        nodeRegistration:\n          kubeletExtraArgs:\n            node-ip: \"10.0.1.2\"\n            node-labels: \"rack=rack0\"\n  - role: worker\n    kubeadmConfigPatches:\n      - |\n        kind: JoinConfiguration\n        nodeRegistration:\n          kubeletExtraArgs:\n            node-ip: \"10.0.2.2\"\n            node-labels: \"rack=rack0\"\n  - role: worker\n    kubeadmConfigPatches:\n      - |\n        kind: JoinConfiguration\n        nodeRegistration:\n          kubeletExtraArgs:\n            node-ip: \"10.0.3.2\"\n            node-labels: \"rack=rack1\"\n  - role: worker\n    kubeadmConfigPatches:\n      - |\n        kind: JoinConfiguration\n        nodeRegistration:\n          kubeletExtraArgs:\n            node-ip: \"10.0.4.2\"\n            node-labels: \"rack=rack1\"\ncontainerdConfigPatches:\n  - |-\n    [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"localhost:5000\"]\n      endpoint = [\"http://kind-registry:5000\"]\n🖥 Nodes\nIn the nodes section, you can see that the cluster consists of four nodes:\n1 control-plane node running the Kubernetes control plane and etcd 3 worker nodes to deploy the applications\n🔀 Networking\nIn the networking section of the configuration file, the default CNI has been disabled so the cluster won’t have any Pod network when it starts. Instead, Cilium will be deployed to the cluster to provide this functionality.\nTo see if the Kind cluster is installed, verify that the nodes are up and joined:\nkubectl get nodes\nYou should see the four nodes appear, all marked as NotReady. This is normal, since the CNI is disabled, and we will install Cilium later on in this lab. If you don’t see all nodes, the workers nodes might still be joining the cluster. Relaunch the command until you can see all four nodes listed.\nBefore we install Cilium on it, we will be using a platform called containerlab to simulate the networking backbone Cilium will peer with.\nIn this lab, containerlab is also responsible for assigning internal IP to the Kubernetes nodes. Notice that, if you run the following command, no IP addresses has been allocated to the nodes yet:\nkubectl get nodes -o wide\nThat’s OK, we will be deploying containerlab in the next task.\n💻 Networking Fabric\nTo showcase the Cilium BGP feature, we need a BGP-capable device to peer with.\nFor this purpose, we will be leveraging Containerlab and FRR (Free Range Routing). These great tools provide the ability to simulate networking environment in containers.\n🧪 Containerlab\nContainerlab is a platform that enables users to deploy virtual networking topologies, based on containers and virtual machines. One of the virtual routing appliances that can be deployed via Containerlab is FRR - a feature-rich open-source networking platform.\nBy the end of the lab, you will have established BGP peering with the FRR virtual devices.\n\n\n\nalt text\n\n\n🔍 Inspect the network topology (Optional) If you’re curious, you can check out in details the containerlab topology we are deploying as part of the lab.\nyq topo.yaml\nname: bgp-cplane-demo\ntopology:\n  kinds:\n    linux:\n      cmd: bash\n  nodes:\n    router0:\n      kind: linux\n      image: frrouting/frr:v8.2.2\n      labels:\n        app: frr\n      exec:\n        # NAT everything in here to go outside of the lab\n        - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE\n        # Loopback IP (IP address of the router itself)\n        - ip addr add 10.0.0.0/32 dev lo\n        # Terminate rest of the 10.0.0.0/8 in here\n        - ip route add blackhole 10.0.0.0/8\n        # Boiler plate to make FRR work\n        - touch /etc/frr/vtysh.conf\n        - sed -i -e 's/bgpd=no/bgpd=yes/g' /etc/frr/daemons\n        - /usr/lib/frr/frrinit.sh start\n        # FRR configuration\n        - &gt;-\n          vtysh -c 'conf t' -c 'frr defaults datacenter' -c 'router bgp 65000' -c '  bgp router-id 10.0.0.0' -c '  no bgp ebgp-requires-policy' -c '  neighbor ROUTERS peer-group' -c '  neighbor ROUTERS remote-as external' -c '  neighbor ROUTERS default-originate' -c '  neighbor net0 interface peer-group ROUTERS' -c '  neighbor net1 interface peer-group ROUTERS' -c '  address-family ipv4 unicast' -c '    redistribute connected' -c '  exit-address-family' -c '!'\n    tor0:\n      kind: linux\n      image: frrouting/frr:v8.2.2\n      labels:\n        app: frr\n      exec:\n        - ip link del eth0\n        - ip addr add 10.0.0.1/32 dev lo\n        - ip addr add 10.0.1.1/24 dev net1\n        - ip addr add 10.0.2.1/24 dev net2\n        - touch /etc/frr/vtysh.conf\n        - sed -i -e 's/bgpd=no/bgpd=yes/g' /etc/frr/daemons\n        - /usr/lib/frr/frrinit.sh start\n        - &gt;-\n          vtysh -c 'conf t' -c 'frr defaults datacenter' -c 'router bgp 65010' -c '  bgp router-id 10.0.0.1' -c '  no bgp ebgp-requires-policy' -c '  neighbor ROUTERS peer-group' -c '  neighbor ROUTERS remote-as external' -c '  neighbor SERVERS peer-group' -c '  neighbor SERVERS remote-as internal' -c '  neighbor net0 interface peer-group ROUTERS' -c '  neighbor 10.0.1.2 peer-group SERVERS' -c '  neighbor 10.0.2.2 peer-group SERVERS' -c '  address-family ipv4 unicast' -c '    redistribute connected' -c '  exit-address-family' -c '!'\n    tor1:\n      kind: linux\n      image: frrouting/frr:v8.2.2\n      labels:\n        app: frr\n      exec:\n        - ip link del eth0\n        - ip addr add 10.0.0.2/32 dev lo\n        - ip addr add 10.0.3.1/24 dev net1\n        - ip addr add 10.0.4.1/24 dev net2\n        - touch /etc/frr/vtysh.conf\n        - sed -i -e 's/bgpd=no/bgpd=yes/g' /etc/frr/daemons\n        - /usr/lib/frr/frrinit.sh start\n        - &gt;-\n          vtysh -c 'conf t' -c 'frr defaults datacenter' -c 'router bgp 65011' -c '  bgp router-id 10.0.0.2' -c '  bgp bestpath as-path multipath-relax' -c '  no bgp ebgp-requires-policy' -c '  neighbor ROUTERS peer-group' -c '  neighbor ROUTERS remote-as external' -c '  neighbor SERVERS peer-group' -c '  neighbor SERVERS remote-as internal' -c '  neighbor net0 interface peer-group ROUTERS' -c '  neighbor 10.0.3.2 peer-group SERVERS' -c '  neighbor 10.0.4.2 peer-group SERVERS' -c '  address-family ipv4 unicast' -c '    redistribute connected' -c '  exit-address-family' -c '!'\n    srv-control-plane:\n      kind: linux\n      image: nicolaka/netshoot:latest\n      network-mode: container:control-plane\n      exec:\n        # Cilium currently doesn't support BGP Unnumbered\n        - ip addr add 10.0.1.2/24 dev net0\n        # Cilium currently doesn't support importing routes\n        - ip route replace default via 10.0.1.1\n    srv-worker:\n      kind: linux\n      image: nicolaka/netshoot:latest\n      network-mode: container:worker\n      exec:\n        - ip addr add 10.0.2.2/24 dev net0\n        - ip route replace default via 10.0.2.1\n    srv-worker2:\n      kind: linux\n      image: nicolaka/netshoot:latest\n      network-mode: container:worker2\n      exec:\n        - ip addr add 10.0.3.2/24 dev net0\n        - ip route replace default via 10.0.3.1\n    srv-worker3:\n      kind: linux\n      image: nicolaka/netshoot:latest\n      network-mode: container:worker3\n      exec:\n        - ip addr add 10.0.4.2/24 dev net0\n        - ip route replace default via 10.0.4.1\n  links:\n    - endpoints: [\"router0:net0\", \"tor0:net0\"]\n    - endpoints: [\"router0:net1\", \"tor1:net0\"]\n    - endpoints: [\"tor0:net1\", \"srv-control-plane:net0\"]\n    - endpoints: [\"tor0:net2\", \"srv-worker:net0\"]\n    - endpoints: [\"tor1:net1\", \"srv-worker2:net0\"]\n    - endpoints: [\"tor1:net2\", \"srv-worker3:net0\"]\nGo to the 🔗 🗺️ Network Topology tab to observe the architecture.\nThe main thing to notice is that we are deploying 3 main routing nodes: a backbone router (router0) and two Top of Rack (ToR) routers (tor0 and tor1). We are pre-configuring them at boot time with their IP and BGP configuration. At the end of the YAML file, you will also note we are establishing virtual links between the backbone and the ToR routers.\nIn the following tasks, we will configure Cilium to run BGP on the kind nodes and to establish BGP peering with the ToR devices.\nHere is what the overall final topology looks like (note you can resize this window if the diagram is too small):\n\n\n\nalt text\n\n\n🚀 Deploy the networking topology\nIn the &gt;_ Terminal, deploy the topology previously described:\ncontainerlab -t topo.yaml deploy\nThis typically only takes a few seconds to deploy.\nINFO[0000] Containerlab v0.31.1 started\nINFO[0000] Parsing & checking topology file: topo.yaml\nINFO[0000] Could not read docker config: open /root/.docker/config.json: no such file or directory\nINFO[0000] Pulling docker.io/frrouting/frr:v8.2.2 Docker image\nINFO[0004] Done pulling docker.io/frrouting/frr:v8.2.2\nINFO[0004] Could not read docker config: open /root/.docker/config.json: no such file or directory\nINFO[0004] Pulling docker.io/nicolaka/netshoot:latest Docker image\nINFO[0016] Done pulling docker.io/nicolaka/netshoot:latest\nINFO[0016] Creating lab directory: /root/clab-bgp-cplane-demo\nINFO[0016] Creating docker network: Name=\"clab\", IPv4Subnet=\"172.20.20.0/24\", IPv6Subnet=\"2001:172:20:20::/64\", MTU=\"1500\"\nINFO[0016] Creating container: \"srv-worker\"\nINFO[0016] Creating container: \"srv-control-plane\"\nINFO[0016] Creating container: \"tor0\"\nINFO[0016] Creating container: \"router0\"\nINFO[0016] Creating container: \"tor1\"\nINFO[0016] Creating container: \"srv-worker3\"\nINFO[0016] Creating container: \"srv-worker2\"\nINFO[0019] Creating virtual wire: router0:net0 &lt;--&gt; tor0:net0\nINFO[0019] Creating virtual wire: tor0:net1 &lt;--&gt; srv-control-plane:net0\nINFO[0019] Creating virtual wire: tor0:net2 &lt;--&gt; srv-worker:net0\nINFO[0019] Creating virtual wire: tor1:net1 &lt;--&gt; srv-worker2:net0\nINFO[0019] Creating virtual wire: router0:net1 &lt;--&gt; tor1:net0\nINFO[0019] Creating virtual wire: tor1:net2 &lt;--&gt; srv-worker3:net0\nINFO[0019] Adding containerlab host entries to /etc/hosts file\nINFO[0020] Executed command '/usr/lib/frr/frrinit.sh start' on clab-bgp-cplane-demo-tor1. stdout:\nStarted watchfrr\nINFO[0021] Executed command '/usr/lib/frr/frrinit.sh start' on clab-bgp-cplane-demo-router0. stdout:\nStarted watchfrr\nINFO[0022] Executed command '/usr/lib/frr/frrinit.sh start' on clab-bgp-cplane-demo-tor0. stdout:\nStarted watchfrr\nINFO[0022] 🎉 New containerlab version 0.54.2 is available! Release notes: https://containerlab.dev/rn/0.54/#0542\nRun 'containerlab version upgrade' to upgrade or go check other installation options at https://containerlab.dev/install/\n+---+----------------------------------------+--------------+--------------------------+-------+---------+----------------+----------------------+\n| # |                  Name                  | Container ID |          Image           | Kind  |  State  |  IPv4 Address  |     IPv6 Address     |\n+---+----------------------------------------+--------------+--------------------------+-------+---------+----------------+----------------------+\n| 1 | clab-bgp-cplane-demo-router0           | 258f32563375 | frrouting/frr:v8.2.2     | linux | running | 172.20.20.2/24 | 2001:172:20:20::2/64 |\n| 2 | clab-bgp-cplane-demo-srv-control-plane | 45d72191a144 | nicolaka/netshoot:latest | linux | running | N/A            | N/A                  |\n| 3 | clab-bgp-cplane-demo-srv-worker        | 4fc966b2a876 | nicolaka/netshoot:latest | linux | running | N/A            | N/A                  |\n| 4 | clab-bgp-cplane-demo-srv-worker2       | 00ec5fe012ff | nicolaka/netshoot:latest | linux | running | N/A            | N/A                  |\n| 5 | clab-bgp-cplane-demo-srv-worker3       | 6c89b592b297 | nicolaka/netshoot:latest | linux | running | N/A            | N/A                  |\n| 6 | clab-bgp-cplane-demo-tor0              | f4680ddb95d3 | frrouting/frr:v8.2.2     | linux | running | 172.20.20.4/24 | 2001:172:20:20::4/64 |\n| 7 | clab-bgp-cplane-demo-tor1              | ce203d83dd09 | frrouting/frr:v8.2.2     | linux | running | 172.20.20.3/24 | 2001:172:20:20::3/64 |\n+---+----------------------------------------+--------------+--------------------------+-------+---------+----------------+----------------------+\n✅ Verify our connectivity\nAt this stage, BGP should be up between our Top of Rack switches and the backbone router router0.\nTopology \nLet’s verify this with this command.\ndocker exec -it clab-bgp-cplane-demo-router0 vtysh -c 'show bgp ipv4 summary wide'\nroot@server:~# docker exec -it clab-bgp-cplane-demo-router0 vtysh -c 'show bgp ipv4 summary wide'\n\nIPv4 Unicast Summary (VRF default):\nBGP router identifier 10.0.0.0, local AS number 65000 vrf-id 0\nBGP table version 8\nRIB entries 15, using 2760 bytes of memory\nPeers 2, using 1433 KiB of memory\nPeer groups 1, using 64 bytes of memory\n\nNeighbor        V         AS    LocalAS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc\ntor0(net0)      4      65010      65000        28        28        0    0    0 00:00:57            3        9 N/A\ntor1(net1)      4      65011      65000        28        28        0    0    0 00:00:57            3        9 N/A\n\nTotal number of neighbors 2\nLet’s explain briefly this command.\ndocker exec -it lets us enter the router0 shell. As mentioned earlier, router0 is based on the open-source Free Range Routing platform (FRR). vtysh is the integrated shell on FRR devices. show bgp ipv4 summary wide lets us check the BGP status. Once you run this command, you will an output such as:\nIPv4 Unicast Summary (VRF default): BGP router identifier 10.0.0.0, local AS number 65000 vrf-id 0\nNeighbor V AS LocalAS MsgRcvd MsgSent TblVer InQ OutQ Up/Down State/PfxRcd PfxSnt Desc tor0(net0) 4 65010 65000 42 41 0 0 0 00:01:42 3 9 N/A tor1(net1) 4 65011 65000 42 42 0 0 0 00:01:41 3 9 N/A\nTotal number of neighbors 2 If you’re familiar with using BGP on traditional CLIs such as Cisco IOS, this will look familiar. If not, let’s go through some of the key outputs of the command above.\nThis commands provides information about the BGP status on router0. It shows router0’s local AS number (65000), the remote AS number of the routers it is peering with (65010 for tor0 and 65011 for tor1).\nIt also shows, in the Up/Down column where the session is established (if that’s the case, it will show for how long the session has been up - in our case, it’s been up for 00:01:41).\nFinally, it shows how many prefixes have been received and sent (see State/PfxRcd and PfxSnt).\nLet’s run this command on the Top of Rack switches. Two of the sessions remain “Active” - it means the peering sessions are configured and actively trying to peer but they are not established yet.\nIt’s to be expected: BGP is not established with the Kind nodes as we haven’t deployed Cilium yet.\nOn tor0:\ndocker exec -it clab-bgp-cplane-demo-tor0 vtysh -c 'show bgp ipv4 summary wide'\nroot@server:~# docker exec -it clab-bgp-cplane-demo-tor0 vtysh -c 'show bgp ipv4 summary wide'\n\nIPv4 Unicast Summary (VRF default):\nBGP router identifier 10.0.0.1, local AS number 65010 vrf-id 0\nBGP table version 9\nRIB entries 15, using 2760 bytes of memory\nPeers 3, using 2149 KiB of memory\nPeer groups 2, using 128 bytes of memory\n\nNeighbor        V         AS    LocalAS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc\nrouter0(net0)   4      65000      65010        38        39        0    0    0 00:01:32            6        9 N/A\n10.0.1.2        4          0      65010         0         0        0    0    0    never       Active        0 N/A\n10.0.2.2        4          0      65010         0         0        0    0    0    never       Active        0 N/A\n\nTotal number of neighbors 3\nOn tor1:\ndocker exec -it clab-bgp-cplane-demo-tor1 vtysh -c 'show bgp ipv4 summary wide'\nroot@server:~# docker exec -it clab-bgp-cplane-demo-tor1 vtysh -c 'show bgp ipv4 summary wide'\n\nIPv4 Unicast Summary (VRF default):\nBGP router identifier 10.0.0.2, local AS number 65011 vrf-id 0\nBGP table version 9\nRIB entries 15, using 2760 bytes of memory\nPeers 3, using 2149 KiB of memory\nPeer groups 2, using 128 bytes of memory\n\nNeighbor        V         AS    LocalAS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc\nrouter0(net0)   4      65000      65011        49        50        0    0    0 00:02:06            6        9 N/A\n10.0.3.2        4          0      65011         0         0        0    0    0    never       Active        0 N/A\n10.0.4.2        4          0      65011         0         0        0    0    0    never       Active        0 N/A\n\nTotal number of neighbors 3\nIn the next step, we will be deploying Cilium on the nodes.\n🖥️ The Cilium CLI\nThe cilium CLI tool can install and update Cilium on a cluster, as well as activate features —such as Hubble and Cluster Mesh.\n❯ cilium install 🔮 Auto-detected Kubernetes kind: kind ✨ Running “kind” validation checks ✅ Detected kind version “0.20.0” ℹ️ Using Cilium version “v1.14.1” 🔮 Auto-detected cluster name: kind-kind 🔮 Auto-detected kube-proxy has been installed\n⬢ The Cilium CLI\nThe cilium CLI tool is provided in this environment to install and check the status of Cilium in the cluster.\nLet’s start by installing Cilium on the Kind cluster, with BGP enabled.\ncilium install \\\n    --version 1.15.0-rc.1 \\\n    --set ipam.mode=kubernetes \\\n    --set tunnel=disabled \\\n    --set ipv4NativeRoutingCIDR=\"10.0.0.0/8\" \\\n    --set bgpControlPlane.enabled=true \\\n    --set k8s.requireIPv4PodCIDR=true\nThe installation usually takes a couple of minutes. While we wait for the installation to complete, let’s review some Cilium BGP aspects:\nAs you can see in the Cilium Helm values above, bgpControlPlane is the main requirement to enable BGP on Cilium. The configuration for BGP peers and Autonomous System Numbers (ASN) will be configured through a Kubernetes CRD (that’s the next task). For more details on the BGP configuration options, you can read up more on the official Cilium BGP documentation.\nThe installation should now have finished. Let’s verify the status of Cilium:\ncilium status --wait\nCilium is now functional on our cluster.\nLet’s verify that BGP has been successfully enabled by checking the Cilium configuration:\ncilium config view | grep enable-bgp\nNext, we are going to deploy our BGP Peering Policies and verify that the BGP sessions are established.\n⚙️ Lab setup Our networking infrastructure is now ready: we can set up peering between our BGP peers and let them exchange routes.\nOnce BGP is up, we will complete the lab by verifying end-to-end connectivity across our virtual network.\n⚒️ BGP Configuration Let’s first walk through the BGP Peering configuration.\nPeering policies can be provisioned using simple Kubernetes CRDs, of the kind CiliumBGPPeeringPolicy.\nyq cilium-bgp-peering-policies.yaml\nroot@server:~# yq cilium-bgp-peering-policies.yaml\n---\napiVersion: \"cilium.io/v2alpha1\"\nkind: CiliumBGPPeeringPolicy\nmetadata:\n  name: rack0\nspec:\n  nodeSelector:\n    matchLabels:\n      rack: rack0\n  virtualRouters:\n    - localASN: 65010\n      exportPodCIDR: true\n      neighbors:\n        - peerAddress: \"10.0.0.1/32\"\n          peerASN: 65010\n---\napiVersion: \"cilium.io/v2alpha1\"\nkind: CiliumBGPPeeringPolicy\nmetadata:\n  name: rack1\nspec:\n  nodeSelector:\n    matchLabels:\n      rack: rack1\n  virtualRouters:\n    - localASN: 65011\n      exportPodCIDR: true\n      neighbors:\n        - peerAddress: \"10.0.0.2/32\"\n          peerASN: 65011\nroot@server:~#\nThe key aspects of the policy are:\nthe remote peer IP address (peerAddress) and AS Number (peerASN) your own local AS Number (localASN) And that’s it! In this lab, we specify the loopback IP addresses of our BGP peers: the Top of Rack devices tor0 (10.0.0.1/32) and tor1 (10.0.0.2/32).\nNote that BGP configuration on Cilium is label-based - the Cilium-managed nodes with a matching label will deploy a virtual router for BGP peering purposes.\nVerify the label configuration with the following commands:\nkubectl get nodes -l 'rack in (rack0,rack1)'\nFor more details on the BGP configuration options, you can read up the official Cilium BGP documentations.\n🚀 Deploy the BGP Peering Policies CRD configuration It’s time to now deploy the BGP peering policy.\nkubectl apply -f cilium-bgp-peering-policies.yaml\n✅ Verify successful BGP peering Now that we have set up our BGP peering, the peering sessions between the Cilium nodes and the Top of Rack switches should be established successfully. Let’s verify that the sessions have been established and that routes are learned successfully (it might take a few seconds for the sessions to come up).\nOn tor0:\ndocker exec -it clab-bgp-cplane-demo-tor0 vtysh -c 'show bgp ipv4 summary wide'\nOn tor1:\ndocker exec -it clab-bgp-cplane-demo-tor1 vtysh -c 'show bgp ipv4 summary wide'\nThis time, you should see that the session between the ToR devices and the Cilium nodes are no longer “Active” (that is to say, unsuccessfully trying to establish peering) but up (you will see how long the session has been up on the Up/Down column).\n🚀 Deploy our networking utility pods We will also be deploying a networking utility called netshoot by using a DaemonSet. We will be using it to verify end-to-end connectivity at the end of the lab.\nkubectl apply -f netshoot-ds.yaml\nroot@server:~# cat netshoot-ds.yaml\napiVersion: apps/v1\nkind: DaemonSet\nmetadata:\n  name: netshoot\nspec:\n  selector:\n    matchLabels:\n      app: netshoot\n  template:\n    metadata:\n      labels:\n        app: netshoot\n    spec:\n      tolerations:\n      - key: node-role.kubernetes.io/master\n        operator: Exists\n        effect: NoSchedule\n      containers:\n      - name: netshoot\n        image: nicolaka/netshoot:latest\n        command: [\"sleep\", \"infinite\"]\nTo verify the netshoot pods have been successfully deployed, simply run:\nkubectl rollout status ds/netshoot -w\nIt should take 30 seconds for the Pods to be ready.\n✅ Verify end-to-end connectivity\nWe will now be running a series of connectivity tests, from a source Pod on a node in rack0 to a destination Pod in rack1. These packets will traverse the our virtual networking backbone and validate that the whole data path is working as expected.\nRun the following commands.\nFirst, let’s find the name of a source Pod in rack0.\nSRC_POD=$(kubectl get pods -o wide | grep \"cplane-demo-worker \" | awk '{ print($1); }')\nNext, let’s get the IP address of a destination Pod in rack1.\nDST_IP=$(kubectl get pods -o wide | grep worker3 | awk '{ print($6); }')\nFinally, let’s execute a ping from the source Pod to the destination IP.\nkubectl exec -it $SRC_POD -- ping $DST_IP\nYou should see packets flowing across your virtual data center. Well done: your Kubernetes Pods located in different rack servers in your (virtual) datacenter can communicate together across the network backbone! 🥳\nGreat job - you have successfully completed this lab and now understand how you can use BGP on Cilium to easily connect your Kubernetes clusters to your DC network.\n🛎️ Service Announcement Cilium can also use BGP to announce Kubernetes service IPs. You can learn about this functionality (and earn a badge) by taking the Load-Balancer IPAM and BGP Service Advertisement lab.\n\n❓ Final Quiz\nIn this practical exam, you still have access to the Kind cluster you used in the lab, and Cilium is still installed on it.\nHowever, the BGP peering policies have been removed, and you have to set them up and deploy them again.\nYou can use the template manifest (cilium-bgp-peering-policy-template.yaml) provided in the current directory and edit them in the &lt;/&gt; Editor tab. Don’t forget to apply the manifests in the &gt;_ Terminal!\nNote You need to create two BGP peering policies: one for rack0 and one for rack1. You can find out the AS numbers for each rack with: docker exec clab-bgp-cplane-demo-router0 vtysh -c ‘show bgp ipv4 summary’ Remember you will need to set up iBGP (internal BGP, where localASN == peerASN) sessions between the Cilium nodes and the torX devices. You can get the IP addresses of a tor with: docker exec clab-bgp-cplane-demo-torX ip a Use tor IP addresses in the 10.0.0.0/24 range for the peering. If new files don’t show up in the Editor, you can refresh it. Good luck!\n🎓 You’ve done it! On completion of this lab, you will receive a badge. Feel free to share your achievement on social media!\nDon’t forget to rate this lab and head over to our home page if you want to learn more!\n↗️ What’s next? If you want to learn more about BGP on Cilium, check out the following labs:\nCilium LoadBalancer IPAM and BGP Service Advertisement Advanced BGP Features\ncilium bgp peers"
-  },
-  {
-    "objectID": "slides/CNI.html",
-    "href": "slides/CNI.html",
-    "title": "Container Network Interface",
-    "section": "",
-    "text": "Container Network Interface\n![[NetworkNamespace.svg]]\niptables -S FORWARD"
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#kernel",
-    "href": "slides/DistroFromScratch.html#kernel",
-    "title": "Mini Distro From Scratch",
-    "section": "Kernel",
-    "text": "Kernel\nThe Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was originally written in 1991 by Linus Torvalds for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was written to be a free replacement for Unix."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#user-space",
-    "href": "slides/DistroFromScratch.html#user-space",
-    "title": "Mini Distro From Scratch",
-    "section": "User space",
-    "text": "User space\nA modern computer operating system usually uses virtual memory to provide separate address spaces called user space and kernel space. Primarily, this separation serves to provide memory protection and hardware protection from malicious or errant software behaviour."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#kernel-space",
-    "href": "slides/DistroFromScratch.html#kernel-space",
-    "title": "Mini Distro From Scratch",
-    "section": "Kernel Space",
-    "text": "Kernel Space\nKernel space is strictly reserved for running a privileged operating system kernel, kernel extensions, and most device drivers. In contrast, user space is the memory area where application software and some drivers execute, typically one address space per process."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#user-space-vs-kernel-space",
-    "href": "slides/DistroFromScratch.html#user-space-vs-kernel-space",
-    "title": "Mini Distro From Scratch",
-    "section": "User Space vs Kernel Space",
-    "text": "User Space vs Kernel Space\n\n\n\n\n\nflowchart TD\n  A --&gt; K\n  subgraph U[\"User Space\"]\n    direction LR\n    A(Process)\n  end\n  subgraph K[\" Kernel Space\"]\n    direction LR\n    R((System Calls))\n    R --&gt; F(File System)\n    R --&gt; IPC(Inter Process Communication)\n    R --&gt; IO(IO & Device mgnt)\n  end"
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#busybox",
-    "href": "slides/DistroFromScratch.html#busybox",
-    "title": "Mini Distro From Scratch",
-    "section": "BusyBox",
-    "text": "BusyBox\nBusyBox is a software suite that provides several Unix utilities in a single executable file. It runs in a variety of POSIX environments such as Linux, Android, and FreeBSD, although many of the tools it provides are designed to work with interfaces provided by the Linux kernel."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#initramfs",
-    "href": "slides/DistroFromScratch.html#initramfs",
-    "title": "Mini Distro From Scratch",
-    "section": "Initramfs",
-    "text": "Initramfs\n\nThe initial RAM disk is an initial/temporary root file system that is mounted prior to when the real root file system is available.\nThis initramfs image is embedded in the Kernel and contains minimal binary files, modules & programs required for mounting the real root filesystem.\nIt is bundled into a single cpio archive and compressed with one of several compression algorithms."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#command-cpio",
-    "href": "slides/DistroFromScratch.html#command-cpio",
-    "title": "Mini Distro From Scratch",
-    "section": "Command “cpio”",
-    "text": "Command “cpio”\nGNU cpio copies files into or out of a cpio or tar archive. The archive can be another file on the disk, a magnetic tape, or a pipe."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#command-truncate",
-    "href": "slides/DistroFromScratch.html#command-truncate",
-    "title": "Mini Distro From Scratch",
-    "section": "Command “truncate”",
-    "text": "Command “truncate”\nThe “truncate” command extends or reduces the file size in Linux so that the user can delete or truncate the file’s content without having to set permissions and ownership."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#command-mkfs",
-    "href": "slides/DistroFromScratch.html#command-mkfs",
-    "title": "Mini Distro From Scratch",
-    "section": "Command “mkfs”",
-    "text": "Command “mkfs”\nmkfs is used to build a Linux file system on a device, usually a hard disk partition."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#command-extlinux",
-    "href": "slides/DistroFromScratch.html#command-extlinux",
-    "title": "Mini Distro From Scratch",
-    "section": "Command “extlinux”",
-    "text": "Command “extlinux”\nEXTLINUX is a new syslinux derivative, which boots from a Linux ext2/ext3 filesystem. It works the same way as SYSLINUX, with a few slight modifications. It is intended to simplify first-time installation of Linux, and for creation of rescue and other special-purpose boot disks."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#command-mount",
-    "href": "slides/DistroFromScratch.html#command-mount",
-    "title": "Mini Distro From Scratch",
-    "section": "Command “mount”",
-    "text": "Command “mount”\nThe mount command allows users to mount, attach additional child file systems to a particular mount point on the currently accessible file system. The command passes the mount instructions to the kernel, which completes the operation."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#qemu",
-    "href": "slides/DistroFromScratch.html#qemu",
-    "title": "Mini Distro From Scratch",
-    "section": "QEMU",
-    "text": "QEMU\nQEMU is a free and open-source emulator. It emulates a computer’s processor through dynamic binary translation and provides a set of different hardware and device models for the machine, enabling it to run a variety of guest operating systems."
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#order",
-    "href": "slides/DistroFromScratch.html#order",
-    "title": "Mini Distro From Scratch",
-    "section": "Order",
-    "text": "Order\n\n\n\n\n\nflowchart LR\n  A(Boot) --&gt; B(Kernel)\n  B --&gt; C(User Space)"
-  },
-  {
-    "objectID": "slides/DistroFromScratch.html#the-init-system",
-    "href": "slides/DistroFromScratch.html#the-init-system",
-    "title": "Mini Distro From Scratch",
-    "section": "The Init System",
-    "text": "The Init System\n\n\n\n\n\nflowchart LR\n  A(initramfs) --&gt; B(init file)\n  B --&gt; C(Start Shell)"
-  },
-  {
     "objectID": "slides/Golang.html#history",
     "href": "slides/Golang.html#history",
     "title": "A breaf introduction to golang",
@@ -508,28 +333,392 @@
     "href": "slides/Golang.html#test-coverage",
     "title": "A breaf introduction to golang",
     "section": "Test Coverage",
-    "text": "Test Coverage\nGenerate golang test coverage html using the following commands:\n# Generate coverage file\n$ go test -race -coverprofile=coverage.out --coverpkg=./... ./...\nok      example.com/m/slides    0.001s  coverage: 50.0% of statements\n\n# Show coverage in command line\n$ go tool cover -func=coverage.out\nexample.com/m/slides/main.go:5: Hello           100.0%\nexample.com/m/slides/main.go:8: main            0.0%\ntotal:                          (statements)    50.0%\n\n# Show coverage in HTML\n$ go tool cover -html=coverage.out"
+    "text": "Test Coverage\nGenerate golang test coverage html using the following commands:\n# Generate coverage file\n$ go test -race -coverprofile=coverage.out ./...\nok      example.com/m/slides    0.001s  coverage: 50.0% of statements\n\n# Show coverage in command line\n$ go tool cover -func=coverage.out\nexample.com/m/slides/main.go:5: Hello           100.0%\nexample.com/m/slides/main.go:8: main            0.0%\ntotal:                          (statements)    50.0%\n\n# Show coverage in HTML\n$ go tool cover -html=coverage.out"
   },
   {
-    "objectID": "slides/ContainerNetworking.html",
-    "href": "slides/ContainerNetworking.html",
-    "title": "Container Networking",
-    "section": "",
-    "text": "Simulating a container networking solution\n\n\n\nContainers are isolated processes that run on a single operating system. Much like virtualization, containers will consume CPU, Memory, and Disk space, but require significantly less to run, as they are dedicated to a single function or process.\n\nAny time a container is created a full operating system isn’t required. A container runtime such as containerd and interactive management layer such as Docker, make it possible to manage containers and resources, locally on a singular host.\n\n\n\nNetworking namespaces are used for container isolation. You can spin up a process and wrap it in networking namespace which is simply an isolated network.\n![[ContainerNetworking/NetworkNamespace.svg]]\n\n![[ContainerNetworking/pod.gif|900]]\n\n\n\n\nvagrant init ubuntu/focal64\n\nvagrant up\n\nvagrant ssh\n\n\n\n\n\nWe’re going to build a couple of networking namespaces to be able to have each namespace interact or communicate with each other. We will also need to run a few additional commands requiring a quick installation.\napt install net-tools\n\n// Add new network namespaces called sleep and webapp\nip netns add sleep\nip netns add webapp\n\nLet’s now output those namespaces in the terminal ip netns\nNext lets find out what interfaces List the interfaces on the host ip link\nAnd let’s do the same for each network namespace we created.\nip netns exec sleep ip link\nip netns exec webapp ip link\n\n\n\nYou can even use arp on the host to see what MAC address and IP addresses show up (remember each MAC is associated to an IP), but you will discover that these endpoints in each namespace don’t know about each other. These are isolated “broadcast” domains if you will.\narp\nip netns exec sleep arp\nip netns exec webapp arp\n\n\n\n\nNow, in order for these two network namespaces to communicate with each other, we need to either create a virtual wire or virtual bridge.\nThe two network namespaces we created are representative of two different endpoints in their own isolated domain. Let’s bridge them together.\n\nWe can verify this by checking the routing table of each host, and the two namespaces. By running the two below, you won’t see entries for any networks. We haven’t assigned any addresses to the two namespaces.\nroute\nip netns exec sleep route\nip netns exec webapp route\n\n\n\n\nSo the best way to fix this is to use the Linux bridge functionality. Let’s create one called app-net-0 and then see it present on the host.\nip link add app-net-0 type bridge\nip link\n\nIf you notice, the state is currently down so we need to turn it up/online.\nip link set dev app-net-0 up\n\n\n\n\nNext, we need to attach virtual wires from each namespace to a port, which we’ll attach to the bridge shortly.\nWe also need to assign each virtual wire’s endpoint an IP on the 192.168.52.0/24 network, and as well, an IP for the bridge on the very same subnet.\n\nThis is like assigning an IP address to a process in its own namespace, or even, assigning an IP to a container. This allows for all three to communicate with addressing in the same broadcast domain and subnet.\n\n// Specifies the virtual pair device name of the _VETH/VXCAN_ tunnel.\nip link add veth-sleep type veth peer name veth-sleep-br\nip link add veth-webapp type veth peer name veth-webapp-br\n\n// Set virtual interface to network namespace\nip link set veth-sleep netns sleep\nip link set veth-webapp netns webapp\n\n// Set master device of the device\nip link set veth-sleep-br master app-net-0\nip link set veth-webapp-br master app-net-0\n\n\n\n\n// Add ip to virtual interface veth-sleep\nip -n sleep addr add 192.168.52.1/24 dev veth-sleep\nip -n sleep link set veth-sleep up\n\n// Add ip to virtual interface veth-webapp\nip -n webapp addr add 192.168.52.2/24 dev veth-webapp\nip -n webapp link set veth-webapp up\n\nLet’s add the ip to the bridge we created earlier and attach the virtual wires of the namespaces to it.\nip addr add 192.168.52.5/24 dev app-net-0\n\nip link set dev veth-sleep-br up\nip link set dev veth-webapp-br up\n\n\n\n\nIf you ping the sleep namespace endpoint, it will go through as the host’s app-net-0 interface/bridge can communicate with this namespace\nping 192.168.52.1\n\nBut, if you attempt to ping something external to the network (like the IP of google.com), it will report as unreachable because no default route exists or we aren’t using network address translation.\nip netns exec webapp ping 142.251.129.142\n\nip netns exec webapp route\n\n\n\n\nLet’s fix this using an iptables rule that allows us to NAT the 192.168.52.0 with an IP on the host that can communicate outbound.\niptables -t nat -A POSTROUTING -s 192.168.52.0/24 -j MASQUERADE\nip netns exec webapp ping 142.250.218.206\n\nSo it seems like we are still missing something, let’s check the routing table. Where is our default route? Let’s add it. And let’s also tell the kernel to forward this network traffic as well.\n// Show route for webapp ns\nip netns exec webapp route\n\n// Add default route as the bridge\nip netns exec webapp ip route add default via 192.168.52.5\n\n// Enable forwarding\nsysctl -w net.ipv4.ip_forward=1\n\n// Test\nip netns exec webapp ping 142.250.218.206\nNow, as you can see, you can ping google website through the webapp namespace !!!"
+    "objectID": "slides/Prometheus.html#data-model",
+    "href": "slides/Prometheus.html#data-model",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Data model",
+    "text": "Data model\nFormat:\n&lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, ...}\neg:\napi_http_requests_total{method=\"POST\", handler=\"/messages\"}"
+  },
+  {
+    "objectID": "slides/Prometheus.html#expression-language-data-types",
+    "href": "slides/Prometheus.html#expression-language-data-types",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Expression language data types",
+    "text": "Expression language data types\n\n\n\n\n\n\n\nVar type\nDescription\n\n\n\n\nString\na simple string value; currently unused\n\n\nScalar\na simple numeric floating point value\n\n\nRange vector\na set of time series containing a range of data points over time for each time series\n\n\nInstant Vector\na set of time series containing a single sample for each time series, all sharing the same timestamp"
+  },
+  {
+    "objectID": "slides/Prometheus.html#the-operators",
+    "href": "slides/Prometheus.html#the-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "The Operators",
+    "text": "The Operators\nThe following binary arithmetic operators exist in Prometheus:\n\n\n\nOperator\nDescription\n\n\n\n\n+ \naddition\n\n\n- \nsubtraction\n\n\n* \nmultiplication\n\n\n/ \ndivision\n\n\n% \nmodulo\n\n\n^ \npower/exponentiation"
+  },
+  {
+    "objectID": "slides/Prometheus.html#comparison-binary-operators",
+    "href": "slides/Prometheus.html#comparison-binary-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Comparison binary operators",
+    "text": "Comparison binary operators\nThe following binary comparison operators exist in Prometheus:\n\n\n\nComparison\nDescription\n\n\n\n\n==\n equal\n\n\n!=\n not-equal\n\n\n&gt;\n greater-than\n\n\n&lt;\n less-than\n\n\n&gt;=\n greater-or-equal\n\n\n&lt;= \nless-or-equal"
+  },
+  {
+    "objectID": "slides/Prometheus.html#logicalset-binary-operators",
+    "href": "slides/Prometheus.html#logicalset-binary-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Logical/set binary operators",
+    "text": "Logical/set binary operators\nThese logical/set binary operators are only defined between instant vectors:\n\n\n\nlogical\ndescriptions\n\n\n\n\nand\n(intersection)\n\n\nor\n(union)\n\n\nunless\n(complement)"
+  },
+  {
+    "objectID": "slides/Prometheus.html#aggregation-operators",
+    "href": "slides/Prometheus.html#aggregation-operators",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Aggregation operators",
+    "text": "Aggregation operators\nPrometheus supports the following built-in aggregation operators that can be used to aggregate the elements of a single instant vector, resulting in a new vector of fewer elements with aggregated values:"
+  },
+  {
+    "objectID": "slides/Prometheus.html#aggregation-operators-1",
+    "href": "slides/Prometheus.html#aggregation-operators-1",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Aggregation operators",
+    "text": "Aggregation operators\n\n\n\nOperator\nDescription\n\n\n\n\nsum\ncalculate sum over dimensions\n\n\nmin\nselect minimum over dimensions\n\n\nmax\nselect maximum over dimensions\n\n\navg\ncalculate the average over dimensions\n\n\ngroup\nall values in the resulting vector are 1\n\n\nstddev\ncalculate population standard deviation over dimensions"
+  },
+  {
+    "objectID": "slides/Prometheus.html#aggregation-operators-2",
+    "href": "slides/Prometheus.html#aggregation-operators-2",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Aggregation operators",
+    "text": "Aggregation operators\n\n\n\nOperator\nDescription\n\n\n\n\nstdvar\ncalculate population standard variance over dimensions\n\n\ncount\ncount number of elements in the vector\n\n\ncount_values\ncount number of elements with the same value\n\n\nbottomk\nsmallest k elements by sample value\n\n\ntopk\nlargest k elements by sample value\n\n\nquantile\ncalculate φ-quantile"
+  },
+  {
+    "objectID": "slides/Prometheus.html#example",
+    "href": "slides/Prometheus.html#example",
+    "title": "A breaf introduction to Prometheus",
+    "section": "Example",
+    "text": "Example\nKube-state-metrics\nhttps://github.com/kubernetes/kube-state-metrics"
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#kernel",
+    "href": "slides/DistroFromScratch.html#kernel",
+    "title": "Mini Distro From Scratch",
+    "section": "Kernel",
+    "text": "Kernel\nThe Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was originally written in 1991 by Linus Torvalds for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was written to be a free replacement for Unix."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#user-space",
+    "href": "slides/DistroFromScratch.html#user-space",
+    "title": "Mini Distro From Scratch",
+    "section": "User space",
+    "text": "User space\nA modern computer operating system usually uses virtual memory to provide separate address spaces called user space and kernel space. Primarily, this separation serves to provide memory protection and hardware protection from malicious or errant software behaviour."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#kernel-space",
+    "href": "slides/DistroFromScratch.html#kernel-space",
+    "title": "Mini Distro From Scratch",
+    "section": "Kernel Space",
+    "text": "Kernel Space\nKernel space is strictly reserved for running a privileged operating system kernel, kernel extensions, and most device drivers. In contrast, user space is the memory area where application software and some drivers execute, typically one address space per process."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#user-space-vs-kernel-space",
+    "href": "slides/DistroFromScratch.html#user-space-vs-kernel-space",
+    "title": "Mini Distro From Scratch",
+    "section": "User Space vs Kernel Space",
+    "text": "User Space vs Kernel Space\n\n\n\n\n\nflowchart TD\n  A --&gt; K\n  subgraph U[\"User Space\"]\n    direction LR\n    A(Process)\n  end\n  subgraph K[\" Kernel Space\"]\n    direction LR\n    R((System Calls))\n    R --&gt; F(File System)\n    R --&gt; IPC(Inter Process Communication)\n    R --&gt; IO(IO & Device mgnt)\n  end"
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#busybox",
+    "href": "slides/DistroFromScratch.html#busybox",
+    "title": "Mini Distro From Scratch",
+    "section": "BusyBox",
+    "text": "BusyBox\nBusyBox is a software suite that provides several Unix utilities in a single executable file. It runs in a variety of POSIX environments such as Linux, Android, and FreeBSD, although many of the tools it provides are designed to work with interfaces provided by the Linux kernel."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#initramfs",
+    "href": "slides/DistroFromScratch.html#initramfs",
+    "title": "Mini Distro From Scratch",
+    "section": "Initramfs",
+    "text": "Initramfs\n\nThe initial RAM disk is an initial/temporary root file system that is mounted prior to when the real root file system is available.\nThis initramfs image is embedded in the Kernel and contains minimal binary files, modules & programs required for mounting the real root filesystem.\nIt is bundled into a single cpio archive and compressed with one of several compression algorithms."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#command-cpio",
+    "href": "slides/DistroFromScratch.html#command-cpio",
+    "title": "Mini Distro From Scratch",
+    "section": "Command “cpio”",
+    "text": "Command “cpio”\nGNU cpio copies files into or out of a cpio or tar archive. The archive can be another file on the disk, a magnetic tape, or a pipe."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#command-truncate",
+    "href": "slides/DistroFromScratch.html#command-truncate",
+    "title": "Mini Distro From Scratch",
+    "section": "Command “truncate”",
+    "text": "Command “truncate”\nThe “truncate” command extends or reduces the file size in Linux so that the user can delete or truncate the file’s content without having to set permissions and ownership."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#command-mkfs",
+    "href": "slides/DistroFromScratch.html#command-mkfs",
+    "title": "Mini Distro From Scratch",
+    "section": "Command “mkfs”",
+    "text": "Command “mkfs”\nmkfs is used to build a Linux file system on a device, usually a hard disk partition."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#command-extlinux",
+    "href": "slides/DistroFromScratch.html#command-extlinux",
+    "title": "Mini Distro From Scratch",
+    "section": "Command “extlinux”",
+    "text": "Command “extlinux”\nEXTLINUX is a new syslinux derivative, which boots from a Linux ext2/ext3 filesystem. It works the same way as SYSLINUX, with a few slight modifications. It is intended to simplify first-time installation of Linux, and for creation of rescue and other special-purpose boot disks."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#command-mount",
+    "href": "slides/DistroFromScratch.html#command-mount",
+    "title": "Mini Distro From Scratch",
+    "section": "Command “mount”",
+    "text": "Command “mount”\nThe mount command allows users to mount, attach additional child file systems to a particular mount point on the currently accessible file system. The command passes the mount instructions to the kernel, which completes the operation."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#qemu",
+    "href": "slides/DistroFromScratch.html#qemu",
+    "title": "Mini Distro From Scratch",
+    "section": "QEMU",
+    "text": "QEMU\nQEMU is a free and open-source emulator. It emulates a computer’s processor through dynamic binary translation and provides a set of different hardware and device models for the machine, enabling it to run a variety of guest operating systems."
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#order",
+    "href": "slides/DistroFromScratch.html#order",
+    "title": "Mini Distro From Scratch",
+    "section": "Order",
+    "text": "Order\n\n\n\n\n\nflowchart LR\n  A(Boot) --&gt; B(Kernel)\n  B --&gt; C(User Space)"
+  },
+  {
+    "objectID": "slides/DistroFromScratch.html#the-init-system",
+    "href": "slides/DistroFromScratch.html#the-init-system",
+    "title": "Mini Distro From Scratch",
+    "section": "The Init System",
+    "text": "The Init System\n\n\n\n\n\nflowchart LR\n  A(initramfs) --&gt; B(init file)\n  B --&gt; C(Start Shell)"
   },
   {
     "objectID": "slides/ContainerNetworking.html#how-does-networking-work-within-the-container-space",
     "href": "slides/ContainerNetworking.html#how-does-networking-work-within-the-container-space",
     "title": "Container Networking",
-    "section": "",
-    "text": "Containers are isolated processes that run on a single operating system. Much like virtualization, containers will consume CPU, Memory, and Disk space, but require significantly less to run, as they are dedicated to a single function or process.\n\nAny time a container is created a full operating system isn’t required. A container runtime such as containerd and interactive management layer such as Docker, make it possible to manage containers and resources, locally on a singular host.\n\n\n\nNetworking namespaces are used for container isolation. You can spin up a process and wrap it in networking namespace which is simply an isolated network.\n![[ContainerNetworking/NetworkNamespace.svg]]\n\n![[ContainerNetworking/pod.gif|900]]\n\n\n\n\nvagrant init ubuntu/focal64\n\nvagrant up\n\nvagrant ssh"
+    "section": "How does networking work within the container space?",
+    "text": "How does networking work within the container space?\nContainers are isolated processes that run on a single operating system. Much like virtualization, containers will consume CPU, Memory, and Disk space, but require significantly less to run, as they are dedicated to a single function or process."
+  },
+  {
+    "objectID": "slides/ContainerNetworking.html#example",
+    "href": "slides/ContainerNetworking.html#example",
+    "title": "Container Networking",
+    "section": "Example",
+    "text": "Example\n\n\nExample of a TCP packet traversing a kubernetes node from one container to another"
   },
   {
     "objectID": "slides/ContainerNetworking.html#building-networking-namespaces",
     "href": "slides/ContainerNetworking.html#building-networking-namespaces",
     "title": "Container Networking",
-    "section": "",
-    "text": "We’re going to build a couple of networking namespaces to be able to have each namespace interact or communicate with each other. We will also need to run a few additional commands requiring a quick installation.\napt install net-tools\n\n// Add new network namespaces called sleep and webapp\nip netns add sleep\nip netns add webapp\n\nLet’s now output those namespaces in the terminal ip netns\nNext lets find out what interfaces List the interfaces on the host ip link\nAnd let’s do the same for each network namespace we created.\nip netns exec sleep ip link\nip netns exec webapp ip link\n\n\n\nYou can even use arp on the host to see what MAC address and IP addresses show up (remember each MAC is associated to an IP), but you will discover that these endpoints in each namespace don’t know about each other. These are isolated “broadcast” domains if you will.\narp\nip netns exec sleep arp\nip netns exec webapp arp\n\n\n\n\nNow, in order for these two network namespaces to communicate with each other, we need to either create a virtual wire or virtual bridge.\nThe two network namespaces we created are representative of two different endpoints in their own isolated domain. Let’s bridge them together.\n\nWe can verify this by checking the routing table of each host, and the two namespaces. By running the two below, you won’t see entries for any networks. We haven’t assigned any addresses to the two namespaces.\nroute\nip netns exec sleep route\nip netns exec webapp route\n\n\n\n\nSo the best way to fix this is to use the Linux bridge functionality. Let’s create one called app-net-0 and then see it present on the host.\nip link add app-net-0 type bridge\nip link\n\nIf you notice, the state is currently down so we need to turn it up/online.\nip link set dev app-net-0 up\n\n\n\n\nNext, we need to attach virtual wires from each namespace to a port, which we’ll attach to the bridge shortly.\nWe also need to assign each virtual wire’s endpoint an IP on the 192.168.52.0/24 network, and as well, an IP for the bridge on the very same subnet.\n\nThis is like assigning an IP address to a process in its own namespace, or even, assigning an IP to a container. This allows for all three to communicate with addressing in the same broadcast domain and subnet.\n\n// Specifies the virtual pair device name of the _VETH/VXCAN_ tunnel.\nip link add veth-sleep type veth peer name veth-sleep-br\nip link add veth-webapp type veth peer name veth-webapp-br\n\n// Set virtual interface to network namespace\nip link set veth-sleep netns sleep\nip link set veth-webapp netns webapp\n\n// Set master device of the device\nip link set veth-sleep-br master app-net-0\nip link set veth-webapp-br master app-net-0\n\n\n\n\n// Add ip to virtual interface veth-sleep\nip -n sleep addr add 192.168.52.1/24 dev veth-sleep\nip -n sleep link set veth-sleep up\n\n// Add ip to virtual interface veth-webapp\nip -n webapp addr add 192.168.52.2/24 dev veth-webapp\nip -n webapp link set veth-webapp up\n\nLet’s add the ip to the bridge we created earlier and attach the virtual wires of the namespaces to it.\nip addr add 192.168.52.5/24 dev app-net-0\n\nip link set dev veth-sleep-br up\nip link set dev veth-webapp-br up\n\n\n\n\nIf you ping the sleep namespace endpoint, it will go through as the host’s app-net-0 interface/bridge can communicate with this namespace\nping 192.168.52.1\n\nBut, if you attempt to ping something external to the network (like the IP of google.com), it will report as unreachable because no default route exists or we aren’t using network address translation.\nip netns exec webapp ping 142.251.129.142\n\nip netns exec webapp route\n\n\n\n\nLet’s fix this using an iptables rule that allows us to NAT the 192.168.52.0 with an IP on the host that can communicate outbound.\niptables -t nat -A POSTROUTING -s 192.168.52.0/24 -j MASQUERADE\nip netns exec webapp ping 142.250.218.206\n\nSo it seems like we are still missing something, let’s check the routing table. Where is our default route? Let’s add it. And let’s also tell the kernel to forward this network traffic as well.\n// Show route for webapp ns\nip netns exec webapp route\n\n// Add default route as the bridge\nip netns exec webapp ip route add default via 192.168.52.5\n\n// Enable forwarding\nsysctl -w net.ipv4.ip_forward=1\n\n// Test\nip netns exec webapp ping 142.250.218.206\nNow, as you can see, you can ping google website through the webapp namespace !!!"
+    "section": "Building Networking Namespaces",
+    "text": "Building Networking Namespaces\nWe’re going to build a couple of networking namespaces to be able to have each namespace interact or communicate with each other. We will also need to run a few additional commands requiring a quick installation.\napt install net-tools\n\n// Add new network namespaces called sleep and webapp\nip netns add sleep\nip netns add webapp"
+  },
+  {
+    "objectID": "slides/ContainerNetworking.html#one-more-test",
+    "href": "slides/ContainerNetworking.html#one-more-test",
+    "title": "Container Networking",
+    "section": "One More test",
+    "text": "One More test\nNetcat to listen in 4444\nip netns exec webapp nc -l 4444\nConnect to Netcat with telnet\nip netns exec sleep telnet 192.168.52.2 4444\nSee traffic go through the bridge\ntcpdump -i app-net-0"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#containers-vs-vms",
+    "href": "slides/ContainerSecurityTetragon.html#containers-vs-vms",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Containers vs VMs",
+    "text": "Containers vs VMs"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#user-space-vs-kernel-space",
+    "href": "slides/ContainerSecurityTetragon.html#user-space-vs-kernel-space",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "User Space vs Kernel Space",
+    "text": "User Space vs Kernel Space"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#container-security",
+    "href": "slides/ContainerSecurityTetragon.html#container-security",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Container Security",
+    "text": "Container Security"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#ebpf",
+    "href": "slides/ContainerSecurityTetragon.html#ebpf",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "eBPF",
+    "text": "eBPF\n\n\neBPF is a technology that can run programs in a privileged context such as the operating system kernel. It is the successor to the Berkeley Packet Filter filtering mechanism in Linux and is also used in other parts of the Linux kernel as well"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#cilium",
+    "href": "slides/ContainerSecurityTetragon.html#cilium",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Cilium",
+    "text": "Cilium\n\n\nCilium is an open source, cloud native solution for providing, securing, and observing network connectivity between workloads, fueled by the revolutionary Kernel technology eBPF"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#tetragon",
+    "href": "slides/ContainerSecurityTetragon.html#tetragon",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tetragon",
+    "text": "Tetragon\n\n\nTetragon is a flexible Kubernetes-aware security observability and runtime enforcement tool that applies policy and filtering directly with eBPF, allowing for reduced observation overhead, tracking of any process, and real-time enforcement of policies."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#monitor-process-execution",
+    "href": "slides/ContainerSecurityTetragon.html#monitor-process-execution",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Monitor Process Execution",
+    "text": "Monitor Process Execution\nObserve the complete lifecycle of every process on your machine with Kubernetes context awareness"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#runtime-security-policies",
+    "href": "slides/ContainerSecurityTetragon.html#runtime-security-policies",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Runtime Security Policies",
+    "text": "Runtime Security Policies\nTranslate high level policies for file monitoring, network observability, container security, and more into low overhead eBPF programs"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#real-time-enforcement",
+    "href": "slides/ContainerSecurityTetragon.html#real-time-enforcement",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Real Time Enforcement",
+    "text": "Real Time Enforcement\nSynchronous monitoring, filtering, and enforcement completely in the kernel with eBPF"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#how-does-tetragon-work",
+    "href": "slides/ContainerSecurityTetragon.html#how-does-tetragon-work",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "How does Tetragon work",
+    "text": "How does Tetragon work"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#tetragon-detailed-architecture",
+    "href": "slides/ContainerSecurityTetragon.html#tetragon-detailed-architecture",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tetragon Detailed Architecture",
+    "text": "Tetragon Detailed Architecture"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#requirements",
+    "href": "slides/ContainerSecurityTetragon.html#requirements",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Requirements",
+    "text": "Requirements\nTetragon needs Linux kernel version 4.19 or greater.\nWe currently run tests on stable long-term support kernels 4.19, 5.4, 5.10, 5.15\nBPF evolves rapidly and we recommend you use the most recent stable kernel possible to get the most out of Tetragon’s features."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#linux-kernel-configuration-options-needed-to-run-tetragon",
+    "href": "slides/ContainerSecurityTetragon.html#linux-kernel-configuration-options-needed-to-run-tetragon",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Linux kernel configuration options needed to run Tetragon",
+    "text": "Linux kernel configuration options needed to run Tetragon\n# CORE BPF\nCONFIG_BPF\nCONFIG_BPF_JIT\nCONFIG_BPF_JIT_DEFAULT_ON\nCONFIG_BPF_EVENTS\nCONFIG_BPF_SYSCALL\nCONFIG_HAVE_BPF_JIT\nCONFIG_HAVE_EBPF_JIT\nCONFIG_FTRACE_SYSCALLS\n\n# BTF (BPF Type Format) is the metadata format which encodes the debug info related to BPF program/map.\nCONFIG_DEBUG_INFO_BTF\nCONFIG_DEBUG_INFO_BTF_MODULES\n\n# Enforcement\nCONFIG_BPF_KPROBE_OVERRIDE\n\n# CGROUP and Process tracking\nCONFIG_CGROUPS=y        Control Group support\nCONFIG_MEMCG=y          Memory Control group\nCONFIG_BLK_CGROUP=y     Generic block IO controller\nCONFIG_CGROUP_SCHED=y\nCONFIG_CGROUP_PIDS=y    Process Control group\nCONFIG_CGROUP_FREEZER=y Freeze and unfreeze tasks controller\nCONFIG_CPUSETS=y        Manage CPUSETs\nCONFIG_PROC_PID_CPUSET=y\nCONFIG_CGROUP_DEVICE=Y  Devices Control group\nCONFIG_CGROUP_CPUACCT=y CPU accouting controller\nCONFIG_CGROUP_PERF=y\nCONFIG_CGROUP_BPF=y     Attach eBPF programs to a cgroup\nCGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0\n  Reduces the latencies of dynamic cgroup modifications at the\n  cost of making hot path operations such as forks and exits\n  more expensive.\n  Platforms with frequent cgroup migrations could enable this\n  option as a potential alleviation for pod and containers\n  association issues."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#ebpf-hook-overview",
+    "href": "slides/ContainerSecurityTetragon.html#ebpf-hook-overview",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "eBPF Hook Overview",
+    "text": "eBPF Hook Overview"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#ebpf-tracing-hooks",
+    "href": "slides/ContainerSecurityTetragon.html#ebpf-tracing-hooks",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "eBPF Tracing Hooks",
+    "text": "eBPF Tracing Hooks"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#events",
+    "href": "slides/ContainerSecurityTetragon.html#events",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Events",
+    "text": "Events\nTetragon’s events are exposed to the system through either the gRPC endpoint or JSON logs."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy",
+    "href": "slides/ContainerSecurityTetragon.html#tracing-policy",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tracing Policy",
+    "text": "Tracing Policy\nTetragon’s TracingPolicy is a user-configurable Kubernetes custom resource (CR) that allows users to trace arbitrary events in the kernel and optionally define actions to take on a match.\nPolicies consist of a hook point (kprobes, tracepoints, and uprobes are supported), and selectors for in-kernel filtering and specifying actions."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#hook-points",
+    "href": "slides/ContainerSecurityTetragon.html#hook-points",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Hook points",
+    "text": "Hook points\nTetragon can hook into the kernel using kprobes and tracepoints, as well as in user-space programs using uprobes.\nThese hook points include arguments and return values that can be specified using the args and returnArg fields."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#arguments",
+    "href": "slides/ContainerSecurityTetragon.html#arguments",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Arguments",
+    "text": "Arguments\nKprobes, uprobes and tracepoints all share a needed arguments fields called args. It is a list of arguments to include in the trace output. Tetragon’s BPF code requires information about the types of arguments to properly read, print and filter on its arguments. This information needs to be provided by the user under the args section."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#mapping-function-calls-in-arguments",
+    "href": "slides/ContainerSecurityTetragon.html#mapping-function-calls-in-arguments",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Mapping function calls in arguments",
+    "text": "Mapping function calls in arguments\nargs:\n- index: 0\n  type: \"int\"\n- index: 1\n  type: \"file\"\nTo properly read and hook onto the fd_install(unsigned int fd, struct file *file) function, the YAML snippet above tells the BPF code that the first argument is an int and the second argument is a file, which is the struct file of the kernel. In this way, the BPF code and its printer can properly collect and print the arguments."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#selectors",
+    "href": "slides/ContainerSecurityTetragon.html#selectors",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Selectors",
+    "text": "Selectors\nSelectors are a way to perform in-kernel BPF filtering on the events to export, or on the events on which to apply an action."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#namespace-filtering",
+    "href": "slides/ContainerSecurityTetragon.html#namespace-filtering",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Namespace filtering",
+    "text": "Namespace filtering\nFor namespace filtering we use TracingPolicyNamespaced which has the same contents as a TracingPolicy, but it is defined in a specific namespace and it is only applied to pods of that namespace."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#pod-label-filters",
+    "href": "slides/ContainerSecurityTetragon.html#pod-label-filters",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Pod label filters",
+    "text": "Pod label filters\nFor pod label filters, we use the PodSelector field of tracing policies to select the pods that the policy is applied to."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#container-field-filters",
+    "href": "slides/ContainerSecurityTetragon.html#container-field-filters",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Container field filters",
+    "text": "Container field filters\nFor container field filters, we use the containerSelector field of tracing policies to select the containers that the policy is applied to. At the moment, the only supported field is name."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#enforcement",
+    "href": "slides/ContainerSecurityTetragon.html#enforcement",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Enforcement",
+    "text": "Enforcement\nTetragon allows enforcing events in the kernel inline with the operation itself."
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy-binaries",
+    "href": "slides/ContainerSecurityTetragon.html#tracing-policy-binaries",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tracing Policy Binaries",
+    "text": "Tracing Policy Binaries\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicyNamespaced\nmetadata:\n  name: \"file-monitoring-filtered\"\nspec:\n  kprobes:\n  - call: \"security_file_permission\"\n    syscall: false\n    return: true\n    args:\n    - index: 0\n      type: \"file\" # (struct file *) used for getting the path\n    - index: 1\n      type: \"int\" # 0x04 is MAY_READ, 0x02 is MAY_WRITE\n    returnArg:\n      index: 0\n      type: \"int\"\n    returnArgAction: \"Post\"\n    selectors:\n    - matchBinaries:\n      - operator: \"In\"\n        values:\n        - \"/usr/bin/cat\"\n        - \"/usr/bin/tail\"\n        - \"/usr/bin/bash\"\n      matchActions:\n      - action: Sigkill"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy-network",
+    "href": "slides/ContainerSecurityTetragon.html#tracing-policy-network",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Tracing Policy Network",
+    "text": "Tracing Policy Network\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicy\nmetadata:\n  name: \"connect\"\nspec:\n  kprobes:\n  - call: \"tcp_connect\"\n    syscall: false\n    args:\n    - index: 0\n      type: \"sock\"\n    selectors:\n    - matchBinaries:\n      - operator: \"In\"\n        values:\n          - \"/usr/bin/curl\"\n          - \"/usr/bin/wget\"\n      matchActions:\n      - action: Sigkill"
+  },
+  {
+    "objectID": "slides/ContainerSecurityTetragon.html#demo-architecture",
+    "href": "slides/ContainerSecurityTetragon.html#demo-architecture",
+    "title": "Container Runtime Security with Tetragon",
+    "section": "Demo Architecture",
+    "text": "Demo Architecture"
   },
   {
     "objectID": "slides/Istio.html#the-problem",
@@ -782,208 +971,5 @@
     "title": "What does service mesh have to do with security",
     "section": "References",
     "text": "References\n\nhttps://istio.io/latest/docs/concepts/security"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#containers-vs-vms",
-    "href": "slides/ContainerSecurityTetragon.html#containers-vs-vms",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Containers vs VMs",
-    "text": "Containers vs VMs"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#user-space-vs-kernel-space",
-    "href": "slides/ContainerSecurityTetragon.html#user-space-vs-kernel-space",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "User Space vs Kernel Space",
-    "text": "User Space vs Kernel Space"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#container-security",
-    "href": "slides/ContainerSecurityTetragon.html#container-security",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Container Security",
-    "text": "Container Security"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#ebpf",
-    "href": "slides/ContainerSecurityTetragon.html#ebpf",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "eBPF",
-    "text": "eBPF\n\n\neBPF is a technology that can run programs in a privileged context such as the operating system kernel. It is the successor to the Berkeley Packet Filter filtering mechanism in Linux and is also used in other parts of the Linux kernel as well"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#cilium",
-    "href": "slides/ContainerSecurityTetragon.html#cilium",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Cilium",
-    "text": "Cilium\n\n\nCilium is an open source, cloud native solution for providing, securing, and observing network connectivity between workloads, fueled by the revolutionary Kernel technology eBPF"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#tetragon",
-    "href": "slides/ContainerSecurityTetragon.html#tetragon",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Tetragon",
-    "text": "Tetragon\n\n\nTetragon is a flexible Kubernetes-aware security observability and runtime enforcement tool that applies policy and filtering directly with eBPF, allowing for reduced observation overhead, tracking of any process, and real-time enforcement of policies."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#monitor-process-execution",
-    "href": "slides/ContainerSecurityTetragon.html#monitor-process-execution",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Monitor Process Execution",
-    "text": "Monitor Process Execution\nObserve the complete lifecycle of every process on your machine with Kubernetes context awareness"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#runtime-security-policies",
-    "href": "slides/ContainerSecurityTetragon.html#runtime-security-policies",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Runtime Security Policies",
-    "text": "Runtime Security Policies\nTranslate high level policies for file monitoring, network observability, container security, and more into low overhead eBPF programs"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#real-time-enforcement",
-    "href": "slides/ContainerSecurityTetragon.html#real-time-enforcement",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Real Time Enforcement",
-    "text": "Real Time Enforcement\nSynchronous monitoring, filtering, and enforcement completely in the kernel with eBPF"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#how-does-tetragon-work",
-    "href": "slides/ContainerSecurityTetragon.html#how-does-tetragon-work",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "How does Tetragon work",
-    "text": "How does Tetragon work"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#tetragon-detailed-architecture",
-    "href": "slides/ContainerSecurityTetragon.html#tetragon-detailed-architecture",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Tetragon Detailed Architecture",
-    "text": "Tetragon Detailed Architecture"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#requirements",
-    "href": "slides/ContainerSecurityTetragon.html#requirements",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Requirements",
-    "text": "Requirements\nTetragon needs Linux kernel version 4.19 or greater.\nWe currently run tests on stable long-term support kernels 4.19, 5.4, 5.10, 5.15\nBPF evolves rapidly and we recommend you use the most recent stable kernel possible to get the most out of Tetragon’s features."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#linux-kernel-configuration-options-needed-to-run-tetragon",
-    "href": "slides/ContainerSecurityTetragon.html#linux-kernel-configuration-options-needed-to-run-tetragon",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Linux kernel configuration options needed to run Tetragon",
-    "text": "Linux kernel configuration options needed to run Tetragon\n# CORE BPF\nCONFIG_BPF\nCONFIG_BPF_JIT\nCONFIG_BPF_JIT_DEFAULT_ON\nCONFIG_BPF_EVENTS\nCONFIG_BPF_SYSCALL\nCONFIG_HAVE_BPF_JIT\nCONFIG_HAVE_EBPF_JIT\nCONFIG_FTRACE_SYSCALLS\n\n# BTF (BPF Type Format) is the metadata format which encodes the debug info related to BPF program/map.\nCONFIG_DEBUG_INFO_BTF\nCONFIG_DEBUG_INFO_BTF_MODULES\n\n# Enforcement\nCONFIG_BPF_KPROBE_OVERRIDE\n\n# CGROUP and Process tracking\nCONFIG_CGROUPS=y        Control Group support\nCONFIG_MEMCG=y          Memory Control group\nCONFIG_BLK_CGROUP=y     Generic block IO controller\nCONFIG_CGROUP_SCHED=y\nCONFIG_CGROUP_PIDS=y    Process Control group\nCONFIG_CGROUP_FREEZER=y Freeze and unfreeze tasks controller\nCONFIG_CPUSETS=y        Manage CPUSETs\nCONFIG_PROC_PID_CPUSET=y\nCONFIG_CGROUP_DEVICE=Y  Devices Control group\nCONFIG_CGROUP_CPUACCT=y CPU accouting controller\nCONFIG_CGROUP_PERF=y\nCONFIG_CGROUP_BPF=y     Attach eBPF programs to a cgroup\nCGROUP_FAVOR_DYNMODS=y  (optional)  &gt;= 6.0\n  Reduces the latencies of dynamic cgroup modifications at the\n  cost of making hot path operations such as forks and exits\n  more expensive.\n  Platforms with frequent cgroup migrations could enable this\n  option as a potential alleviation for pod and containers\n  association issues."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#ebpf-hook-overview",
-    "href": "slides/ContainerSecurityTetragon.html#ebpf-hook-overview",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "eBPF Hook Overview",
-    "text": "eBPF Hook Overview"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#ebpf-tracing-hooks",
-    "href": "slides/ContainerSecurityTetragon.html#ebpf-tracing-hooks",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "eBPF Tracing Hooks",
-    "text": "eBPF Tracing Hooks"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#events",
-    "href": "slides/ContainerSecurityTetragon.html#events",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Events",
-    "text": "Events\nTetragon’s events are exposed to the system through either the gRPC endpoint or JSON logs."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy",
-    "href": "slides/ContainerSecurityTetragon.html#tracing-policy",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Tracing Policy",
-    "text": "Tracing Policy\nTetragon’s TracingPolicy is a user-configurable Kubernetes custom resource (CR) that allows users to trace arbitrary events in the kernel and optionally define actions to take on a match.\nPolicies consist of a hook point (kprobes, tracepoints, and uprobes are supported), and selectors for in-kernel filtering and specifying actions."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#hook-points",
-    "href": "slides/ContainerSecurityTetragon.html#hook-points",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Hook points",
-    "text": "Hook points\nTetragon can hook into the kernel using kprobes and tracepoints, as well as in user-space programs using uprobes.\nThese hook points include arguments and return values that can be specified using the args and returnArg fields."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#arguments",
-    "href": "slides/ContainerSecurityTetragon.html#arguments",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Arguments",
-    "text": "Arguments\nKprobes, uprobes and tracepoints all share a needed arguments fields called args. It is a list of arguments to include in the trace output. Tetragon’s BPF code requires information about the types of arguments to properly read, print and filter on its arguments. This information needs to be provided by the user under the args section."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#mapping-function-calls-in-arguments",
-    "href": "slides/ContainerSecurityTetragon.html#mapping-function-calls-in-arguments",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Mapping function calls in arguments",
-    "text": "Mapping function calls in arguments\nargs:\n- index: 0\n  type: \"int\"\n- index: 1\n  type: \"file\"\nTo properly read and hook onto the fd_install(unsigned int fd, struct file *file) function, the YAML snippet above tells the BPF code that the first argument is an int and the second argument is a file, which is the struct file of the kernel. In this way, the BPF code and its printer can properly collect and print the arguments."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#selectors",
-    "href": "slides/ContainerSecurityTetragon.html#selectors",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Selectors",
-    "text": "Selectors\nSelectors are a way to perform in-kernel BPF filtering on the events to export, or on the events on which to apply an action."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#namespace-filtering",
-    "href": "slides/ContainerSecurityTetragon.html#namespace-filtering",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Namespace filtering",
-    "text": "Namespace filtering\nFor namespace filtering we use TracingPolicyNamespaced which has the same contents as a TracingPolicy, but it is defined in a specific namespace and it is only applied to pods of that namespace."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#pod-label-filters",
-    "href": "slides/ContainerSecurityTetragon.html#pod-label-filters",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Pod label filters",
-    "text": "Pod label filters\nFor pod label filters, we use the PodSelector field of tracing policies to select the pods that the policy is applied to."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#container-field-filters",
-    "href": "slides/ContainerSecurityTetragon.html#container-field-filters",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Container field filters",
-    "text": "Container field filters\nFor container field filters, we use the containerSelector field of tracing policies to select the containers that the policy is applied to. At the moment, the only supported field is name."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#enforcement",
-    "href": "slides/ContainerSecurityTetragon.html#enforcement",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Enforcement",
-    "text": "Enforcement\nTetragon allows enforcing events in the kernel inline with the operation itself."
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy-binaries",
-    "href": "slides/ContainerSecurityTetragon.html#tracing-policy-binaries",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Tracing Policy Binaries",
-    "text": "Tracing Policy Binaries\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicyNamespaced\nmetadata:\n  name: \"file-monitoring-filtered\"\nspec:\n  kprobes:\n  - call: \"security_file_permission\"\n    syscall: false\n    return: true\n    args:\n    - index: 0\n      type: \"file\" # (struct file *) used for getting the path\n    - index: 1\n      type: \"int\" # 0x04 is MAY_READ, 0x02 is MAY_WRITE\n    returnArg:\n      index: 0\n      type: \"int\"\n    returnArgAction: \"Post\"\n    selectors:\n    - matchBinaries:\n      - operator: \"In\"\n        values:\n        - \"/usr/bin/cat\"\n        - \"/usr/bin/tail\"\n        - \"/usr/bin/bash\"\n      matchActions:\n      - action: Sigkill"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#tracing-policy-network",
-    "href": "slides/ContainerSecurityTetragon.html#tracing-policy-network",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Tracing Policy Network",
-    "text": "Tracing Policy Network\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicy\nmetadata:\n  name: \"connect\"\nspec:\n  kprobes:\n  - call: \"tcp_connect\"\n    syscall: false\n    args:\n    - index: 0\n      type: \"sock\"\n    selectors:\n    - matchBinaries:\n      - operator: \"In\"\n        values:\n          - \"/usr/bin/curl\"\n          - \"/usr/bin/wget\"\n      matchActions:\n      - action: Sigkill"
-  },
-  {
-    "objectID": "slides/ContainerSecurityTetragon.html#demo-architecture",
-    "href": "slides/ContainerSecurityTetragon.html#demo-architecture",
-    "title": "Container Runtime Security with Tetragon",
-    "section": "Demo Architecture",
-    "text": "Demo Architecture"
-  },
-  {
-    "objectID": "slides/ContainerSecurity.html",
-    "href": "slides/ContainerSecurity.html",
-    "title": "Falco",
-    "section": "",
-    "text": "Falco\n![[ContainerSecurity.drawio.svg]]"
   }
 ]
